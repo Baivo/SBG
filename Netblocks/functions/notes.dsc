@@ -66,7 +66,7 @@ note_data:
         24_FSharp: 1.000
 
 ## Pling ##
-nbf_note_0FSharp_pling:
+nbf_note_pling_0FSharp:
     type: task
     definitions: player
     script:
@@ -75,7 +75,7 @@ nbf_note_0FSharp_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.0_FSharp]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.0_FSharp]>
 
-nbf_note_1G_pling:
+nbf_note_pling_1G:
     type: task
     definitions: player
     script:
@@ -84,7 +84,7 @@ nbf_note_1G_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.1_G]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.1_G]>
 
-nbf_note_2GSharp_pling:
+nbf_note_pling_2GSharp:
     type: task
     definitions: player
     script:
@@ -93,7 +93,7 @@ nbf_note_2GSharp_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.2_GSharp]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.2_GSharp]>
 
-nbf_note_3A_pling:
+nbf_note_pling_3A:
     type: task
     definitions: player
     script:
@@ -102,7 +102,7 @@ nbf_note_3A_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.3_A]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.3_A]>
 
-nbf_note_4ASharp_pling:
+nbf_note_pling_4ASharp:
     type: task
     definitions: player
     script:
@@ -111,7 +111,7 @@ nbf_note_4ASharp_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.4_ASharp]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.4_ASharp]>
 
-nbf_note_5B_pling:
+nbf_note_pling_5B:
     type: task
     definitions: player
     script:
@@ -120,7 +120,7 @@ nbf_note_5B_pling:
         - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.5_B]>
         - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.5_B]>
 
-nbf_note_6C_pling:
+nbf_note_pling_6C:
     type: task
     definitions: player
     script:
