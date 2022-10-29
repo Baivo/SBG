@@ -13,63 +13,57 @@ netblock_function_note_clear:
 note_data:
     type: data
     pitches:
-        Octave1:
-            FSharp: 0.5
-            G: 0.529732
-            GSharp: 0.561231
-            A: 0.594604
-            ASharp: 0.629961
-            B: 0.667420
-            C: 0.707107
-            CSharp: 0.749154
-            D: 0.793701
-            DSharp: 0.840896
-            E: 0.890899
-            F: 0.943874
-            FSharp: 1.0
-        Octave2:
-            FSharp: 1.0
-            G: 1.059463
-            GSharp: 1.122462
-            A: 1.189207
-            ASharp: 1.259921
-            B: 1.334840
-            C: 1.414214
-            CSharp: 1.498307
-            D: 1.587401
-            DSharp: 1.681793
-            E: 1.781797
-            F: 1.887749
-            FSharp: 2.0
+        0_FSharp: 0.5
+        1_G: 0.529732
+        2_GSharp: 0.561231
+        3_A: 0.594604
+        4_ASharp: 0.629961
+        5_B: 0.667420
+        6_C: 0.707107
+        7_CSharp: 0.749154
+        8_D: 0.793701
+        9_DSharp: 0.840896
+        10_E: 0.890899
+        11_F: 0.943874
+        12_FSharp: 1.0
+        13_G: 1.059463
+        14_GSharp: 1.122462
+        15_A: 1.189207
+        16_ASharp: 1.259921
+        17_B: 1.334840
+        18_C: 1.414214
+        29_CSharp: 1.498307
+        20_D: 1.587401
+        21_DSharp: 1.681793
+        22_E: 1.781797
+        23_F: 1.887749
+        24_FSharp: 2.0
     colours:
-        Octave1:
-            FSharp: 0
-            G: 0.042
-            GSharp: 0.083
-            A: 0.125
-            ASharp: 0.167
-            B: 0.208
-            C: 0.250
-            CSharp: 0.292
-            D: 0.333
-            DSharp: 0.375
-            E: 0.417
-            F: 0.458
-            FSharp: 0.500
-        Octave2:
-            FSharp: 0.500
-            G: 0.542
-            GSharp: 0.583
-            A: 0.625
-            ASharp: 0.667
-            B: 0.708
-            C: 0.750
-            CSharp: 0.792
-            D: 0.833
-            DSharp: 0.875
-            E: 0.917
-            F: 0.958
-            FSharp: 1.000
+        0_FSharp: 0
+        1_G: 0.042
+        2_GSharp: 0.083
+        3_A: 0.125
+        4_ASharp: 0.167
+        5_B: 0.208
+        6_C: 0.250
+        7_CSharp: 0.292
+        8_D: 0.333
+        9_DSharp: 0.375
+        10_E: 0.417
+        11_F: 0.458
+        12_FSharp: 0.500
+        13_G: 0.542
+        14_GSharp: 0.583
+        15_A: 0.625
+        16_ASharp: 0.667
+        17_B: 0.708
+        18_C: 0.750
+        19_CSharp: 0.792
+        20_D: 0.833
+        21_DSharp: 0.875
+        22_E: 0.917
+        23_F: 0.958
+        24_FSharp: 1.000
 
 ## Pling ##
 nbf_note_0FSharp_pling:
@@ -78,5 +72,59 @@ nbf_note_0FSharp_pling:
     script:
     - if <[player].flag[note]> != 0fSharp:
         - flag <[player]> note:0fSharp
-        - playsound <[player].location> sound:block_note_block_pling pitch:0.5
-        - playeffect <[player].location> effect:note
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.0_FSharp]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.0_FSharp]>
+
+nbf_note_1G_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 1g:
+        - flag <[player]> note:1g
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.1_G]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.1_G]>
+
+nbf_note_2GSharp_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 2gSharp:
+        - flag <[player]> note:2gSharp
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.2_GSharp]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.2_GSharp]>
+
+nbf_note_3A_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 3a:
+        - flag <[player]> note:3a
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.3_A]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.3_A]>
+
+nbf_note_4ASharp_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 4aSharp:
+        - flag <[player]> note:4aSharp
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.4_ASharp]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.4_ASharp]>
+
+nbf_note_5B_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 5b:
+        - flag <[player]> note:5b
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.5_B]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.5_B]>
+
+nbf_note_6C_pling:
+    type: task
+    definitions: player
+    script:
+    - if <[player].flag[note]> != 6c:
+        - flag <[player]> note:6c
+        - playsound <[player].location> sound:block_note_block_pling pitch:<script[note_data].data_key[pitches.6_C]>
+        - playeffect <[player].location> effect:note data:<script[note_data].data_key[colours.6_C]>
