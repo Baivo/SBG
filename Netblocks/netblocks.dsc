@@ -7,7 +7,11 @@ netblock:
                 - flag <context.location.center> netblock
                 - flag <context.location.center> connections
         on player breaks block location_flagged:netblock:
-            - foreach <context.location.center.list_flags> as:flag:
+            - define netblock <context.location.center>
+            - foreach <[netblock].flag[connections]> as:connection:
+              - foreach <[connection].list_flags> as:cflag:
+                - flag <[connection]> <[cflag]>:!
+            - foreach <[netblock].list_flags> as:flag:
                 - flag <context.location.center> <[flag]>:!
             - determine NOTHING passively
 
