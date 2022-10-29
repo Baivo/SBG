@@ -14,97 +14,69 @@ note_data:
     type: data
     pitches:
         Octave1:
-            F#: 0.5
+            FSharp: 0.5
             G: 0.529732
-            G#: 0.561231
+            GSharp: 0.561231
             A: 0.594604
-            A#: 0.629961
+            ASharp: 0.629961
             B: 0.667420
             C: 0.707107
-            C#: 0.749154
+            CSharp: 0.749154
             D: 0.793701
-            D#: 0.840896
+            DSharp: 0.840896
             E: 0.890899
             F: 0.943874
-            F#: 1.0
+            FSharp: 1.0
         Octave2:
-            F#: 1.0
+            FSharp: 1.0
             G: 1.059463
-            G#: 1.122462
+            GSharp: 1.122462
             A: 1.189207
-            A#: 1.259921
+            ASharp: 1.259921
             B: 1.334840
             C: 1.414214
-            C#: 1.498307
+            CSharp: 1.498307
             D: 1.587401
-            D#: 1.681793
+            DSharp: 1.681793
             E: 1.781797
             F: 1.887749
-            F#: 2.0
+            FSharp: 2.0
     colours:
         Octave1:
-            F#: 0
+            FSharp: 0
             G: 0.042
-            G#: 0.083
+            GSharp: 0.083
             A: 0.125
-            A#: 0.167
+            ASharp: 0.167
             B: 0.208
             C: 0.250
-            C#: 0.292
+            CSharp: 0.292
             D: 0.333
-            D#: 0.375
+            DSharp: 0.375
             E: 0.417
             F: 0.458
-            F#: 0.500
+            FSharp: 0.500
         Octave2:
-            F#: 0.500
+            FSharp: 0.500
             G: 0.542
-            G#: 0.583
+            GSharp: 0.583
             A: 0.625
-            A#: 0.667
+            ASharp: 0.667
             B: 0.708
             C: 0.750
-            C#: 0.792
+            CSharp: 0.792
             D: 0.833
-            D#: 0.875
+            DSharp: 0.875
             E: 0.917
             F: 0.958
-            F#: 1.000
+            FSharp: 1.000
 
 ## Pling ##
-note_pling_a:
-    type: task
-    debug: false
-    definitions: player
-    script:
-    - if <[player].flag[note]> != a:
-        - flag <[player]> note:a
-        - playsound <[player].location> sound:block_note_block_pling volume:1.0 pitch:0.594604
-note_pling_b:
+nbf_note_0FSharp_pling:
     type: task
     definitions: player
     script:
-    - if <[player].flag[note]> != b:
-        - flag <[player]> note:b
-        - playsound <[player].location> sound:block_note_block_pling volume:1.0 pitch:0.667420
-note_pling_c:
-    type: task
-    definitions: player
-    script:
-    - if <[player].flag[note]> != c:
-        - flag <[player]> note:c
-        - playsound <[player].location> sound:block_note_block_pling volume:1.0 pitch:0.707107
-note_pling_d:
-    type: task
-    definitions: player
-    script:
-    - if <[player].flag[note]> != d:
-        - flag <[player]> note:d
-        - playsound <[player].location> sound:block_note_block_pling volume:1.0 pitch:0.793701
-note_pling_e:
-    type: task
-    definitions: player
-    script:
-    - if <[player].flag[note]> != e:
-        - flag <[player]> note:e
-        - playsound <[player].location> sound:block_note_block_pling volume:1.0 pitch:0.890899
+    - if <[player].flag[note]> != 0fSharp:
+        - flag <[player]> note:0fSharp
+        - playsound <[player].location> sound:block_note_block_pling pitch:0.5
+        - playeffect <[player].location> effect:note
