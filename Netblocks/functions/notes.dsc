@@ -4,6 +4,11 @@ note_clear:
     definitions: player
     script:
     - flag <[player]> note:!
+    # Use this to clear a player's note flag
+    # Note flags are provided by default, and prevent a player from rapid firing a note sound
+    # Placing note clear connections around a note sound connection, say, right above a note connection...
+    # Will allow a player to play the same note again so long as their feet location leaves the one block space of the note connection
+    # See the piano at TinkCorp Store in market for an example, netblocks are behind the tv at the back.
 
 note_pling_a:
     type: task
