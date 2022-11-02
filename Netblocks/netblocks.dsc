@@ -55,6 +55,8 @@ netblock_configurator_events:
     - define connectionclear "<&c>[Reset Connections]"
     - actionbar "<&7>Netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
     - narrate <element[<[functionselect]>].on_click[<entry[functionselect].command>]><&sp><&sp><element[<[functionlist]>].on_click[<entry[functionlist].command>]><&sp><&sp><element[<[connectionclear]>].on_click[<entry[connectionclear].command>]>
+    - flag <player> netblock:<[netblock]>
+    - narrate "<&7>Enter function name:"
     - determine passively cancelled
 # # # # # # # # # # #
     on player left clicks air with:netblockconfiguratoritem:
