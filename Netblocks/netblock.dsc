@@ -28,13 +28,13 @@ netblock_configurator_events:
   type: world
   debug: true
   events:
-    on player left clicks !air location_flagged:netblock with:netblockconfiguratoritem:
+    on player left clicks block type:!air location_flagged:netblock with:netblockconfiguratoritem:
     - inventory adjust d:<player.inventory> slot:hand flag:netblock:<context.location.center> expire:1h
     - define netblock <context.location.center>
     - actionbar "<&7>Configuring netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
     - determine passively cancelled
 # # # # # # # # # # #
-    on player right clicks !air location_flagged:netblock with:netblockconfiguratoritem:
+    on player right clicks block type:!air location_flagged:netblock with:netblockconfiguratoritem:
     - define netblock <context.location.center>
     - clickable save:connectionclear:
       - foreach <location[<[netblock]>].flag[connections]> as:connection:
@@ -83,7 +83,7 @@ netblock_configurator_events:
       - actionbar "<&c>Configurator not set to a netblock"
     - determine passively cancelled
 # # # # # # # # # # #
-    on player right clicks !air with:netblockconfiguratoritem:
+    on player right clicks block type:!air with:netblockconfiguratoritem:
       - define netblock <player.item_in_hand.flag[netblock]>
       - if <[netblock].has_flag[netblock]>:
         - define block <context.relative>
