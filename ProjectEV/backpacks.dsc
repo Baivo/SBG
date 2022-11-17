@@ -1,6 +1,6 @@
 Backpack_Events:
     type: world
-    debug: true
+    debug: false
     events:
         on player crafts backpack_item:
         - define ID <player.name><util.random_uuid>
