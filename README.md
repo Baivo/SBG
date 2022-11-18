@@ -16,7 +16,7 @@ Nah but seriously, this is planned as a player progression project that doesn't 
 ### Standalone Categories:
 #### [Core](/core/)
 Contains scripts/libraries that are independent, narrow in scope or are otherwise used but don't fall into any category. Needs a better name. 
-#### [External Scripts](/ext/)
+#### [External Scripts](/external/)
 Contains scripts/libraries that were either taken from other users (with consent!), or were commissioned and provided for us.
 #### [Sandbox for Test and Development works](/sandbox/)
 Please create a folder with your MC account name to contain your scripts, and disable any script in these directories when not in use!
