@@ -13,6 +13,9 @@ Think things like Source map trigger blocks and map logic, extendable script tri
 #### [ProjectPP - Expand dong](/ProjectEV/)
 Nah but seriously, this is planned as a player progression project that doesn't limit itself to forcing defined playstyles and arbitrary grinding on players. Watch this space, get bored, come back later!
 
+#### [ProjectMP - Minecraft 2](/ProjectMP/)
+Mod-style content that isn't a part of the ProjectEV works. Just cool as heck custom content that only requires vanilla! (and the resource pack)
+
 ### Standalone Categories:
 #### [Core](/core/)
 Contains scripts/libraries that are independent, narrow in scope or are otherwise used but don't fall into any category. Needs a better name. 
