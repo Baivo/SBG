@@ -60,3 +60,31 @@ sentinel_program:
                         - assignment set program_five <npc>
                 - else:
                     - determine passively
+
+
+# This one I remember, but it barely worked. 
+rosa_assignment:
+    type: assignment
+    actions:
+        on assignment:
+        - trigger name:chat state:true
+    interact scripts:
+    - rosa_interact
+
+rosa_interact:
+    type: interact
+    steps:
+        1:
+            chat trigger:
+                1:
+                    trigger: /Hello|Hi|Yo|G'day/ R.O.S.A!
+                    script:
+                    - narrate <context.message> targets:<server.online_players>
+                    - wait 5t
+                    - narrate "<&8>[<&a>R.O.S.A<&8>] <&7><context.keyword>, <player.name>!" targets:<server.online_players>
+                2:
+                    trigger: /What's good/ R.O.S.A?
+                    script:
+                    - narrate <context.message> targets:<server.online_players>
+                    - wait 5t
+                    - narrate "<&8>[<&a>R.O.S.A<&8>] <&7>Not the fuckin economy <player.name>, I can tell ya that much. I mean uh, beep boop no.user.panel.session()" targets:<server.online_players>
