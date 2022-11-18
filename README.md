@@ -38,20 +38,20 @@ Try and have an understanding of what a script or set of scripts is achieving, t
 The one piece of advice I will give here and always though, try and take inspiration or knowledge from these examples to build your own solution. Even if it's just changing one or two parts of a script to understand how parts work, you will take away more than just dropping these in and treating them like a plugin or datapack.
 
 ### Additional Denizen Resources and FUDs:
-[Meta Documentation](meta.denizenscript.com)
-[VSCode Extension](https://github.com/DenizenScript/DenizenVSCode)
-[Beginner's Guide to Denizen](https://guide.denizenscript.com/)
-[Denizen Forums](https://forum.denizenscript.com/)
-[Denizen Discord](https://discord.com/invite/Q6pZGSR)
-
-[Denizen - Builds](https://ci.citizensnpcs.co/job/Denizen)
-[Denizen - Source](https://github.com/DenizenScript/Denizen)
-
-[Depenizen - Builds](https://ci.citizensnpcs.co/job/Depenizen/)
-[Depenizen - Source](https://github.com/DenizenScript/Depenizen)
-
-[dDiscordBot - Builds (Dev)](https://ci.citizensnpcs.co/job/dDiscordBot/)
-[dDiscordBot - Source](https://github.com/DenizenScript/dDiscordBot)
-
-[Webizen - Builds](https://ci.citizensnpcs.co/job/Webizen/)
-[Webizen - Source](https://github.com/DenizenScript/Webizen)
+[Meta Documentation](meta.denizenscript.com)<br>
+[VSCode Extension](https://github.com/DenizenScript/DenizenVSCode)<br>
+[Beginner's Guide to Denizen](https://guide.denizenscript.com/)<br>
+[Denizen Forums](https://forum.denizenscript.com/)<br>
+[Denizen Discord](https://discord.com/invite/Q6pZGSR)<br>
+<br>
+[Denizen - Builds](https://ci.citizensnpcs.co/job/Denizen)<br>
+[Denizen - Source](https://github.com/DenizenScript/Denizen)<br>
+<br>
+[Depenizen - Builds](https://ci.citizensnpcs.co/job/Depenizen/)<br>
+[Depenizen - Source](https://github.com/DenizenScript/Depenizen)<br>
+<br>
+[dDiscordBot - Builds (Dev)](https://ci.citizensnpcs.co/job/dDiscordBot/)<br>
+[dDiscordBot - Source](https://github.com/DenizenScript/dDiscordBot)<br>
+<br>
+[Webizen - Builds](https://ci.citizensnpcs.co/job/Webizen/)<br>
+[Webizen - Source](https://github.com/DenizenScript/Webizen)<br>
