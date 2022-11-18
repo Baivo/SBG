@@ -1,0 +1,62 @@
+# Author: Baivo
+# Was supposed to be a sandbox for testing sentinel npc assignments, I assume?
+# Don't even remember how long ago this was, probably deserves to be archived once I take a look at it again. 
+program_one:
+    type: assignment
+    debug: true
+    actions:
+        on assignment:
+            - adjust <npc[27]> glow_color:AQUA
+            - equip <npc[27]> hand:wither_skeleton_skull
+            - assignment remove program_one <npc>
+program_two:
+    type: assignment
+    debug: false
+    actions:
+        on assignment:
+            - adjust <npc[27]> glow_color:GOLD
+            - equip <npc[27]> hand:bow
+            - assignment remove program_two <npc>
+program_three:
+    type: assignment
+    debug: false
+    actions:
+        on assignment:
+            - adjust <npc[27]> glow_color:RED
+            - equip <npc[27]> hand:blaze_rod
+            - assignment remove program_two <npc>
+program_four:
+    type: assignment
+    debug: false
+    actions:
+        on assignment:
+            - adjust <npc[27]> glow_color:GRAY
+            - equip <npc[27]> hand:nether_star
+            - assignment remove program_two <npc>
+program_five:
+    type: assignment
+    debug: false
+    actions:
+        on assignment:
+            - adjust <npc[27]> glow_color:LIGHT_PURPLE
+            - equip <npc[27]> hand:shulker_shell
+            - assignment remove program_two <npc>
+
+sentinel_program:
+    type: world
+    debug: false
+    events:
+        on sentinel npc attacks:
+            - define actionrandom <util.random.int[1].to[10]>
+            - if <[actionrandom]> != 1:
+                - determine passively
+            - else:
+                - if <npc> == <npc[27]>:
+                    - random:
+                        - assignment set program_one <npc>
+                        - assignment set program_two <npc>
+                        - assignment set program_three <npc>
+                        - assignment set program_four <npc>
+                        - assignment set program_five <npc>
+                - else:
+                    - determine passively
