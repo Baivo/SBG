@@ -2,7 +2,7 @@
 ## Denizen 
 A large portion of this repo is made up of live, in-dev and archived denizen scripting created or used by the SBG crew. 
 ### Project Workspaces:
-#### [ProjectEV -  EE2 gang.](/ProjectEV/)
+#### [ProjectEV -  EE2 gang](/ProjectEV/)
 An attempt to create a spiritual successor to the gameplay feel of the Tekkit Classic 1.2.5 modpack, plus some additional highlights from other past experiences.
 The project looks to implement many of the standard or much-loved features, items and ideas I knew and loved, while not requiring anything but a vanilla java install!
 #### [ProjectSP - The Server Points system](/ProjectSP/)
@@ -38,7 +38,9 @@ Ensure dependencies are provided for any functions not handled natively by Deniz
 
 Try and have an understanding of what a script or set of scripts is achieving, the why and how. There are many ways to achieve outcomes, and the solutions in this repo are almost never the most efficient, stable or ideal way of doing things. I will always attempt to provide explanations and advice, and you're more than free to take things as is or pull them apart.
 
-The one piece of advice I will give here and always though, try and take inspiration or knowledge from these examples to build your own solution. Even if it's just changing one or two parts of a script to understand how parts work, you will take away more than just dropping these in and treating them like a plugin or datapack.
+The one piece of advice I will give here and always though, try and take inspiration or knowledge from these examples to build your own solution.
+Even if it's just changing one or two parts of the script to see how it changes the outcome.
+You will take away more understanding that way, rather than dropping these scripts somewhere and treating them like a plugin or datapack.
 
 ### Additional Denizen Resources and FUDs:
 [Meta Documentation](meta.denizenscript.com)<br>
