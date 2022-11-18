@@ -97,3 +97,11 @@ nbf_util_dancefloor:
         - define material <material[white_concrete]>
         # add more!
     - showfake <[material]> <[loc]> duration:3s players:<server.online_players>
+
+nbf_util_endcrystalbeam:
+    type: task
+    definitions: player
+    script:
+    - repeat 10:
+        - foreach <[player].location.find_entities[ender_crystal].within[64]> as:beam:
+            - adjust <[beam]> beam_target:<[player].location.center.below[1.4]>
