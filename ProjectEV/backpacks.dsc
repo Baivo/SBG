@@ -1,19 +1,22 @@
 # Author: Baivo
-# Version 1. Basic funcitonality of portable noted storage, with adjustable colors. 
-# Planned features:
+# Version 1.0 | Basic functionality of portable noted storage, with adjustable colors.
+# Additional requirements:
+# Backpacks from SBG Resource pack (to include in /ProjectEv/ at some point, promise!)
+
+## Planned features:
 # Backup and restore backpacks. (Backpack ID and storage already implemented and tested, just need to make a command or menu for it.)
-#
+
 # Option to pickup items to inventory (default behaviour) or directly to backpack (to include a whitelist/blacklist to optionally collect certain items)
 # Useful for all gamemodes. Think, reserve inventory for tools and building materials, use backpack to pickup and filter out pickups, junk and unwanted clutter.
 # Or use it to store a block/item pallet for creative so you're not eternally searching and swapping out the things you need
-#
+
 # Equip slot for certain items. Examples: 
 # A magnet to allow backpack to act as a magnet does, copying the magnet's configuration and filters. 
 # Some kind of P.D.A item to redirect backpack item pickups to a wireless storage system (DSP or other) etc.
-#
+
 # Adjust settings to change behaviour of equip/use. 
 # Currently, backpacks are designed to be stored in the off-hand when not in use and attempt to avoid any interactions or interference usually caused by holding things in the off-hand.
-#
+
 # In theory, should be able to allow an additional mode. Equip and Unequip by placing the backpack in the offhand slot through clicking and placing in inventory only. 
 # With this setup, the swap key behaviour can be intercepted and killed. 'Swapping' will instead perform any defined function. 
 # In the context of a backpack in the offhand, this would allow a player to press the 'swap' key with a backpack equipped and have it directly open the BP inv with a single key press. 
