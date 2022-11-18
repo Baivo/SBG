@@ -3,23 +3,23 @@
 A large portion of this repo is made up of live, in-dev and archived denizen scripting created or used by the SBG crew. 
 
 ### Project Workspaces:
-*[ProjectEV -  EE2 gang.](.../blob/master/ProjectEV/)
+*. [ProjectEV -  EE2 gang.](.../blob/master/ProjectEV/)
 An attempt to create a spiritual successor to the gameplay feel of the Tekkit Classic 1.2.5 modpack, plus some additional highlights from other past experiences.
 The project looks to implement many of the standard or much-loved features, items and ideas I knew and loved, while not requiring anything but a vanilla java install!
 
-*[ProjectSP - The Server Points system](.../blob/master/ProjectSP/)
+*. [ProjectSP - The Server Points system](.../blob/master/ProjectSP/)
 An attempt to create a more in-depth, engaging and flexible player reward system. Currently in it's infancy, but is planned to be stored against a SQL server independent of any MC focus or dependency. The final product will creep well outside Denizen in it's scope, but is aimed to provide a recognition and reward system that isn't tied to a single game, application or server. 
 
-*[ProjectNB - Netblocks!](.../blob/master/ProjectNB/)
+*. [ProjectNB - Netblocks!](.../blob/master/ProjectNB/)
 A large set of tools and function libraries that aim to provide familiar game and map development tools in Minecraft. 
 Think things like Source map trigger blocks and map logic, extendable script triggers and other fun tools. See the project README for more info. 
 
-*[ProjectPP - Expand dong](.../blob/master/ProjectEV/)
+*. [ProjectPP - Expand dong](.../blob/master/ProjectEV/)
 Nah but seriously, this is planned as a player progression project that doesn't limit itself to forcing defined playstyles and arbitrary grinding on players. Watch this space, get bored, come back later!
 
 ### Standalone Categories:
 
-*[Core](...blob/master/core/)
+*. [Core](...blob/master/core/)
 Contains scripts/libraries that are independent, narrow in scope or are otherwise used but don't fall into any category. Needs a better name. 
 
 *[External Scripts](...blob/master/ext/)
