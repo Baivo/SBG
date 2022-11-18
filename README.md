@@ -11,7 +11,8 @@ An attempt to create a more in-depth, engaging and flexible player reward system
 A large set of tools and function libraries that aim to provide familiar game and map development tools in Minecraft. 
 Think things like Source map trigger blocks and map logic, extendable script triggers and other fun tools. See the project README for more info. 
 #### [ProjectPP - Expand dong](/ProjectEV/)
-Nah but seriously, this is planned as a player progression project that doesn't limit itself to forcing defined playstyles and arbitrary grinding on players. Watch this space, get bored, come back later!
+Nah but seriously, this is planned as a player progression project that doesn't limit itself to forcing defined playstyles and unnecessary grinding. 
+Watch this space, get bored, come back later!
 
 #### [ProjectMP - Minecraft 2](/ProjectMP/)
 Mod-style content that isn't a part of the ProjectEV works. Just cool as heck custom content that only requires vanilla! (and the resource pack)
