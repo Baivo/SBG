@@ -1,5 +1,7 @@
-# Author: Baivo
+# Author: Baivo#1337
 # Version 2.0
+# Requries Mergu's 'In-game Menu / GUI Creator', or adjust the shop menu to work with your own GUI setup.
+# https://forum.denizenscript.com/resources/in-game-menu-gui-creator.123/
 
 ## SPoints - Point System
 SP_start:
