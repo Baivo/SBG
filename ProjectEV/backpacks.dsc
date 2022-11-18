@@ -10,16 +10,16 @@
 # Useful for all gamemodes. Think, reserve inventory for tools and building materials, use backpack to pickup and filter out pickups, junk and unwanted clutter.
 # Or use it to store a block/item pallet for creative so you're not eternally searching and swapping out the things you need
 
-# Equip slot for certain items. Examples: 
-# A magnet to allow backpack to act as a magnet does, copying the magnet's configuration and filters. 
+# Equip slot for certain items. Examples:
+# A magnet to allow backpack to act as a magnet does, copying the magnet's configuration and filters.
 # Some kind of P.D.A item to redirect backpack item pickups to a wireless storage system (DSP or other) etc.
 
-# Adjust settings to change behaviour of equip/use. 
+# Adjust settings to change behaviour of equip/use.
 # Currently, backpacks are designed to be stored in the off-hand when not in use and attempt to avoid any interactions or interference usually caused by holding things in the off-hand.
 
-# In theory, should be able to allow an additional mode. Equip and Unequip by placing the backpack in the offhand slot through clicking and placing in inventory only. 
-# With this setup, the swap key behaviour can be intercepted and killed. 'Swapping' will instead perform any defined function. 
-# In the context of a backpack in the offhand, this would allow a player to press the 'swap' key with a backpack equipped and have it directly open the BP inv with a single key press. 
+# In theory, should be able to allow an additional mode. Equip and Unequip by placing the backpack in the offhand slot through clicking and placing in inventory only.
+# With this setup, the swap key behaviour can be intercepted and killed. 'Swapping' will instead perform any defined function.
+# In the context of a backpack in the offhand, this would allow a player to press the 'swap' key with a backpack equipped and have it directly open the BP inv with a single key press.
 
 Backpack_Events:
     type: world
@@ -35,24 +35,12 @@ Backpack_Events:
         - ratelimit <player> 1t
         - define ID <player.item_in_hand.flag[UID]>
         - inventory open d:Backpack_Inventory_<[ID]>
-        on player right clicks block location_flagged:backpack:
-        - if <player.has_flag[placedbackpack]>:
-            - stop
-        - else:
-            - ratelimit <player> 1t
-            - define ID <context.location.flag[UID]>
-            - inventory open d:Backpack_Inventory_<[ID]>
-        on player breaks block location_flagged:backpack:
-        - define loc <context.location>
-        - define BP <context.location.flag[backpack]>
-        - flag <[loc]> backpack:!
-        - flag <[loc]> UID:!
-        - determine <[BP]>
         on player swaps items offhand:backpack_item:
         - playsound <player.location> sound:item_armor_equip_gold level:1.0 pitch:1.0
         on player swaps items main:backpack_item:
         - playsound <player.location> sound:item_armor_equip_gold level:1.0 pitch:0.8
         on player clicks in backpack_inventory:
+        # Stops a player placing a backpack in a backpack, stops players from creating a singularity by placing a backpack into itself, losing it in the process.
         - if <context.cursor_item.has_flag[backpack]>:
             - determine cancelled
         - if <context.item.has_flag[backpack]>:
@@ -129,7 +117,8 @@ Backpack_Item:
             - air|leather|air
 
 ## disabled events ##
-# Place backpack #
+# Place backpack
+# This works, just need to add a block texture or something to make it look nice.
         # on player right clicks block type:!air using:hand with:backpack_item:
         # - ratelimit <player> 1t
         # - define loc <context.relative>
@@ -141,5 +130,18 @@ Backpack_Item:
         # - flag <[loc]> UID:<[ID]>
         # - take item:<player.item_in_hand>
         # - flag player placedbackpack expire:1s
+        # on player right clicks block location_flagged:backpack:
+        # - if <player.has_flag[placedbackpack]>:
+        #     - stop
+        # - else:
+        #     - ratelimit <player> 1t
+        #     - define ID <context.location.flag[UID]>
+        #     - inventory open d:Backpack_Inventory_<[ID]>
+        # on player breaks block location_flagged:backpack:
+        # - define loc <context.location>
+        # - define BP <context.location.flag[backpack]>
+        # - flag <[loc]> backpack:!
+        # - flag <[loc]> UID:!
+        # - determine <[BP]>
 ##
 
