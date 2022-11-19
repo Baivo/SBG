@@ -1,7 +1,9 @@
 # Author: Baivo#1337
-# Version 2.0
+# Version 2.1
 # Requries Mergu's 'In-game Menu / GUI Creator', or adjust the shop menu to work with your own GUI setup.
 # https://forum.denizenscript.com/resources/in-game-menu-gui-creator.123/
+
+# 2.1 Updated to fix compatibility issues with Mergu's menu editor
 
 ## SPoints - Point System
 SP_start:
@@ -79,7 +81,6 @@ SPoints_shop_command:
     usage: /redeem
     script:
     - run SPoints_shop_update def.inv:<inventory[SPoints_Shop_<player.name>]> def.player:<player>
-    - inventory open d:SPoints_Shop_<player.name>
 
 SPoints_shop_transact:
     type: task
@@ -98,16 +99,16 @@ SPoints_shop_update:
     type: task
     definitions: player|inv
     script:
-        - flag server SPoints.<[player].name>:<inventory[SPoints_Shop]>
+        - flag server SPoints.<[player].name>:<inventory[<[inv]>]>
         - note <inventory[<server.flag[SPoints.<[player].name>]>]> as:SPoints_Shop_<[player].name>
         - adjust <[inv]> "title:<&a>Point Shop <&7>| <&a>Balance: <&3><[player].flag[SP_balance]>"
-        - inventory update d:<[inv]>
+        - inventory open d:SPoints_Shop_<[player].name>
 
 SPoints_Shop:
     type: inventory
     inventory: chest
     title: <&a>Point Shop
-    size: 9
+    size: 18
     gui: true
     data:
         menu: SPoints_menu
