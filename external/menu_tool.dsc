@@ -17,6 +17,8 @@
 #   data:
 #     menu: example_menu
 
+# Updated for ProjectSP compatibility
+
 menu_creator_events:
   type: world
   debug: false
