@@ -17,7 +17,9 @@
 #   data:
 #     menu: example_menu
 
-# Updated for ProjectSP compatibility
+# 1.1 Updated for ProjectSP compatibility 
+
+# 1.2 Updated logic flow for the on player opens inventory event to allow less static menu operatoin for ProjectSP
 
 menu_creator_events:
   type: world
@@ -57,9 +59,12 @@ menu_creator_events:
       - ratelimit <player> 2t
       - determine passively cancelled
       - define inv <context.inventory>
-      - adjust <[inv]> title:<server.flag[custom_menus.<[menu_name]>.title]>
       - inventory set d:<[inv]> o:<server.flag[custom_menus.<[menu_name]>.slots]>
       - wait 1t
+      - if <context.inventory.script.name> == spoints_shop:
+        - adjust <[inv]> "title:<&a>Point Shop <&7>| <&a>Balance: <&3><player.flag[SP_balance]>"
+        - inventory open d:<[inv]>
+        - stop
       - inventory open d:<[inv]>
 
 menu_creator:
