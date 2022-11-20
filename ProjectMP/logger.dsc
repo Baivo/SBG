@@ -1,6 +1,8 @@
 # Author: Baivo
 # In development, don't touch, don't give them out, don't use them yourself!
 
+# Attempted to troubleshoot GUI not updating name correctly on use. Suspect it may be to do with Mergu, but need to determine if I'm at fault first, as is usually the case. 
+
 Logger_Script:
     type: task
     debug: false
@@ -39,51 +41,64 @@ Logger_Events:
         on player breaks stonecutter location_flagged:Logger:
         - flag server Logger.<context.location>:!
         - flag <context.location> Logger:!
+        - flag <context.location> Range:!
+        - determine <item[Logger_Item]>
         on player right clicks stonecutter location_flagged:Logger:
+        - determine cancelled passively
         - define logger <context.location>
         - define owner <server.flag[Logger.<context.location>]>
-        - if <player> != <[owner]>:
-            - narrate "not yours"
-            - determine cancelled
-        - else:
-            - narrate yours
-            - flag <player> Logger_menu:<[logger]>
-            - determine cancelled passively
-            - inventory open d:Logger_Menu
+        # - if <player> != <[owner]>:
+        #     - narrate "not yours"
+        #     - determine cancelled
+        # - else:
+        #     - narrate yours
+        - flag <player> Logger_menu:<[logger]>
+        - note remove as:Logger_Menu_<context.location>
+        - note <inventory[Logger_Menu]> as:Logger_Menu_<context.location>
+        - wait 1t
+        - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[logger].flag[Range]>"
+        - wait 1t
+        - inventory open d:Logger_Menu_<context.location>
         on structure grows:
         - flag <context.location> loggersapling:<context.location.material.name>
         - flag <context.location> loggertarget:<context.blocks>
 
 Logger_Menu_Script:
     type: world
-    debug: false
+    debug: true
     events:
-        on player clicks Logger_RangeUp in Logger_Menu:
+        on player clicks Logger_RangeUp in Logger_Menu_*:
         - define logger <player.flag[Logger_Menu]>
         - define range <[logger].flag[Range]>
         - if <[range]> < 16:
             - flag <[logger]> Range:<[range].add[1]>
-            - adjust <inventory[Logger_Menu]> "title:<&a>Logger Menu<&7>Range: <[range]>"
-            - inventory update d:Logger_Menu
-        # - else:
-        #     - narrate "Already at max range"
-        on player clicks Logger_RangeDown in Logger_Menu:
+            - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[range]>"
+            - wait 1t
+            - inventory open d:Logger_Menu_<context.location>
+        - else:
+            - narrate "<&a>Already at max range"
+            - inventory close
+        on player clicks Logger_RangeDown in Logger_Menu_*:
         - define logger <player.flag[Logger_Menu]>
         - define range <[logger].flag[Range]>
         - if <[range]> > 1:
             - flag <[logger]> Range:<[range].sub[1]>
-            - adjust <inventory[Logger_Menu]> "title:<&a>Logger Menu<&7>Range: <[range]>"
-            - inventory update d:Logger_Menu
-        # - else:
-        #     - narrate "Already at min range"
-        on player clicks Logger_Power in Logger_Menu:
+            - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
+            - wait 1t
+            - inventory open d:Logger_Menu_<context.location>
+        - else:
+            - narrate "<&c>Already at min range"
+            - inventory close
+        on player clicks Logger_Power in Logger_Menu_*:
         - define logger <player.flag[Logger_Menu]>
         - if <[logger].flag[Logger]> == On:
             - flag <[logger]> Logger:Off
-            - narrate "Logger off"
+            - narrate "<&c>Logger off"
+            - inventory close
         - else:
             - flag <[logger]> Logger:On
-            - narrate "Logger on"
+            - narrate "<&a>Logger on"
+            - inventory close
 
 Logger_RangeUp:
     type: item
@@ -115,11 +130,9 @@ Logger_Item:
 
 Logger_Menu:
     type: inventory
-    inventory: dispenser
+    inventory: hopper
     title: <&a><&l>Logger Menu
-    size: 9
+    size: 5
     gui: true
     slots:
-    - [] [Logger_RangeUp] []
-    - [] [Logger_Power] []
-    - [] [Logger_RangeDown] []
+    - [] [Logger_RangeUp] [Logger_Power] [Logger_RangeDown] []
