@@ -1,5 +1,5 @@
 # Author: Baivo#1337
-# Version 2.1
+# Version 2.2
 # Requries Mergu's 'In-game Menu / GUI Creator', or adjust the shop menu to work with your own GUI setup.
 # https://forum.denizenscript.com/resources/in-game-menu-gui-creator.123/
 
