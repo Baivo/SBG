@@ -1,6 +1,6 @@
 
 ### NETBLOCK BLOCK EVENTS ###
-netblock_events_netblocks:
+netblock_events_netblock:
     type: world
     debug: false
     events:
@@ -22,7 +22,7 @@ netblock_events_netblocks:
         - determine nothing
 
 ### CONNECTION TRIGGER EVENT ###
-netblock_events_connectionTrigger:
+netblock_events_connection:
     type: world
     debug: false
     events:
