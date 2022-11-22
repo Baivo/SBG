@@ -102,7 +102,7 @@ SPoints_shop_transact:
         - run <[script]> def.player:<[player]>
     - else:
         - narrate "<&c>Not enough points!" targets:<[player]>
-        - inventory close d:<inventory[SPoints_Shop_<[player].name>]>
+        - inventory close
 
 # SPoints_shop_update:
 #     type: task
@@ -130,7 +130,7 @@ spoints_shop_events:
         on player clicks SPoints_Shop_Item_* in spoints_shop:
             - ratelimit <player> 1s
             - run spoints_shop_transact def.player:<player> def.cost:<context.item.flag[cost]> def.script:<script[<context.item.flag[script]>]>
-            - inventory close d:<inventory[Spoints_Shop_<player.name>]>
+            - inventory close
 
 ## SPoints - Items & Scripts
 
