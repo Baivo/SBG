@@ -65,7 +65,7 @@ Logger_Events:
 
 Logger_Menu_Script:
     type: world
-    debug: true
+    debug: false
     events:
         on player clicks Logger_RangeUp in Logger_Menu_*:
         - define logger <player.flag[Logger_Menu]>
