@@ -68,7 +68,7 @@ netblock_events_configurator:
                 - narrate "<&7>- <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
                 - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         # Clickable to clear netblock connections
-        - define clearconnections "<&c>[Clear Connections]<&7>"
+        - define connectionclear "<&c>[Clear Connections]<&7>"
         - clickable save:connectionclear:
             - flag server netblock.<[netblock]>.connections:<list[]>
             - narrate "<&7>Removed all connections for this netblock."
