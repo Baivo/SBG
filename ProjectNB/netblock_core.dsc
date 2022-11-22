@@ -28,16 +28,16 @@ netblock_events_connection:
     events:
         # Runs the function script define by the netblock when a player enters or moves inside a connection
         # I realize this is not the most ideal scenario, as the function will run for every single player walks event fire.
-        # Unfortunately, rate-limiting the event in it's current state will prevent stacking multiple connections in a single location.
         #
         # Until I put some thought into a better system, the expectation is that the function script will handle the rate-limiting of the event.
         # I've found the use of a "cooldown" flag to be a good way to do this if you want to run the function on a cooldown regardless of the connection
         # Or you can use a second netblock and set of connections to construct a boundary around the original trigger area to clear the flag once the player leaves the area
         on player walks location_flagged:connection:
+        - ratelimit <player> 1t
         - define connection <context.new_location>
-        - define netblock <[connection].flag[connection]>
-        - define function <server.flag[netblock.<[netblock]>.function]>
-        - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
+        - foreach <[connection].flag[connection]> as:netblock:
+            - define function <server.flag[netblock.<[netblock]>.function]>
+            - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
 
 ### CONFIGURATOR EVENTS ###
 netblock_events_configurator:
@@ -79,12 +79,12 @@ netblock_events_configurator:
         - define connection <context.relative>
         - if !<player.is_sneaking>:
             - flag server netblock.<[netblock]>.connections:->:<[connection]>
-            - flag <[connection]> connection:<[netblock]>
+            - flag <[connection]> connection.<[netblock]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - else:
             - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
-            - flag <[connection]> connection:!
+            - flag <[connection]> connection.<[netblock]>:!
             - actionbar "<&7>Removed connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
         - determine cancelled passively
 
