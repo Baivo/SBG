@@ -144,7 +144,7 @@ netblock_item_configurator:
 netblock_item_netblock:
   type: item
   material: waxed_weathered_copper
-  display name: <&gradient[from=<&7>;to=<&color[#357541]>]>Net Block
+  display name: <&gradient[from=<&7>;to=<&color[#357541]>]>netblock
   lore:
   - <&color[#357541]>█<&color[#73bd81]><&o>Use with the netblock configurator!
   - <&color[#357541]>█<&color[#73bd81]><&o>Break by hand to remove the netblock.
