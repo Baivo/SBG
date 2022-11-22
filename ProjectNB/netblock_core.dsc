@@ -44,16 +44,11 @@ netblock_events_configurator:
     type: world
     debug: false
     events:
-    # Sets the currently active netblock for use with the configurator
-        on player right clicks block location_flagged:netblock with:netblock_item_configurator:
-        - define netblock <context.location>
-        - inventory flag d:<player.inventory> slot:hand currentnetblock:<[netblock]> expire:1h
-        - actionbar "<&7>Configurator set to netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
-        - determine cancelled passively
-
-    # Prompts the player to adjust features of the currently active netblock
         on player left clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
+        # Sets the currently active netblock for use with the configurator
+        - inventory flag d:<player.inventory> slot:hand currentnetblock:<[netblock]> expire:1h
+        - actionbar "<&7>Configurator set to netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         # Clickable to set the netblock's function
         - define functionset "<&a>[Set Function]<&7>"
         - clickable save:functionset:
@@ -129,13 +124,11 @@ netblock_item_configurator:
   display name: <&color[#5fc2a9]>netblock Configurator
   lore:
   - <&gradient[from=<&d>;to=<&b>]>ダンスフロア
-  - <&color[#357541]>█<&color[#c2a8ff]><&o> Clicking a netblock<&co>
-  - <&color[#357541]>█<&color[#73bd81]><&o> Left click to set configurator to netblock
-  - <&color[#357541]>█<&color[#73bd81]><&o> Right click to open netblock menu
-  - <&color[#357541]>█<&color[#c2a8ff]><&o> Clicking while configured to netblock<&co>
+  - <&color[#357541]>█<&color[#c2a8ff]><&o> Configurator controls<&co>
+  - <&color[#357541]>█<&color[#73bd81]><&o> Left click a netblock to link the configurator
   - <&color[#357541]>█<&color[#73bd81]><&o> Right click to place a connection
   - <&color[#357541]>█<&color[#73bd81]><&o> Sneak & right click to remove a connection
-  - <&color[#357541]>█<&color[#73bd81]><&o> Left click to show netblock connections
+  - <&color[#357541]>█<&color[#73bd81]><&o> Left click the air to show netblock connections
   mechanisms:
     custom_model_data: 18
   recipes:
