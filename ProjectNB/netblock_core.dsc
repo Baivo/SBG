@@ -86,6 +86,7 @@ netblock_events_configurator:
             - flag server netblock.<[netblock]>.connections:->:<[connection]>
             - flag <[connection]> connection:<[netblock]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
+            - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - else:
             - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
             - flag <[connection]> connection:!
