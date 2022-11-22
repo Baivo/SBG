@@ -1,4 +1,3 @@
-# Author: Baivo#1337
 
 ### NETBLOCK BLOCK EVENTS ###
 netblock_events_netblocks:
@@ -8,15 +7,16 @@ netblock_events_netblocks:
         # Sets up a netblock at the location
         on player places netblock_item_netblock:
         - define netblock <context.location>
-        - flag server Netblock.<[netblock]>.connections:<list[]>
-        - flag server Netblock.<[netblock]>.function:nbf_getstarted
-        - flag server Netblock.<[netblock]>.owner:<player>
+        - flag server netblock.<[netblock]>.connections:<list[]>
+        - flag server netblock.<[netblock]>.function:nbf_getstarted
+        - flag server netblock.<[netblock]>.owner:<player>
         - flag <[netblock]> netblock:<server.flag[netblock.<[netblock]>]>
         - actionbar "<&7>Created netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
+
         # Clears the netblock at the location and it's connections
         on player breaks block location_flagged:netblock:
         - define netblock <context.location>
-        - flag server Netblock.<[netblock]>:!
+        - flag server netblock.<[netblock]>:!
         - flag <[netblock]> netblock:!
         - actionbar "<&7>Removed netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         - determine nothing
@@ -26,6 +26,12 @@ netblock_events_connectionTrigger:
     type: world
     debug: false
     events:
+        # Runs the function script define by the netblock when a player enters or moves inside a connection
+        # I realize this is not the most ideal scenario, as the function will run for every single player walks event fire, hence the default minimum 1t rate-limit.
+        #
+        # Until I put some thought into a better system, the expectation is that the function script will handle the rate-limiting of the event.
+        # I've found the use of a "cooldown" flag to be a good way to do this if you want to run the function on a cooldown regardless of the connection
+        # Or you can use a second netblock and set of connections to construct a boundary around the original trigger area to clear the flag once the player leaves the area
         on player walks location_flagged:connection:
         - ratelimit <player> 1t
         - define connection <context.new_location>
@@ -38,14 +44,14 @@ netblock_events_configurator:
     type: world
     debug: false
     events:
-        # Sets the currently active netblock for use with the configurator
+    # Sets the currently active netblock for use with the configurator
         on player right clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
-        - inventory adjust d:<player.inventory> slot:hand flag:currentNetblock:<[netblock]> expire:1h
+        - inventory adjust d:<player.inventory> slot:hand flag:currentnetblock:<[netblock]> expire:1h
         - actionbar "<&7>Configurator set to netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         - determine passively cancelled
 
-        # Prompts the player to adjust features of the currently active netblock
+    # Prompts the player to adjust features of the currently active netblock
         on player left clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
         # Clickable to set the netblock's function
@@ -58,39 +64,39 @@ netblock_events_configurator:
         # Clickable to show the netblock's connections in chat, as well as highlighting each connection with a debugblock
         - define connectionlist "<&e>[Show Connections]<&7>"
         - clickable save:connectionlist:
-            - foreach <server.flag[Netblock.<[netblock]>.connections]> as:connection:
+            - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
                 - narrate "<&7>- <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
                 - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         # Clickable to clear netblock connections
         - define clearconnections "<&c>[Clear Connections]<&7>"
         - clickable save:connectionclear:
-            - flag server Netblock.<[netblock]>.connections:<list[]>
+            - flag server netblock.<[netblock]>.connections:<list[]>
             - narrate "<&7>Removed all connections for this netblock."
         # Construct the chat menu and send it to the player
         - narrate "<&7>Configuring netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         - narrate "<&7>Current function: <&color[#bfbfbf]><server.flag[netblock.<[netblock]>.function]>"
         - narrate <element[<[functionset]>].on_click[<entry[functionset].command>]><&sp><&sp><element[connectionlist].on_click[<entry[connectionlist].command>]><&sp><&sp><element[connectionclear].on_click[<entry[connectionclear].command>]>
 
-        # Adds a connection to the currently active netblock if the player is not sneaking
-        # Removes a connection from the currently active netblock if the player is sneaking
+    # Adds a connection to the currently active netblock if the player is not sneaking
+    # Removes a connection from the currently active netblock if the player is sneaking
         on player right clicks !air with:netblock_item_configurator:
-        - define netblock <player.item_in_hand.flag[currentNetblock]>
+        - define netblock <player.item_in_hand.flag[currentnetblock]>
         - define connection <context.relative>
         - if !<player.is_sneaking>:
-            - flag server Netblock.<[netblock]>.connections:->:<[connection]>
+            - flag server netblock.<[netblock]>.connections:->:<[connection]>
             - flag <[connection]> connection:<[netblock]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
         - else:
-            - flag server Netblock.<[netblock]>.connections:<server.flag[Netblock.<[netblock]>.connections].exclude[<[connection]>]>
+            - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
             - flag <[connection]> connection:!
             - actionbar "<&7>Removed connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
         - determine passively cancelled
 
-        # Shows the currently active netblock and it's connections using debug blocks
+    # Shows the currently active netblock and it's connections using debug blocks
         on player left clicks air with:netblock_item_configurator:
-        - define netblock <player.item_in_hand.flag[currentNetblock]>
+        - define netblock <player.item_in_hand.flag[currentnetblock]>
         - debugblock <[netblock]> color:0,0,0 players:<player> d:60t
-        - foreach <server.flag[Netblock.<[netblock]>.connections]> as:connection:
+        - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
 
 
@@ -99,7 +105,7 @@ netblock_events_chatHandler:
     type: world
     debug: false
     events:
-        # Handles chat input for the netblock configurator functionset menu option
+    # Handles chat input for the netblock configurator functionset menu option
         on player chats flagged:netblock:
         - define function <context.message.to_lowercase>
         - if <[function]> == cancel:
@@ -109,8 +115,8 @@ netblock_events_chatHandler:
             - narrate "<&c>Invalid function.<&7><&nl>Try again, or enter 'cancel' to keep the current function."
         - else:
             - define netblock <player.flag[netblock]>
-            - flag server Netblock.<[netblock]>.function:<[function]>
-            - narrate "<&a>Netblock function set to: <&e><[function]>"
+            - flag server netblock.<[netblock]>.function:<[function]>
+            - narrate "<&a>netblock function set to: <&e><[function]>"
             - flag <player> netblock:!
         - determine cancelled
 
@@ -118,10 +124,10 @@ netblock_events_chatHandler:
 netblock_item_configurator:
   type: item
   material: spectral_arrow
-  display name: <&color[#5fc2a9]>Netblock Configurator
+  display name: <&color[#5fc2a9]>netblock Configurator
   lore:
   - <&gradient[from=<&d>;to=<&b>]>ダンスフロア
-  - <&color[#357541]>█<&color[#c2a8ff]><&o> Netblock clicks<&co>
+  - <&color[#357541]>█<&color[#c2a8ff]><&o> Clicking a netblock<&co>
   - <&color[#357541]>█<&color[#73bd81]><&o> Left click to set configurator to netblock
   - <&color[#357541]>█<&color[#73bd81]><&o> Right click to open netblock menu
   - <&color[#357541]>█<&color[#c2a8ff]><&o> Clicking while configured to netblock<&co>
@@ -154,8 +160,8 @@ netblock_item_netblock:
       type: shapeless
       input: <item[barrier]>|<item[observer]>
 
-### SCRIPTS ###
-# Placeholder netblock function script to demonstrate use and passing definitions
+### SAMPLE SCRIPTS ###
+# Placeholder netblock function script to demonstrate use and passing definitions to function scripts
 nbf_getstarted:
     type: task
     definitions: trigger|player|netblock
@@ -163,3 +169,64 @@ nbf_getstarted:
         - narrate "<&d>Triggered netblock connection at <[trigger].round_down>" targets:<[player]>
         - narrate "<&e>This connection has no function configured!" targets:<[player]>
         - narrate "<&a>Set a function using the connected netblock at <[netblock].round_down>" targets:<[player]>
+
+# Very simple example functions that run when a player enters or moves inside a netblock connection
+#
+# I plan to come back to this once I have time for it and allow configuring and passing through function defs to functions from the netblock.
+# For now, netblock connections pass the following defs to all functions:
+    #   trigger: the LocationTag of the connection that was triggered
+    #   player: the PlayerTag of the player that triggered the connection
+    #   netblock: the LocationTag of the netblock that the connection is connected to
+    #   function: the script name of the function that is being run
+
+## Example of planned definable effect application
+nbf_effect_nbdata:
+  type: task
+  definitions: player|effect|power|duration
+  script:
+    - cast <[effect].if_null[SPEED]> duration:<[duration].if_null[3s]> amplifier:<[power].if_null[0]> <[player]>
+
+## Examples of static effect application.
+# Still useful if you have a use case in mind and would like to have a static effect available for using across many areas/netblocks.
+nbf_effect_speed:
+  type: task
+  definitions: player
+  script:
+    - cast speed duration:10t amplifier:1 <[player]>
+
+## A few more examples of simple netblock functions
+nbf_util_playsound:
+  type: task
+  definitions: player
+  script:
+    - playsound <[player].location> sound:entity_axolotl_idle_air pitch:0.1 volume:0.3
+
+nbf_util_secrettp:
+  type: task
+  definitions: player|trigger
+  script:
+    - if <[player].has_flag[flag]>:
+      - teleport <[player]> <[trigger].add[2,0,0]> relative
+
+nbf_fun_dancefloor:
+    type: task
+    definitions: trigger|player
+    script:
+    - ratelimit <[player]> 1t
+    - random:
+        - define material <material[red_concrete]>
+        - define material <material[orange_concrete]>
+        - define material <material[yellow_concrete]>
+        - define material <material[lime_concrete]>
+        - define material <material[cyan_concrete]>
+        - define material <material[purple_concrete]>
+        - define material <material[pink_concrete]>
+        # add more!
+    - showfake <[material]> <[trigger].below[1]> players:<server.online_players> duration:3s
+
+nbf_util_zap:
+  type: task
+  definitions: player
+  script:
+    - hurt 1 <[player]>
+    - playeffect at:<[player].eye_location.below[1]> effect:spark quantity:5 offset:1
