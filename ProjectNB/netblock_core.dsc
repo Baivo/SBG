@@ -35,6 +35,9 @@ netblock_events_connection:
         on player walks location_flagged:connection:
         - ratelimit <player> 1t
         - define connection <context.new_location>
+        - if !<[connection].flag[connection].any>:
+          - flag <[connection]> connection:!
+          - stop
         - foreach <server.flag[netblock.<[connection]>.netblocks]> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
@@ -80,11 +83,13 @@ netblock_events_configurator:
         - if !<player.is_sneaking>:
             - flag server netblock.<[netblock]>.connections:->:<[connection]>
             - flag server netblock.<[connection]>.netblocks:->:<[netblock]>
+            - flag <[connection]> connection:<-:<[netblock]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - else:
             - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
             - flag server netblock.<[connection]>.netblocks:<server.flag[netblock.<[connection]>.netblocks].exclude[<[netblock]>]>
+            - flag <[connection]> connection:->:<[netblock]>
             - actionbar "<&7>Removed connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
         - determine cancelled passively
 
