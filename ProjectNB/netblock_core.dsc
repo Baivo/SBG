@@ -49,7 +49,7 @@ netblock_events_configurator:
         - define netblock <context.location>
         - inventory adjust d:<player.inventory> slot:hand flag:currentnetblock:<[netblock]> expire:1h
         - actionbar "<&7>Configurator set to netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
-        - determine passively cancelled
+        - determine cancelled passively
 
     # Prompts the player to adjust features of the currently active netblock
         on player left clicks block location_flagged:netblock with:netblock_item_configurator:
@@ -75,8 +75,8 @@ netblock_events_configurator:
         # Construct the chat menu and send it to the player
         - narrate "<&7>Configuring netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         - narrate "<&7>Current function: <&color[#bfbfbf]><server.flag[netblock.<[netblock]>.function]>"
-        - narrate <element[<[functionset]>].on_click[<entry[functionset].command>]><&sp><&sp><element[connectionlist].on_click[<entry[connectionlist].command>]><&sp><&sp><element[connectionclear].on_click[<entry[connectionclear].command>]>
-
+        - narrate <element[<[functionset]>].on_click[<entry[functionset].command>]><&sp><&sp><element[<[connectionlist]>].on_click[<entry[connectionlist].command>]><&sp><&sp><element[<[connectionclear]>].on_click[<entry[connectionclear].command>]>
+        - determine cancelled passively
     # Adds a connection to the currently active netblock if the player is not sneaking
     # Removes a connection from the currently active netblock if the player is sneaking
         on player right clicks !air with:netblock_item_configurator:
@@ -90,7 +90,7 @@ netblock_events_configurator:
             - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
             - flag <[connection]> connection:!
             - actionbar "<&7>Removed connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
-        - determine passively cancelled
+        - determine cancelled passively
 
     # Shows the currently active netblock and it's connections using debug blocks
         on player left clicks air with:netblock_item_configurator:
@@ -98,6 +98,7 @@ netblock_events_configurator:
         - debugblock <[netblock]> color:0,0,0 players:<player> d:60t
         - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
+        - determine cancelled passively
 
 
 ### CHAT HANDLER ###
