@@ -47,7 +47,7 @@ netblock_events_configurator:
     # Sets the currently active netblock for use with the configurator
         on player right clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
-        - inventory adjust d:<player.inventory> slot:hand flag:currentnetblock:<[netblock]> expire:1h
+        - inventory flag d:<player.inventory> slot:hand currentnetblock:<[netblock]> expire:1h
         - actionbar "<&7>Configurator set to netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
         - determine cancelled passively
 
