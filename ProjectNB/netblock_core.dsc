@@ -37,7 +37,7 @@ netblock_events_connection:
         - define connection <context.new_location>
         - define netblock <[connection].flag[connection]>
         - define function <server.flag[netblock.<[netblock]>.function]>
-        - run <[function]> def.player:<context.player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
+        - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
 
 ### CONFIGURATOR EVENTS ###
 netblock_events_configurator:
