@@ -103,7 +103,7 @@ netblock_events_configurator:
         on player left clicks air with:netblock_item_configurator:
         - define netblock <player.item_in_hand.flag[currentnetblock]>
         - debugblock <[netblock]> color:0,0,0 players:<player> d:60t
-        - foreach <server.flag_map[netblock.<[netblock]>.connections]> as:connection:
+        - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - determine cancelled passively
 
