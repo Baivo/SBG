@@ -82,7 +82,7 @@ netblock_events_configurator:
 
     # Adds a connection to the currently active netblock if the player is not sneaking
     # Removes a connection from the currently active netblock if the player is sneaking
-        on player right clicks !air with:netblock_item_configurator:
+        on player right clicks block type:!air with:netblock_item_configurator:
         - define netblock <player.item_in_hand.flag[currentnetblock]>
         - define connection <context.relative>
         - if !<player.is_sneaking>:
