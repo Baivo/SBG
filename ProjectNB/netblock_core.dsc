@@ -44,7 +44,7 @@ netblock_events_connection:
 ### CONFIGURATOR EVENTS ###
 netblock_events_configurator:
     type: world
-    debug: false
+    debug: true
     events:
         on player left clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
