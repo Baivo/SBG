@@ -1,4 +1,3 @@
-# OI mate: :->: and :<-: for connection stacking
 ### NETBLOCK BLOCK EVENTS ###
 netblock_events_netblock:
     type: world
@@ -10,12 +9,15 @@ netblock_events_netblock:
         - flag server netblock.<[netblock]>.connections:<list[]>
         - flag server netblock.<[netblock]>.function:nbf_getstarted
         - flag server netblock.<[netblock]>.owner:<player>
-        - flag <[netblock]> netblock:<server.flag[netblock.<[netblock]>]>
+        - flag <[netblock]> netblock
         - actionbar "<&7>Created netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
-
         # Clears the netblock at the location and it's connections
         on player breaks block location_flagged:netblock:
         - define netblock <context.location>
+        - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+            - flag <[connection]> connection:<-:<[netblock]>
+            - if !<[connection].flag[connection].any>:
+                - flag <[connection]> connection:!
         - flag server netblock.<[netblock]>:!
         - flag <[netblock]> netblock:!
         - actionbar "<&7>Removed netblock at: <&color[#bfbfbf]>x <&color[#d65c5c]><[netblock].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[netblock].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[netblock].round_down.z>"
@@ -35,10 +37,7 @@ netblock_events_connection:
         on player walks location_flagged:connection:
         - ratelimit <player> 1t
         - define connection <context.new_location>
-        - if !<[connection].flag[connection].any>:
-          - flag <[connection]> connection:!
-          - stop
-        - foreach <server.flag[netblock.<[connection]>.netblocks]> as:netblock:
+        - foreach <[connection].flag[connection]> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
 
@@ -68,6 +67,11 @@ netblock_events_configurator:
         # Clickable to clear netblock connections
         - define connectionclear "<&c>[Clear Connections]<&7>"
         - clickable save:connectionclear:
+            - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+                - flag <[connection]> connection:<-:<[netblock]>
+                - flag server netblock.<[netblock]>.connections:<-:<[connection]>
+                - if !<[connection].flag[connection].any>:
+                    - flag <[connection]> connection:!
             - flag server netblock.<[netblock]>.connections:<list[]>
             - narrate "<&7>Removed all connections for this netblock."
         # Construct the chat menu and send it to the player
@@ -75,21 +79,23 @@ netblock_events_configurator:
         - narrate "<&7>Current function: <&color[#bfbfbf]><server.flag[netblock.<[netblock]>.function]>"
         - narrate <element[<[functionset]>].on_click[<entry[functionset].command>]><&sp><&sp><element[<[connectionlist]>].on_click[<entry[connectionlist].command>]><&sp><&sp><element[<[connectionclear]>].on_click[<entry[connectionclear].command>]>
         - determine cancelled passively
+
     # Adds a connection to the currently active netblock if the player is not sneaking
     # Removes a connection from the currently active netblock if the player is sneaking
         on player right clicks !air with:netblock_item_configurator:
         - define netblock <player.item_in_hand.flag[currentnetblock]>
         - define connection <context.relative>
         - if !<player.is_sneaking>:
-            - flag server netblock.<[netblock]>.connections:->:<[connection]>
-            - flag server netblock.<[connection]>.netblocks:->:<[netblock]>
-            - flag <[connection]> connection:->:<[netblock]>
+            - if !<[connection].flag[connection].contains[<[netblock]>]>:
+                - flag <[connection]> connection:->:<[netblock]>
+                - flag server netblock.<[netblock]>.connections:->:<[connection]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - else:
-            - flag server netblock.<[netblock]>.connections:<server.flag[netblock.<[netblock]>.connections].exclude[<[connection]>]>
-            - flag server netblock.<[connection]>.netblocks:<server.flag[netblock.<[connection]>.netblocks].exclude[<[netblock]>]>
             - flag <[connection]> connection:<-:<[netblock]>
+            - flag server netblock.<[netblock]>.connections:<-:<[connection]>
+            - if !<[connection].flag[connection].any>:
+                - flag <[connection]> connection:!
             - actionbar "<&7>Removed connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
         - determine cancelled passively
 
@@ -100,7 +106,6 @@ netblock_events_configurator:
         - foreach <server.flag_map[netblock.<[netblock]>.connections]> as:connection:
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - determine cancelled passively
-
 
 ### CHAT HANDLER ###
 netblock_events_chatHandler:
@@ -121,7 +126,6 @@ netblock_events_chatHandler:
             - narrate "<&a>netblock function set to: <&e><[function]>"
             - flag <player> netblock:!
         - determine cancelled
-
 ### ITEMS ###
 netblock_item_configurator:
   type: item
