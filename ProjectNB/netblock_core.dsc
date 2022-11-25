@@ -86,9 +86,8 @@ netblock_events_configurator:
         - define netblock <player.item_in_hand.flag[currentnetblock]>
         - define connection <context.relative>
         - if !<player.is_sneaking>:
-            - if !<[connection].flag[connection].contains[<[netblock]>]>:
-                - flag <[connection]> connection:->:<[netblock]>
-                - flag server netblock.<[netblock]>.connections:->:<[connection]>
+            - flag <[connection]> connection:->:<[netblock]>
+            - flag server netblock.<[netblock]>.connections:->:<[connection]>
             - actionbar "<&7>Created new connection at: <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - else:
