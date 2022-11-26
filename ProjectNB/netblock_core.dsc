@@ -26,7 +26,7 @@ netblock_events_netblock:
 ### CONNECTION TRIGGER EVENT ###
 netblock_events_connection:
     type: world
-    debug: false
+    debug: true
     events:
         # Runs the function script define by the netblock when a player enters or moves inside a connection
         # I realize this is not the most ideal scenario, as the function will run for every single player walks event fire.
@@ -45,7 +45,7 @@ netblock_events_connection:
 ### CONFIGURATOR EVENTS ###
 netblock_events_configurator:
     type: world
-    debug: true
+    debug: false
     events:
         on player left clicks block location_flagged:netblock with:netblock_item_configurator:
         - define netblock <context.location>
