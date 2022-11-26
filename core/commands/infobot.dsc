@@ -72,7 +72,7 @@ infocommand:
             - narrate "<blue>Found the following Info-Bots:<reset>"
             - narrate " "
             - foreach <[infobots]> as:ib:
-                - run infobotmenu def.ib:<[ib]>
+                - run infobot_menu def.ib:<[ib]>
         - else:
             - narrate "<red> No infobots found near your location!"
 # create a new info-bot
@@ -80,8 +80,7 @@ infocommand:
         - create armor_stand Info-Bot <player.location> save:infobot
         - define npc <entry[infobot].created_npc>
         - narrate "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
-        - flag <player> infobotselected:<[npc]> expire:30m
-        - run info_bot_setup def.npc:<[npc]> def.player:<player>
+        - run infobot_setup def.npc:<[npc]> def.player:<player>
 # set the display info manually for an infobot
     - if <context.args.get[1]> == setline:
         - define sib <player.flag[infobotselected]>
