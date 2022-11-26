@@ -79,7 +79,8 @@ infocommand:
     - if <context.args.get[1]> == create:
         - create armor_stand Info-Bot <player.location> save:infobot
         - define npc <entry[infobot].created_npc>
-        - narrate "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
+        - wait 1t
+        - actionbar "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
         - run infobot_setup def.npc:<[npc]> def.player:<player>
 # set the display info manually for an infobot
     - if <context.args.get[1]> == setline:
