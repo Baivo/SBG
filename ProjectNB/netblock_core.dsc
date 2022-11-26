@@ -14,7 +14,7 @@ netblock_events_netblock:
         # Clears the netblock at the location and it's connections
         on player breaks block location_flagged:netblock:
         - define netblock <context.location>
-        - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+        - foreach <server.flag[netblock.<[netblock]>.connections].deduplicate> as:connection:
             - flag <[connection]> connection:<-:<[netblock]>
             - if !<[connection].flag[connection].any>:
                 - flag <[connection]> connection:!
@@ -37,7 +37,7 @@ netblock_events_connection:
         on player walks location_flagged:connection:
         - ratelimit <player> 5s
         - define connection <context.new_location>
-        - foreach <[connection].flag[connection]> as:netblock:
+        - foreach <[connection].flag[connection].deduplicate> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
             - announce to_flagged:Baivo <&d><[netblock]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
@@ -62,13 +62,13 @@ netblock_events_configurator:
         # Clickable to show the netblock's connections in chat, as well as highlighting each connection with a debugblock
         - define connectionlist "<&e>[Show Connections]<&7>"
         - clickable save:connectionlist:
-            - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+            - foreach <server.flag[netblock.<[netblock]>.connections].deduplicate> as:connection:
                 - narrate "<&7>- <&color[#bfbfbf]>x <&color[#d65c5c]><[connection].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[connection].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[connection].round_down.z>"
                 - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         # Clickable to clear netblock connections
         - define connectionclear "<&c>[Clear Connections]<&7>"
         - clickable save:connectionclear:
-            - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+            - foreach <server.flag[netblock.<[netblock]>.connections].deduplicate> as:connection:
                 - flag <[connection]> connection:<-:<[netblock]>
                 - flag server netblock.<[netblock]>.connections:<-:<[connection]>
                 - if !<[connection].flag[connection].any>:
@@ -103,7 +103,7 @@ netblock_events_configurator:
         on player left clicks air with:netblock_item_configurator:
         - define netblock <player.item_in_hand.flag[currentnetblock]>
         - debugblock <[netblock]> color:0,0,0 players:<player> d:60t
-        - foreach <server.flag[netblock.<[netblock]>.connections]> as:connection:
+        - foreach <server.flag[netblock.<[netblock]>.connections].deduplicate> as:connection:
             - debugblock <[connection]> color:0,255,0 players:<player> d:60t
         - determine cancelled passively
 
