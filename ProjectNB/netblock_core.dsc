@@ -37,7 +37,7 @@ netblock_events_connection:
         on player walks location_flagged:connection:
         - ratelimit <player> 5s
         - define connection <context.new_location>
-        - foreach <[connection].flag_map[connection]> as:netblock:
+        - foreach <[connection].flag[connection]> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
             - announce to_flagged:Baivo <&d><[netblock]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
