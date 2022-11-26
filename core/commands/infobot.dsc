@@ -41,7 +41,7 @@ infobot_command:
         2: 1|2|3|4|5
     script:
     - if !<context.args.any>:
-        - narrate "<&e>Usage: /infobot <&6>search|create|setline"
+        - narrate "<&e>Usage: /infobot <&6>search/create/setline"
         - stop
     - if <context.args.get[1]> == search:
         - define infobots <list>
@@ -76,6 +76,8 @@ infobot_command:
         - define linelist <npc[<[selectedinfobot].id>].hologram_lines>
         - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
         - adjust <[selectedinfobot]> hologram_lines:<[updatelist]>
+    - else:
+        - narrate ""<&e>Usage:<&r> /infobot <&6>search/create/setline""
 
 infobot_menu:
     type: task
