@@ -69,10 +69,10 @@ infobot_command:
             - define selectedinfobot <player.flag[infobotselected]>
             - if !<[selectedinfobot].is_npc>:
                 - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
-                - determine cancelled
+                - stop
             - if 1|2|3|4|5 !contains <context.args.get[2]>:
                 - narrate "<&c><&o>Please choose lines 1-5 to set the display"
-                - determine cancelled
+                - stop
             - if <context.args.size> <= 2:
                 - define input <&n>
             - else:
