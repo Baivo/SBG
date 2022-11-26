@@ -56,10 +56,10 @@ infobot_command:
         - else:
             - narrate "<&c> No infobots found near your location!"
     - if <context.args.get[1]> == create:
-        - create armor_stand Info-Bot <player.location> save:ib
-        - define ib <entry[ib].created_npc>
+        - create armor_stand Info-Bot <player.location> save:infobotnpc
+        - define npc <entry[infobotnpc].created_npc>
         - actionbar "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
-        - run infobot_setup def.npc:<[ib]> def.player:<player>
+        - run infobot_setup def.npc:<[npc]> def.player:<player>
     - if <context.args.get[1]> == setline:
         - define selectedinfobot <player.flag[infobotselected]>
         - if !<[selectedinfobot].is_npc>:
