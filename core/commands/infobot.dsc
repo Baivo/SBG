@@ -98,5 +98,5 @@ infobot_menu:
         - define remove "[Remove Info-Bot]"
         - define select "[Select this Info-Bot]"
         - define hover "<&3><&o>Click to teleport in spectator mode"
-        - narrate "<&8><&l><&gt> <&a><&l><[ib].id><&7> located <&hover[<[hover]>].type[SHOW_TEXT]><&6><element[<[ib].location.xyz>].on_click[<entry[clickable<[ib].id>].command>]><&end_hover>"
+        - narrate "<&8><&l><&gt> <&a><&l><[ib].id><&7> located <&hover[<[hover]>].type[SHOW_TEXT]><&6><element[<[ib].location.simple.formatted>].on_click[<entry[clickable<[ib].id>].command>]><&end_hover>"
         - narrate <&d><element[<[select]>].on_click[<entry[select<[ib].id>].command>]><&sp><&3><element[<[teleport]>].on_click[<entry[teleport<[ib].id>].command>]><&c><&sp><element[<[remove]>].on_click[<entry[remove<[ib].id>].command>]><&nl>
