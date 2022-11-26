@@ -46,40 +46,40 @@ infobot_command:
         - stop
     - if search|create|setline !contains <context.args.get[1]>:
         - narrate "<&e>Usage: /infobot <&6>search/create/setline"
-    - if <context.args.get[1]> == search:
-        - define infobots <list>
-        - foreach <player.location.find_npcs_within[32]> as:npc:
-            - if <[npc].has_flag[infobot]>:
-                - define infobots:->:<[npc]>
+    - choose <context.args.get[1]>:
+        - case search:
+            - define infobots <list>
+            - foreach <player.location.find_npcs_within[32]> as:npc:
+                - if <[npc].has_flag[infobot]>:
+                    - define infobots:->:<[npc]>
+                - else:
+                    - foreach next
+            - if <[infobots].any>:
+                - narrate "<&nl><&3>Found the following Info-Bots:<&nl>"
+                - foreach <[infobots]> as:infobot:
+                    - run infobot_menu def.ib:<[infobot]>
             - else:
-                - foreach next
-        - if <[infobots].any>:
-            - narrate "<&nl><&3>Found the following Info-Bots:<&nl>"
-            - foreach <[infobots]> as:infobot:
-                - run infobot_menu def.ib:<[infobot]>
-        - else:
-            - narrate "<&c> No infobots found near your location!"
-    - if <context.args.get[1]> == create:
-        - create armor_stand Info-Bot <player.location> save:infobotnpc
-        - define npc <entry[infobotnpc].created_npc>
-        - actionbar "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
-        - run infobot_setup def.npc:<[npc]> def.player:<player>
-    - if <context.args.get[1]> == setline:
-        - define selectedinfobot <player.flag[infobotselected]>
-        - if !<[selectedinfobot].is_npc>:
-            - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
-            - determine cancelled
-        - if 1|2|3|4|5 !contains <context.args.get[2]>:
-            - narrate "<&c><&o>Please choose lines 1-5 to set the display"
-            - determine cancelled
-        - if <context.args.size> <= 2:
-            - define input <&n>
-        - else:
-            - define input <element[<context.args.get[3].to[last].separated_by[<&sp>]>]>
-        - define linelist <npc[<[selectedinfobot].id>].hologram_lines>
-        - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
-        - adjust <[selectedinfobot]> hologram_lines:<[updatelist]>
-    
+                - narrate "<&c> No infobots found near your location!"
+        - case create:
+            - create armor_stand Info-Bot <player.location> save:infobotnpc
+            - define npc <entry[infobotnpc].created_npc>
+            - actionbar "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
+            - run infobot_setup def.npc:<[npc]> def.player:<player>
+        - case setline:
+            - define selectedinfobot <player.flag[infobotselected]>
+            - if !<[selectedinfobot].is_npc>:
+                - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
+                - determine cancelled
+            - if 1|2|3|4|5 !contains <context.args.get[2]>:
+                - narrate "<&c><&o>Please choose lines 1-5 to set the display"
+                - determine cancelled
+            - if <context.args.size> <= 2:
+                - define input <&n>
+            - else:
+                - define input <element[<context.args.get[3].to[last].separated_by[<&sp>]>]>
+            - define linelist <npc[<[selectedinfobot].id>].hologram_lines>
+            - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
+            - adjust <[selectedinfobot]> hologram_lines:<[updatelist]>
 
 infobot_menu:
     type: task
