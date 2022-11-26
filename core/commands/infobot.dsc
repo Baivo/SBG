@@ -45,7 +45,7 @@ infobot_command:
         - narrate "<&e>Usage: /infobot <&6>search/create/setline"
         - stop
     - if <list[search/create/setline]> !contains <context.args.get[1]>:
-        - narrate "<&e>Usage:<&r> /infobot <&6>search/create/setline"
+        - narrate "<&e>Usage: /infobot <&6>search/create/setline"
     - if <context.args.get[1]> == search:
         - define infobots <list>
         - foreach <player.location.find_npcs_within[32]> as:npc:
