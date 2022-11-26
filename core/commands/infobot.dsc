@@ -19,9 +19,7 @@ infobot_command:
             - else:
                 - foreach next
         - if <[infobots].any>:
-            - narrate " "
-            - narrate "<blue>Found the following Info-Bots:<reset>"
-            - narrate " "
+            - narrate "<&nl><&b>Found the following Info-Bots:<&r><&nl>"
             - foreach <[infobots]> as:ib:
                 - run infobot_menu def.ib:<[ib]>
         - else:
@@ -54,23 +52,11 @@ infobot_setup:
     type: task
     definitions: npc|player
     script:
-        - narrate "<&a><[npc]>created.<&nl><&7>Use /infobot setline [1-5] blah blah blah"
-        - define line1 "Line 1"
-        - define line2 "Line 2"
-        - define line3 "Line 3"
-        - define line4 "Line 4"
-        - define line5 "Line 5"
-        - define lines <list[<[line1]>|<[line2]>|<[line3]>|<[line4]>|<[line5]>]>
+        - narrate "<&a><[npc]>created.<&nl><&7>Use /infobot setline [1-5] [line text]"
+        - define lines <list["Line 1"|"Line 2"|"Line 3"|"Line 4"|"Line 5"]>
         - flag <[npc]> infobot
-        - flag <[npc]> infobotpage:0
-        - flag <[npc]> infobotlocation:<context.entity.location>
         - flag <[player]> infobotselected:<[npc]> expire:30m
-        - adjust <[npc]> name_visible:false
-        - adjust <[npc]> is_small:true
-        - adjust <[npc]> invulnerable:true
-        - adjust <[npc]> visible:false
-        - adjust <[npc]> hologram_lines:<[lines]>
-        - adjust <[npc]> hologram_line_height:-0.3
+        - adjust <[npc]> <map[name_visible=false;is_small=true;invulnerable=true;visible=false;hologram_lines=<[lines]>;hologram_line_height=-0.3]>
         - run infobot_menu def.ib:<[npc]>
 
 infobot_menu:
@@ -80,15 +66,12 @@ infobot_menu:
         - clickable save:clickable<[ib].id> until:5m:
             - adjust <player> gamemode:spectator
             - teleport <player> <[ib].location.center>
-        #
         - clickable save:remove<[ib].id> until:5m:
             - remove <[ib]>
             - narrate "<red>Info-bot <&6><[ib].id><red> has been deleted"
-        #
         - clickable save:select<[ib].id> until:5m:
             - flag <player> infobotselected:<[ib]> expire:30m
             - narrate "<&d>Info-bot <&6><[ib].id><&d> has been selected"
-        #
         - clickable save:teleport<[ib].id> until:5m:
             - teleport <[ib]> <player.location.center>
             - narrate "<&3>Info-bot <&6><[ib].id><&3> teleported to your location"
