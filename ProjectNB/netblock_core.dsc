@@ -35,12 +35,12 @@ netblock_events_connection:
         # I've found the use of a "cooldown" flag to be a good way to do this if you want to run the function on a cooldown regardless of the connection
         # Or you can use a second netblock and set of connections to construct a boundary around the original trigger area to clear the flag once the player leaves the area
         on player walks location_flagged:connection:
-        - ratelimit <player> 5s
+        - ratelimit <player> 1t
         - define connection <context.new_location>
-        - announce to_flagged:Baivo <&e><[connection].flag[connection].deduplicate>
+        # - announce to_flagged:Baivo <&e><[connection].flag[connection].deduplicate>
         - foreach <[connection].flag[connection].deduplicate> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
-            - announce to_flagged:Baivo <&d><[netblock]>
+            # - announce to_flagged:Baivo <&d><[netblock]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
 
 ### CONFIGURATOR EVENTS ###
