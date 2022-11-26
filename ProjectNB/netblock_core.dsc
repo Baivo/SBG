@@ -39,7 +39,7 @@ netblock_events_connection:
         - define connection <context.new_location>
         - foreach <[connection].flag_map[connection]> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
-            - announce to_flagged:Baivo <&d><server.flag[netblock.<[netblock]>.function]>
+            - announce to_flagged:Baivo <&d><[netblock]>
             - run <[function]> def.player:<player> def.trigger:<[connection]> def.netblock:<[netblock]> def.function:<[function]>
 
 ### CONFIGURATOR EVENTS ###
