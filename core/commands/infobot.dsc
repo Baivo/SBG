@@ -44,7 +44,7 @@ infobot_command:
     - if !<context.args.any>:
         - narrate "<&e>Usage: /infobot <&6>search/create/setline"
         - stop
-    - if <list[search/create/setline]> !contains <context.args.get[1]>:
+    - if search|create|setline !contains <context.args.get[1]>:
         - narrate "<&e>Usage: /infobot <&6>search/create/setline"
     - if <context.args.get[1]> == search:
         - define infobots <list>
@@ -69,7 +69,7 @@ infobot_command:
         - if !<[selectedinfobot].is_npc>:
             - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
             - determine cancelled
-        - if <list[1|2|3|4|5]> !contains <context.args.get[2]>:
+        - if 1|2|3|4|5 !contains <context.args.get[2]>:
             - narrate "<&c><&o>Please choose lines 1-5 to set the display"
             - determine cancelled
         - if <context.args.size> <= 2:
