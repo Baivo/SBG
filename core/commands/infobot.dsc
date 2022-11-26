@@ -25,11 +25,11 @@ info_bot_setup:
 infocommand:
     type: command
     name: infobot
-    debug: true
-    description: Internal Info-Bot Command
-    usage: /infobot Internal Development Command
+    debug: false
+    description: Create and manage infobots!
+    usage: /infobot
     permission: B1V.infobot
-    permission message: Oi mate. I know you're a tool, but that doesn't mean you can hang out with mine as well.
+    permission message: Insufficient permissions, likely a skill issue. Please submit your complaints via your nearest AusPost provider to ensure we'll never read it.
     tab completions:
         1: search|create|setline|blankline
         2: 1|2|3|4|5
