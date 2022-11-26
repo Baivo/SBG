@@ -56,7 +56,7 @@ infocommand:
     permission: B1V.infobot
     permission message: Insufficient permissions, likely a skill issue. Please submit your complaints via your nearest AusPost provider to ensure we'll never read it.
     tab completions:
-        1: search|create|setline|blankline
+        1: search|create|setline
         2: 1|2|3|4|5
     script:
     - if <context.args.get[1]> == search:
@@ -97,16 +97,4 @@ infocommand:
             - define input <element[<context.args.get[3].to[last].separated_by[<&sp>]>]>
         - define linelist <npc[<[sib].id>].hologram_lines>
         - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
-        - adjust <[sib]> hologram_lines:<[updatelist]>
-# blanks out a line on an info bot
-    - if <context.args.get[1]> == blankline:
-        - define sib <player.flag[infobotselected]>
-        - if <[sib].is_npc> !=:
-            - narrate "<red><italic>No info-bot selected. Please use /infobot search to select an info-bot to edit"
-            - determine cancelled
-        - if <context.args.get[2].contains_any[1|2|3|4|5]> !=:
-            - narrate "<red><italic>Please choose a line between 1-5 to set blank<&nl><&7>Example: /infobot blankline 3"
-            - determine cancelled
-        - define linelist <npc[<[sib].id>].hologram_lines>
-        - define updatelist <[linelist].set_single[&r].at[<context.args.get[2]>]>
         - adjust <[sib]> hologram_lines:<[updatelist]>
