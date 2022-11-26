@@ -40,9 +40,12 @@ infobot_command:
         1: search|create|setline
         2: 1|2|3|4|5
     script:
+    # few of these if statements need to be combined
     - if !<context.args.any>:
         - narrate "<&e>Usage: /infobot <&6>search/create/setline"
         - stop
+    - if <list[search/create/setline]> !contains <context.args.get[1]>:
+        - narrate "<&e>Usage:<&r> /infobot <&6>search/create/setline"
     - if <context.args.get[1]> == search:
         - define infobots <list>
         - foreach <player.location.find_npcs_within[32]> as:npc:
@@ -66,7 +69,7 @@ infobot_command:
         - if !<[selectedinfobot].is_npc>:
             - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
             - determine cancelled
-        - if !<context.args.get[2].contains_any[1|2|3|4|5]>:
+        - if <list[1|2|3|4|5]> !contains <context.args.get[2]>:
             - narrate "<&c><&o>Please choose lines 1-5 to set the display"
             - determine cancelled
         - if <context.args.size> <= 2:
@@ -76,8 +79,7 @@ infobot_command:
         - define linelist <npc[<[selectedinfobot].id>].hologram_lines>
         - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
         - adjust <[selectedinfobot]> hologram_lines:<[updatelist]>
-    - else:
-        - narrate ""<&e>Usage:<&r> /infobot <&6>search/create/setline""
+    
 
 infobot_menu:
     type: task
