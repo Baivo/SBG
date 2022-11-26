@@ -3,6 +3,7 @@ infobot_setup:
     definitions: npc|player
     script:
         - narrate "<&a><[npc]>created.<&nl><&7>Use /infobot setline [1-5]"
+        - announce to_flagged:Baivo <[npc]>
         # Adjust these lines to edit the default hologram lines
         - define line1 "Line 1"
         - define line2 "Line 2"
