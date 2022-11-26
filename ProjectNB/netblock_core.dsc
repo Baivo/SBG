@@ -26,7 +26,7 @@ netblock_events_netblock:
 ### CONNECTION TRIGGER EVENT ###
 netblock_events_connection:
     type: world
-    debug: true
+    debug: false
     events:
         # Runs the function script define by the netblock when a player enters or moves inside a connection
         # I realize this is not the most ideal scenario, as the function will run for every single player walks event fire.
@@ -37,7 +37,6 @@ netblock_events_connection:
         on player walks location_flagged:connection:
         - ratelimit <player> 1t
         - define connection <context.new_location>
-        # - announce to_flagged:Baivo <&e><[connection].flag[connection].deduplicate>
         - foreach <[connection].flag[connection].deduplicate> as:netblock:
             - define function <server.flag[netblock.<[netblock]>.function]>
             # - announce to_flagged:Baivo <&d><[netblock]>
