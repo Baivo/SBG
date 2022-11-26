@@ -53,7 +53,7 @@ infobot_command:
         - if <[infobots].any>:
             - narrate "<&nl><&3>Found the following Info-Bots:<&nl>"
             - foreach <[infobots]> as:infobot:
-                - run infobot_menu def.infobot:<[infobot]>
+                - run infobot_menu def.ib:<[infobot]>
         - else:
             - narrate "<&c> No infobots found near your location!"
     - if <context.args.get[1]> == create:
