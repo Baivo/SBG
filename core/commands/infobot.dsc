@@ -1,6 +1,6 @@
-info_bot_setup:
+infobot_setup:
     type: task
-    definitions: npc
+    definitions: npc|player
     script:
         - narrate "<&a><[npc]>created.<&nl><&7>Use /infobot setline [1-5] blah blah blah"
         - define line1 "Line 1"
@@ -12,15 +12,40 @@ info_bot_setup:
         - flag <[npc]> infobot
         - flag <[npc]> infobotpage:0
         - flag <[npc]> infobotlocation:<context.entity.location>
+        - flag <[player]> infobotselected:<[npc]> expire:30m
         - adjust <[npc]> name_visible:false
         - adjust <[npc]> is_small:true
         - adjust <[npc]> invulnerable:true
         - adjust <[npc]> visible:false
         - adjust <[npc]> hologram_lines:<[lines]>
         - adjust <[npc]> hologram_line_height:-0.3
+        - run infobot_menu def.ib:<[npc]>
 
-#search
-#create
+infobot_menu:
+    type: task
+    definitions: ib
+    script:
+        - clickable save:clickable<[ib].id> until:5m:
+            - adjust <player> gamemode:spectator
+            - teleport <player> <[ib].location.center>
+        #
+        - clickable save:remove<[ib].id> until:5m:
+            - remove <[ib]>
+            - narrate "<red>Info-bot <&6><[ib].id><red> has been deleted"
+        #
+        - clickable save:select<[ib].id> until:5m:
+            - flag <player> infobotselected:<[ib]> expire:30m
+            - narrate "<&d>Info-bot <&6><[ib].id><&d> has been selected"
+        #
+        - clickable save:teleport<[ib].id> until:5m:
+            - teleport <[ib]> <player.location.center>
+            - narrate "<&3>Info-bot <&6><[ib].id><&3> teleported to your location"
+        - define teleport "[Teleport here]"
+        - define remove "[Remove Info-Bot]"
+        - define select "[Select this Info-Bot]"
+        - define hover "<&3><italic>Click to teleport in spectator mode"
+        - narrate "<&8><&l><&gt> <&a><&l><[ib].id><gray> located <&hover[<[hover]>].type[SHOW_TEXT]><&6><element[<[ib].location.simple>].on_click[<entry[clickable<[ib].id>].command>]><reset><&end_hover>"
+        - narrate "<&d><element[<[select]>].on_click[<entry[select<[ib].id>].command>]><reset> <&3><element[<[teleport]>].on_click[<entry[teleport<[ib].id>].command>]><reset><red> <element[<[remove]>].on_click[<entry[remove<[ib].id>].command>]><reset><&nl>"
 
 infocommand:
     type: command
@@ -45,29 +70,9 @@ infocommand:
         - if <[infobots].any>:
             - narrate " "
             - narrate "<blue>Found the following Info-Bots:<reset>"
-            - define hover "<dark_aqua><italic>Click to teleport in spectator mode"
             - narrate " "
             - foreach <[infobots]> as:ib:
-                - clickable save:clickable<[ib].id> until:5m:
-                    - adjust <player> gamemode:spectator
-                    - teleport <player> <[ib].location.center>
-                #
-                - clickable save:remove<[ib].id> until:5m:
-                    - remove <[ib]>
-                    - narrate "<red>Info-bot <gold><[ib].id><red> has been deleted"
-                #
-                - clickable save:select<[ib].id> until:5m:
-                    - flag <player> infobotselected:<[ib]> expire:30m
-                    - narrate "<light_purple>Info-bot <gold><[ib].id><light_purple> has been selected"
-                #
-                - clickable save:teleport<[ib].id> until:5m:
-                    - teleport <[ib]> <player.location.center>
-                    - narrate "<dark_aqua>Info-bot <gold><[ib].id><dark_aqua> teleported to your location"
-                - define teleport "[Teleport here]"
-                - define remove "[Remove Info-Bot]"
-                - define select "[Select this Info-Bot]"
-                - narrate "<&8><&l><&gt> <&a><&l><[ib].id><gray> located <&hover[<[hover]>].type[SHOW_TEXT]><gold><element[<[ib].location.simple>].on_click[<entry[clickable<[ib].id>].command>]><reset><&end_hover>"
-                - narrate "<light_purple><element[<[select]>].on_click[<entry[select<[ib].id>].command>]><reset> <dark_aqua><element[<[teleport]>].on_click[<entry[teleport<[ib].id>].command>]><reset><red> <element[<[remove]>].on_click[<entry[remove<[ib].id>].command>]><reset><&nl>"
+                - run infobotmenu def.ib:<[ib]>
         - else:
             - narrate "<red> No infobots found near your location!"
 # create a new info-bot
@@ -76,7 +81,7 @@ infocommand:
         - define npc <entry[infobot].created_npc>
         - narrate "<&a>Created Info-bot <&6><[npc]><&a> at <&6><player.location.center>"
         - flag <player> infobotselected:<[npc]> expire:30m
-        - run info_bot_setup def.npc:<[npc]>
+        - run info_bot_setup def.npc:<[npc]> def.player:<player>
 # set the display info manually for an infobot
     - if <context.args.get[1]> == setline:
         - define sib <player.flag[infobotselected]>
