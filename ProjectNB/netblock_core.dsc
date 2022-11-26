@@ -185,54 +185,54 @@ nbf_getstarted:
     #   netblock: the LocationTag of the netblock that the connection is connected to
     #   function: the script name of the function that is being run
 
-## Example of planned definable effect application
-nbf_effect_nbdata:
-  type: task
-  definitions: player|effect|power|duration
-  script:
-    - cast <[effect].if_null[SPEED]> duration:<[duration].if_null[3s]> amplifier:<[power].if_null[0]> <[player]>
+# ## Example of planned definable effect application
+# nbf_effect_nbdata:
+#   type: task
+#   definitions: player|effect|power|duration
+#   script:
+#     - cast <[effect].if_null[SPEED]> duration:<[duration].if_null[3s]> amplifier:<[power].if_null[0]> <[player]>
 
-## Examples of static effect application.
-# Still useful if you have a use case in mind and would like to have a static effect available for using across many areas/netblocks.
-nbf_effect_speed:
-  type: task
-  definitions: player
-  script:
-    - cast speed duration:10t amplifier:1 <[player]>
+# ## Examples of static effect application.
+# # Still useful if you have a use case in mind and would like to have a static effect available for using across many areas/netblocks.
+# nbf_effect_speed:
+#   type: task
+#   definitions: player
+#   script:
+#     - cast speed duration:10t amplifier:1 <[player]>
 
-## A few more examples of simple netblock functions
-nbf_util_playsound:
-  type: task
-  definitions: player
-  script:
-    - playsound <[player].location> sound:entity_axolotl_idle_air pitch:0.1 volume:0.3
+# ## A few more examples of simple netblock functions
+# nbf_util_playsound:
+#   type: task
+#   definitions: player
+#   script:
+#     - playsound <[player].location> sound:entity_axolotl_idle_air pitch:0.1 volume:0.3
 
-nbf_util_secrettp:
-  type: task
-  definitions: player|trigger
-  script:
-    - if <[player].has_flag[flag]>:
-      - teleport <[player]> <[trigger].add[2,0,0]> relative
+# nbf_util_secrettp:
+#   type: task
+#   definitions: player|trigger
+#   script:
+#     - if <[player].has_flag[flag]>:
+#       - teleport <[player]> <[trigger].add[2,0,0]> relative
 
-nbf_fun_dancefloor:
-    type: task
-    definitions: trigger|player
-    script:
-    - ratelimit <[player]> 1t
-    - random:
-        - define material <material[red_concrete]>
-        - define material <material[orange_concrete]>
-        - define material <material[yellow_concrete]>
-        - define material <material[lime_concrete]>
-        - define material <material[cyan_concrete]>
-        - define material <material[purple_concrete]>
-        - define material <material[pink_concrete]>
-        # add more!
-    - showfake <[material]> <[trigger].below[1]> players:<server.online_players> duration:3s
+# nbf_fun_dancefloor:
+#     type: task
+#     definitions: trigger|player
+#     script:
+#     - ratelimit <[player]> 1t
+#     - random:
+#         - define material <material[red_concrete]>
+#         - define material <material[orange_concrete]>
+#         - define material <material[yellow_concrete]>
+#         - define material <material[lime_concrete]>
+#         - define material <material[cyan_concrete]>
+#         - define material <material[purple_concrete]>
+#         - define material <material[pink_concrete]>
+#         # add more!
+#     - showfake <[material]> <[trigger].below[1]> players:<server.online_players> duration:3s
 
-nbf_util_zap:
-  type: task
-  definitions: player
-  script:
-    - hurt 1 <[player]>
-    - playeffect at:<[player].eye_location.below[1]> effect:spark quantity:5 offset:1
+# nbf_util_zap:
+#   type: task
+#   definitions: player
+#   script:
+#     - hurt 1 <[player]>
+#     - playeffect at:<[player].eye_location.below[1]> effect:spark quantity:5 offset:1
