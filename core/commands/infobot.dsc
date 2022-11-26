@@ -63,10 +63,10 @@ infobot_command:
     - if <context.args.get[1]> == setline:
         - define selectedinfobot <player.flag[infobotselected]>
         - if !<[selectedinfobot].is_npc>:
-            - narrate "<&c><italic>No info-bot selected. Please use /infobot search to select an info-bot to edit"
+            - narrate "<&c><&o>No info-bot selected. Please use /infobot search to select an info-bot to edit"
             - determine cancelled
         - if !<context.args.get[2].contains_any[1|2|3|4|5]>:
-            - narrate "<&c><italic>Please choose lines 1-5 to set the display"
+            - narrate "<&c><&o>Please choose lines 1-5 to set the display"
             - determine cancelled
         - if <context.args.size> <= 2:
             - define input <&n>
@@ -97,6 +97,6 @@ infobot_menu:
         - define teleport "[Teleport here]"
         - define remove "[Remove Info-Bot]"
         - define select "[Select this Info-Bot]"
-        - define hover "<&3><italic>Click to teleport in spectator mode"
-        - narrate "<&8><&l><&gt> <&a><&l><[ib].id><gray> located <&hover[<[hover]>].type[SHOW_TEXT]><&6><element[<[ib].location.simple>].on_click[<entry[clickable<[ib].id>].command>]><reset><&end_hover>"
-        - narrate "<&d><element[<[select]>].on_click[<entry[select<[ib].id>].command>]><reset> <&3><element[<[teleport]>].on_click[<entry[teleport<[ib].id>].command>]><reset><&c> <element[<[remove]>].on_click[<entry[remove<[ib].id>].command>]><reset><&nl>"
+        - define hover "<&3><&o>Click to teleport in spectator mode"
+        - narrate "<&8><&l><&gt> <&a><&l><[ib].id><&7> located <&hover[<[hover]>].type[SHOW_TEXT]><&6><element[<[ib].location.xyz>].on_click[<entry[clickable<[ib].id>].command>]><&end_hover>"
+        - narrate <&d><element[<[select]>].on_click[<entry[select<[ib].id>].command>]><&sp><&3><element[<[teleport]>].on_click[<entry[teleport<[ib].id>].command>]><&c><&sp><element[<[remove]>].on_click[<entry[remove<[ib].id>].command>]><&nl>
