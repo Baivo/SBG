@@ -89,9 +89,9 @@ infocommand:
         - if <context.args.size> <= 2:
             - define input &r
         - else:
-            - define input <context.args.get[3].to[last].separated_by[<&sp>]>
+            - define input <element[<context.args.get[3].to[last].separated_by[<&sp>]>]>
         - define linelist <npc[<[sib].id>].hologram_lines>
-        - define updatelist <[linelist].set_single[<[input].unescaped>].at[<context.args.get[2]>]>
+        - define updatelist <[linelist].set_single[<[input]>].at[<context.args.get[2]>]>
         - adjust <[sib]> hologram_lines:<[updatelist]>
 # blanks out a line on an info bot
     - if <context.args.get[1]> == blankline:
