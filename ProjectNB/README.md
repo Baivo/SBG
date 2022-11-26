@@ -27,18 +27,23 @@ The intention of this system, however, is to allow anyone to write their own fun
 A "netblock" function is quite literally just a regular denizen task. When you set a netblock function, you're just telling it to run a task with that name. 
 Denizen documentation is thorough, and I'm on hand and encourage any questions thrown my way. https://meta.denizenscript.com/Docs/Search/task#task%20script%20containers
 
- For now, netblock connections pass the following defs to all functions:
-       trigger: the LocationTag of the connection that was triggered
-       player: the PlayerTag of the player that triggered the connection
-       netblock: the LocationTag of the netblock that the connection is connected to
-       function: the script name of the function that is being run
 ---
+
+For now, netblock connections pass the following defs to all functions:
+- trigger: the LocationTag of the connection that was triggered
+- player: the PlayerTag of the player that triggered the connection
+- netblock: the LocationTag of the netblock that the connection is connected to
+- function: the script name of the function that is being run
+
+---
+
 *"Ok, lmao, but why?"*
 There are ways of achieving what I've created here, both with vanilla command blocks, plugins, or even denizen area flagging, etc.
 
 These are all used in different scenarios, and all require an unreasonable amount of required reading for a person trying to learn them. I don't blame anyone for cracking the shits and giving up on it. Even when they are working correctly, they're a pain in the ass to plan and maintain. 
 
 These netblocks will allow the kind of cool interactions between the world and the player that any sensible game engine supports by default, without having to teach you all half a dozen systems to get stuff working. Even if nobody else contributes to the list of available functions, I'll be creating enough of my own that you should either have the one you need or only need to tweak a solution slightly for your own use. 
+
 ---
 
 ##### My netblock function script naming conventions: 
