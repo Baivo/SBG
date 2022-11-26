@@ -32,6 +32,7 @@ infocommand:
     permission message: Oi mate. I know you're a tool, but that doesn't mean you can hang out with mine as well.
     tab completions:
         1: search|create|setline|blankline
+        2: 1|2|3|4|5
     script:
     - if <context.args.get[1]> == search:
         - define infobots <list>
@@ -90,7 +91,7 @@ infocommand:
         - else:
             - define input <context.args.get[3].to[last].separated_by[<&sp>]>
         - define linelist <npc[<[sib].id>].hologram_lines>
-        - define updatelist <[linelist].set_single[<[input].unescaped>].at[<context.args.get[2]>]>
+        - define updatelist <[linelist].set_single[<[input].escaped>].at[<context.args.get[2]>]>
         - adjust <[sib]> hologram_lines:<[updatelist]>
 # blanks out a line on an info bot
     - if <context.args.get[1]> == blankline:
@@ -104,12 +105,3 @@ infocommand:
         - define linelist <npc[<[sib].id>].hologram_lines>
         - define updatelist <[linelist].set_single[&r].at[<context.args.get[2]>]>
         - adjust <[sib]> hologram_lines:<[updatelist]>
-    - if <context.args.get[1]> == rainbowline:
-        - define sib <player.flag[infobotselected]>
-        - if <[sib].is_npc> !=:
-            - narrate "<red><italic>No info-bot selected. Please use /infobot search to select an info-bot to edit"
-            - determine cancelled
-        - if <context.args.get[2].contains_any[1|2|3|4|5]> !=:
-            - narrate "<red><italic>Please choose a line between 1-5 to set blank<&nl><&7>Example: /infobot blankline 3"
-            - determine cancelled
-        - flag <[sib]> rainbowline<context.args.get[3]>
