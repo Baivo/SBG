@@ -50,9 +50,9 @@ goreburst:
     - waituntil rate:10t <[wetentity].is_spawned> max:3s
     - adjust <[wetentity]> visible:true
 
-player_death:
+entity_death:
   type: world
   debug: false
   events:
-    on player dies:
+    on entity dies:
       - run goreburstatloc def.goreloc:<player.eye_location>
