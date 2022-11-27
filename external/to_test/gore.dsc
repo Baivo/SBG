@@ -54,5 +54,5 @@ player_death:
   type: world
   debug: false
   events:
-    on player death:
-      - run goreburst def.wetentity:<player>
+    on player dies:
+      - run goreburstatloc def.goreloc:<player.eye_location>
