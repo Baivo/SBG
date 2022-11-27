@@ -29,8 +29,8 @@ nbf_util_pylonpath:
   debug: false
   definitions: player|netblock
   script:
-    - ratelimit <[player]> 10t
-    - playeffect at:<[player].location> effect:portal_travel quantity:5 offset:1
+    - ratelimit <[player]> 5t 
+    - playeffect at:<[player].location> effect:dragon_breath quantity:5 offset:1
   
 nbf_util_tp2netblock:
   type: task
