@@ -54,5 +54,5 @@ player_death:
   type: world
   debug: false
   events:
-    on player dies:
+    on entity dies:
       - run goreburstatloc def.goreloc:<context.entity.eye_location>
