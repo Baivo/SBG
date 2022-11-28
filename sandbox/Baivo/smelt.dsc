@@ -77,7 +77,7 @@ furnace_perk_events:
             - flag <context.location> perks.smelt.item:<context.item_in_hand.flag[item]>
         on player breaks furnace:
         - if <context.location.has_flag[perks.smelt]>:
-            - define item <context.location.flag[perks.smelt.item]>
+            - define item <item[<context.location.flag[perks.smelt.item]>]>
             - flag <context.location> perks.smelt:!
             - determine <[item]>
         # replace this with a furnace item script that adds the perks to the item at the crafting player's perk level
