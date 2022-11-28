@@ -1,5 +1,3 @@
-# define perk levels
-# fuel efficiency, cook speed, output multiplier(?)
 smelt_perks:
     type: data
     efficiency:
@@ -34,20 +32,20 @@ smelt_perks:
         8: 4.5
         9: 5
         10: 6
-        p1: 8
-        p2: 10
-        p3: 12
-        p4: 14
-        p5: 16
-        p6: 18
-        p7: 20
-        p8: 25
-        p9: 30
-        p10: 40
+        P1: 8
+        P2: 10
+        P3: 12
+        P4: 14
+        P5: 16
+        P6: 18
+        P7: 20
+        P8: 25
+        P9: 30
+        P10: 40
 
 furnace_perk_events:
     type: world
-    debug: true
+    debug: false
     events:
         after furnace burns item:
         - define fueltime <context.location.furnace_burn_duration.in_ticks>
@@ -80,4 +78,3 @@ furnace_perk_events:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
             - flag <context.location> perks.smelt:!
             - determine <[item]>
-        # replace this with a furnace item script that adds the perks to the item at the crafting player's perk level
