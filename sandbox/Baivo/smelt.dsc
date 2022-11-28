@@ -34,10 +34,13 @@ smelt_events:
     debug: true
     events:
         after furnace burns item:
-        - define fueltime <context.location.furnace_burn_duration>
+        - define fueltime <duration[<context.location.furnace_burn_duration>]>
         - announce to_flagged:Baivo "<&c>Fuel time: <&e><[fueltime]>"
+
         - define perk <context.location.flag[perks.efficiency].if_null[1]>
-        - announce to_flagged:Baivo "<&b>New fuel time: <&e><[fueltime].div[<[perk]>]>"
-        - announce to_flagged:Baivo <context.location>
         - announce to_flagged:Baivo "<&d>Perk: <&e><[perk]>"
-        - determine <duration[<[fueltime].div[<[perk]>]>]>
+
+        - define newtime <duration[<[fueltime].div[<[perk]>]>]>
+        - announce to_flagged:Baivo "<&b>New fuel time: <&e><[newtime]>"
+
+        - determine <[newtime]>
