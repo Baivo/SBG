@@ -61,7 +61,7 @@ furnace_perk_events:
         - define newtime <duration[<[cooktime].div[<[perk]>].div[20]>]>
         - determine <[newtime]>
         on player crafts furnace:
-        - if <player.flag[perks.smelt.efficiency]> || <player.flag[perks.smelt.speed]>:
+        - if <player.flag[perks.smelt.efficiency].exists> || <player.flag[perks.smelt.speed].exists>:
             - define item <context.item>
             - define item <[item].with[lore=<[item].lore.add[&6Perks:]>]>
             - define item <[item].with[lore=<[item].lore.add[&7Efficiency: &e<player.flag[perks.smelt.efficiency].if_null[0]>]>]>
