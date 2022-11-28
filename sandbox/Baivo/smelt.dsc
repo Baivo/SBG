@@ -44,3 +44,14 @@ smelt_events:
         - announce to_flagged:Baivo "<&b>New fuel time: <&e><[newtime]>"
 
         - adjust <context.location> furnace_burn_duration:<[newtime]>
+        after furnace starts smelting item:
+        - define cooktime <context.total_cook_time>
+        - announce to_flagged:Baivo "<&c>Cook time: <&e><[cooktime]>"
+
+        - define perk <context.location.flag[perks.cookspeed].if_null[1]>
+        - announce to_flagged:Baivo "<&d>Perk: <&e><[perk]>"
+
+        - define newtime <[cooktime].div[<[perk]>].div[20]>
+        - announce to_flagged:Baivo "<&b>New cook time: <&e><[newtime]>"
+
+        - adjust <context.location> furnace_cook_duration:<[newtime]>
