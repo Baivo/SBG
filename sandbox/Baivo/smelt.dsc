@@ -62,9 +62,10 @@ furnace_perk_events:
         - determine <[newtime]>
         on player crafts furnace:
         - if <player.flag[perks.smelt.efficiency].exists> || <player.flag[perks.smelt.speed].exists>:
+            - define lore <list[<&6>Perks:]>
+            - define lore:->:<&7>Efficiency<&co><&sp><&e><player.flag[perks.smelt.efficiency].if_null[0]>
+            - define lore:->:<&7>Speed<&co><&sp><&e><player.flag[perks.smelt.speed].if_null[0]>
             - define item <context.item>
-            - define item <[item].with[lore=<[item].lore.add[&6Perks:]>]>
-            - define item <[item].with[lore=<[item].lore.add[&7Efficiency: &e<player.flag[perks.smelt.efficiency].if_null[0]>]>]>
-            - define item <[item].with[lore=<[item].lore.add[&7Speed: &e<player.flag[perks.smelt.speed].if_null[0]>]>]>
+            - adjust <[item]> lore:<[lore]>
             - determine <[item]>
         # replace this with a furnace item script that adds the perks to the item at the crafting player's perk level
