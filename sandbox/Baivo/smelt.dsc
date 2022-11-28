@@ -51,7 +51,7 @@ smelt_events:
         - define perk <context.location.flag[perks.cookspeed].if_null[1]>
         - announce to_flagged:Baivo "<&d>Perk: <&e><[perk]>"
 
-        - define newtime <[cooktime].div[<[perk]>]>
+        - define newtime <[cooktime].div[<[perk]>].div[20]>
         - announce to_flagged:Baivo "<&b>New cook time: <&e><[newtime]>"
 
         - determine <[newtime]>
