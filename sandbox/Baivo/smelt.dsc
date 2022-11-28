@@ -45,7 +45,7 @@ smelt_events:
 
         - adjust <context.location> furnace_burn_duration:<[newtime]>
         after furnace starts smelting item:
-        - define cooktime <context.total_cook_time>
+        - define cooktime <context.total_cook_time.in_ticks>
         - announce to_flagged:Baivo "<&c>Cook time: <&e><[cooktime]>"
 
         - define perk <context.location.flag[perks.cookspeed].if_null[1]>
