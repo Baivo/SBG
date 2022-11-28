@@ -46,17 +46,25 @@ smelt_perks:
         p9: 30
         p10: 40
 
-smelt_events:
+furnace_perk_events:
     type: world
     debug: true
     events:
         after furnace burns item:
         - define fueltime <context.location.furnace_burn_duration.in_ticks>
-        - define perk <context.location.flag[perks.efficiency].if_null[1]>
+        - define perk <context.location.flag[perks.smelt.speed].if_null[1]>
         - define newtime <duration[<[fueltime].div[<[perk]>].div[20]>]>
         - adjust <context.location> furnace_burn_duration:<[newtime]>
         on furnace starts smelting item:
         - define cooktime <context.total_cook_time.in_ticks>
-        - define perk <context.location.flag[perks.cookspeed].if_null[1]>
+        - define perk <context.location.flag[perks.smelt.speed].if_null[1]>
         - define newtime <duration[<[cooktime].div[<[perk]>].div[20]>]>
         - determine <[newtime]>
+        on player crafts furnace:
+        - if <player.flag[perks.smelt.efficiency]> || <player.flag[perks.smelt.speed]>:
+            - define item <context.item>
+            - define item <[item].with[lore=<[item].lore.add[&7Perks:]>]>
+            - define item <[item].with[lore=<[item].lore.add[&7Efficiency: &e]>]>
+            - define item <[item].with[lore=<[item].lore.add[&7Speed: &e]>]>
+            - determine <[item]>
+        # replace this with a furnace item script that adds the perks to the item at the crafting player's perk level
