@@ -62,7 +62,8 @@ furnace_perk_events:
         - determine <[newtime]>
         on player crafts furnace:
         - if <player.flag[perks.smelt.efficiency].exists> || <player.flag[perks.smelt.speed].exists>:
-            - define lore <list[<&6>Perks:]>
+            - define lore <list[<&nl>]>
+            - define lore:->:<&6>Perks<&co>
             - define lore:->:<&7>Efficiency<&co><&sp><&e><player.flag[perks.smelt.efficiency].if_null[0]>
             - define lore:->:<&7>Speed<&co><&sp><&e><player.flag[perks.smelt.speed].if_null[0]>
             - determine <context.item.with[lore=<[lore]>]>
