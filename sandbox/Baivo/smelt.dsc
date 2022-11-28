@@ -74,7 +74,7 @@ furnace_perk_events:
         - if <context.item_in_hand.has_flag[perks.smelt]>:
             - flag <context.location> perks.smelt.speed:<context.item_in_hand.flag[perks.smelt.speed]>
             - flag <context.location> perks.smelt.efficiency:<context.item_in_hand.flag[perks.smelt.efficiency]>
-            - flag <context.location> perks.smelt.item:<context.item_in_hand.flag[item]>
+            - flag <context.location> perks.smelt.item:<context.item_in_hand.flag[perks.smelt.item]>
         on player breaks furnace:
         - if <context.location.has_flag[perks.smelt]>:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
