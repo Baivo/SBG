@@ -60,7 +60,7 @@ furnace_perk_events:
         - define perk <context.location.flag[perks.smelt.speed].if_null[1]>
         - define newtime <duration[<[cooktime].div[<[perk]>].div[20]>]>
         - determine <[newtime]>
-        on player crafts furnace:
+        on furnace recipe formed:
         - if <player.flag[perks.smelt.efficiency].exists> || <player.flag[perks.smelt.speed].exists>:
             - define lore <list[]>
             - define lore:->:<&6>Perks<&co>
