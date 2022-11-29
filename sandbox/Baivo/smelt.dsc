@@ -1,5 +1,9 @@
-smelt_perks:
+# https://guide.denizenscript.com/guides/non-denizen/resource-packs.html
+# Perks
+# Begin smelting perks.
+perks_smelt:
     type: data
+    # Fuel efficiency. Higher levels provide longer burn duration for furnace fuel items
     efficiency:
         1: 1
         2: 0.95
@@ -11,16 +15,17 @@ smelt_perks:
         8: 0.65
         9: 0.6
         10: 0.55
-        p1: 0.5
-        p2: 0.45
-        p3: 0.4
-        p4: 0.35
-        p5: 0.3
-        p6: 0.25
-        p7: 0.2
-        p8: 0.15
-        p9: 0.1
-        p10: 0.05
+        P1: 0.5
+        P2: 0.45
+        P3: 0.4
+        P4: 0.35
+        P5: 0.3
+        P6: 0.25
+        P7: 0.2
+        P8: 0.15
+        P9: 0.1
+        P10: 0.05
+    # Smelt/cook speed. Higher levels provide faster processing time for smelting/cooking items.
     speed:
         1: 1
         2: 1.5
@@ -34,14 +39,14 @@ smelt_perks:
         10: 6
         P1: 8
         P2: 10
-        P3: 12
-        P4: 14
-        P5: 16
-        P6: 18
-        P7: 20
-        P8: 25
-        P9: 30
-        P10: 40
+        P3: 15
+        P4: 20
+        P5: 25
+        P6: 30
+        P7: 35
+        P8: 40
+        P9: 50
+        P10: 100
 
 furnace_perk_events:
     type: world
@@ -62,10 +67,13 @@ furnace_perk_events:
             - define lore <list[]>
             - define lore:->:<&6>Perks<&co>
             - define lore:->:<&7>Efficiency<&co><&sp><&e><player.flag[perks.smelt.efficiency].if_null[0]>
+            - define lore:->:<&7><&o>Increases<&sp>the<&sp>burn<&sp>duration<&sp>of<&sp>fuel<&sp>items.
             - define lore:->:<&7>Speed<&co><&sp><&e><player.flag[perks.smelt.speed].if_null[0]>
+            - define lore:->:<&7><&o>Increases<&sp>the<&sp>smelting<&sp>speed<&sp>of<&sp>items.
+            - define lore:->:<&a>Crafted<&sp>by<&co><&sp><&e><player.nameplate>
             - define item <context.item.with[lore=<[lore]>]>
-            - define item <[item].with_flag[perks.smelt.speed:<script[smelt_perks].data_key[speed.<player.flag[perks.smelt.speed].if_null[1]>]>]>
-            - define item <[item].with_flag[perks.smelt.efficiency:<script[smelt_perks].data_key[efficiency.<player.flag[perks.smelt.efficiency].if_null[1]>]>]>
+            - define item <[item].with_flag[perks.smelt.speed:<script[perks_smelt].data_key[speed.<player.flag[perks.smelt.speed].if_null[1]>]>]>
+            - define item <[item].with_flag[perks.smelt.efficiency:<script[perks_smelt].data_key[efficiency.<player.flag[perks.smelt.efficiency].if_null[1]>]>]>
             - define item <[item].with_flag[perks.smelt.item:<[item]>]>
             - determine <[item]>
         on player places furnace:
@@ -78,3 +86,100 @@ furnace_perk_events:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
             - flag <context.location> perks.smelt:!
             - determine <[item]>
+# End smelting perks.
+# Begin mining perks.
+perks_mine:
+    type: data
+    # Precision. Higher levels increase chance to find additional materials from ore blocks.
+    precision:
+        1: 0
+        2: 0.1
+        3: 0.15
+        4: 0.2
+        5: 0.25
+        6: 0.3
+        7: 0.35
+        8: 0.4
+        9: 0.45
+        10: 0.5
+        P1: 0.55
+        P2: 0.6
+        P3: 0.65
+        P4: 0.7
+        P5: 0.75
+        P6: 0.8
+        P7: 0.85
+        P8: 0.9
+        P9: 0.95
+        P10: 1
+    # Prospecting. Higher levels increase chance to find additional materials from non-ore blocks.
+    prospecting:
+        1: 0
+        2: 0.01
+        3: 0.02
+        4: 0.03
+        5: 0.04
+        6: 0.05
+        7: 0.06
+        8: 0.07
+        9: 0.08
+        10: 0.1
+        P1: 0.11
+        P2: 0.12
+        P3: 0.13
+        P4: 0.14
+        P5: 0.15
+        P6: 0.16
+        P7: 0.17
+        P8: 0.18
+        P9: 0.19
+        P10: 0.2
+    # Vein Miner. Reach level five in both of the above perks to unlock this perk.
+    vein_miner:
+        0: 0
+        1: 1
+    # Reliable. Higher levels increase chance for mining tools to not take durability damage each time a block is mined.
+    # Mining tools crafted by the player receive additional enchantments based on the level of this perk ??? <----- could be it's own perk for all tools
+    reliable:
+        1: 0
+        2: 0.1
+        3: 0.15
+        4: 0.2
+        5: 0.25
+        6: 0.3
+        7: 0.35
+        8: 0.4
+        9: 0.45
+        10: 0.5
+        P1: 0.55
+        P2: 0.6
+        P3: 0.65
+        P4: 0.7
+        P5: 0.75
+        P6: 0.8
+        P7: 0.85
+        P8: 0.9
+        P9: 0.95
+        P10: 1
+
+# mine_perks:
+#     type: world
+#     debug: true
+#     events:
+#         # precision
+#         on player breaks block:
+#         - if <context.location.material.name.contains[ore]>:
+#             - if <player.flag[perks.mine.precision].exists>:
+#                 - determine more
+#         # prospecting
+#         - if <context.location.material.name.contains_any[stone|diorite|etc.]>:
+#             - if <player.flag[perks.mine.prospecting].exists>:
+#                 - determine more
+#         # reliable
+#         on player item takes damage:
+#         - if <player.flag[perks.mine.reliable].exists>:
+#             - determine cancelled
+#         # vein miner
+#         on player damages block:
+#         - if <player.flag[perks.mine.veinminer].exists>:
+#             - determine instabreak
