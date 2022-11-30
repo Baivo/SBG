@@ -48,7 +48,7 @@ perks_smelt:
         P9: 50
         P10: 100
 
-furnace_perk_events:
+perks_smelt_events:
     type: world
     debug: false
     events:
@@ -162,24 +162,70 @@ perks_mine:
         P9: 0.95
         P10: 1
 
-# mine_perks:
-#     type: world
-#     debug: true
-#     events:
-#         # precision
-#         on player breaks block:
-#         - if <context.location.material.name.contains[ore]>:
-#             - if <player.flag[perks.mine.precision].exists>:
-#                 - determine more
-#         # prospecting
-#         - if <context.location.material.name.contains_any[stone|diorite|etc.]>:
-#             - if <player.flag[perks.mine.prospecting].exists>:
-#                 - determine more
-#         # reliable
-#         on player item takes damage:
-#         - if <player.flag[perks.mine.reliable].exists>:
-#             - determine cancelled
-#         # vein miner
-#         on player damages block:
-#         - if <player.flag[perks.mine.veinminer].exists>:
-#             - determine instabreak
+perks_mine_materials:
+    type: data
+    Precision:
+        regular:
+            - coal_ore
+            - copper_ore
+            - iron_ore
+            - gold_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - diamond_ore
+        deepslate:
+            - deepslate_coal_ore
+            - deepslate_copper_ore
+            - deepslate_iron_ore
+            - deepslate_gold_ore
+            - deepslate_redstone_ore
+            - deepslate_lapis_ore
+            - deepslate_emerald_ore
+            - deepslate_diamond_ore
+        nether:
+            - nether_gold_ore
+            - nether_quartz_ore
+            - ancient_debris
+            - gilded_blackstone
+    prospecting:
+        regular:
+            - stone
+            - infested_stone
+            - granite
+            - diorite
+            - andesite
+            - calcite
+            - dripstone_block
+            - sandstone
+        deepslate:
+            - deepslate
+            - infested_deepslate
+            - tuff
+        nether:
+            - netherrack
+            - basalt
+            - blackstone
+        end:
+            - end_stone
+
+
+perks_mine_events:
+    type: world
+    debug: true
+    events:
+        # precision
+        on block drops item from breaking:
+        # add a check to stop the queue from running if the player used a silk touch item
+        - if <script[perks_mine_materials].data_key[regular]> contains <context.material>:
+            - determine <context.drop_entities.parse[item].include[<context.drop_entities.parse[item]>]>
+        # prospecting
+        # reliable
+        on player item takes damage:
+        - if <player.flag[perks.mine.reliable].exists>:
+            - if <util.random_chance[<player.flag[]>]>
+            - determine cancelled
+        # vein miner
+        on player damages block:
+        - if <player.flag[perks.mine.veinminer].exists>:
+            - determine instabreak
