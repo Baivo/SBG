@@ -117,9 +117,11 @@ nbf_util_labfloor:
     definitions: trigger
     script:
     - ratelimit <player> 1t
-    - define loc <[trigger].below[1]>
+    - define loc <[trigger].below[2]>
     - define material <material[tinted_glass]>
-    - showfake <[material]> <[loc]> duration:1s players:<server.online_players>
+    - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
+    - define loc <[trigger].below[3]>
+    - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
 
 nbf_util_endcrystalbeam:
     type: task
