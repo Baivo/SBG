@@ -120,7 +120,7 @@ nbf_util_labfloor:
     - define loc <[trigger].below[2]>
     - define material <material[sculk]>
     - showfake <[material]> <[loc]> duration:5s players:<server.online_players>
-    - foreach <[loc].points_around_x[radius=1;points=4]> as:loc:
+    - foreach <[loc].points_around_y[radius=1;points=4]> as:loc:
         - showfake <[material]> <[loc]> duration:5s players:<server.online_players>
 
 nbf_util_endcrystalbeam:
