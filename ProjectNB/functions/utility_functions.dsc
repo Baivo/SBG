@@ -103,7 +103,11 @@ nbf_util_dancefloor:
     - define loc <[trigger].below[1]>
     - random:
         - define material <material[red_concrete]>
-        - define material <material[white_concrete]>
+        - define material <material[orange_concrete]>
+        - define material <material[yellow_concrete]>
+        - define material <material[lime_concrete]>
+        - define material <material[aqua_concrete]>
+        - define material <material[magenta_concrete]>
         # add more!
     - showfake <[material]> <[loc]> duration:3s players:<server.online_players>
 
