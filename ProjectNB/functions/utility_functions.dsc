@@ -117,7 +117,7 @@ nbf_util_labfloor:
     definitions: trigger
     script:
     - ratelimit <player> 1t
-    - define loc <[trigger].below[4]>
+    - define loc <[trigger].below[3]>
     - define material <material[sculk]>
     - showfake <[material]> <[loc]> duration:5s players:<server.online_players>
     - foreach <[loc].points_around_y[radius=1;points=4]> as:loc:
