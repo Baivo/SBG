@@ -106,9 +106,9 @@ nbf_util_dancefloor:
         - define material <material[orange_concrete]>
         - define material <material[yellow_concrete]>
         - define material <material[lime_concrete]>
-        - define material <material[cyan_concrete]>
-        - define material <material[magenta_concrete]>
-        - define material <material[white_concrete]>
+        - define material <material[light_blue_concrete]>
+        - define material <material[pink_concrete]>
+        - define material <material[purple_concrete]>
         # add more!
     - showfake <[material]> <[loc]> duration:1s players:<server.online_players>
 
