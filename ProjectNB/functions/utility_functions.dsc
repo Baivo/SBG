@@ -56,13 +56,9 @@ nbf_util_lasergrid:
     - playsound <[player]> sound:ENCHANT_THORNS_HIT volume:0.5 pitch:1.3
     - flag <[player]> nbfence expire:1s
     - kill <[player]>
-    - playsound <[player].location> <[player]> sound:custom:bass custom volume:1
+    - playsound <[player].location> <[player]> sound:bass custom volume:1
     - define number <util.random.int[1].to[999]>
-    - random:
-      - define message "<player.nameplate> was detected in a restricted area."
-      - define message "<player.nameplate> attempted to enter a restricted area without clearance. This attempt was stopped by <[number]> high calibre rounds."
-      - define message "<player.nameplate> has been voluntarily enrolled into the BIVCO organ donation program."
-      - define message "<player.nameplate> encountered the consequences of their own actions."
+    
 
 nbfe_util_lazergrid:
   type: world
@@ -70,7 +66,12 @@ nbfe_util_lazergrid:
     on player dies:
       - if <player.has_flag[nbfence]>:
         - determine passively NO_MESSAGE
-        - announce "<player.nameplate> attempted to enter a restricted area"
+        - random:
+          - define message "<player.nameplate> was detected in a restricted area."
+          - define message "<player.nameplate> attempted to enter a restricted area without clearance. This attempt was stopped by <[number]> high calibre rounds."
+          - define message "<player.nameplate> has been voluntarily enrolled into the BIVCO organ donation program."
+          - define message "<player.nameplate> encountered the consequences of their own actions."
+        - announce <[message]>
 
 nbf_util_relativetp:
   type: task
