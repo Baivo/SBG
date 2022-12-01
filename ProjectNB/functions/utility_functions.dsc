@@ -112,6 +112,15 @@ nbf_util_dancefloor:
         # add more!
     - showfake <[material]> <[loc]> duration:1s players:<server.online_players>
 
+nbf_util_labfloor:
+    type: task
+    definitions: trigger
+    script:
+    - ratelimit <player> 1t
+    - define loc <[trigger].below[1]>
+    - define material <material[tinted_glass]>
+    - showfake <[material]> <[loc]> duration:1s players:<server.online_players>
+
 nbf_util_endcrystalbeam:
     type: task
     definitions: player
