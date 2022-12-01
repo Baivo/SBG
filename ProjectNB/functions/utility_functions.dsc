@@ -106,10 +106,11 @@ nbf_util_dancefloor:
         - define material <material[orange_concrete]>
         - define material <material[yellow_concrete]>
         - define material <material[lime_concrete]>
-        - define material <material[aqua_concrete]>
+        - define material <material[cyan_concrete]>
         - define material <material[magenta_concrete]>
+        - define material <material[white_concrete]>
         # add more!
-    - showfake <[material]> <[loc]> duration:3s players:<server.online_players>
+    - showfake <[material]> <[loc]> duration:1s players:<server.online_players>
 
 nbf_util_endcrystalbeam:
     type: task
