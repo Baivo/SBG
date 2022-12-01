@@ -156,3 +156,12 @@ nbf_util_endcrystalbeam:
     - repeat 10:
         - foreach <[player].location.find_entities[ender_crystal].within[64]> as:beam:
             - adjust <[beam]> beam_target:<[player].location.center.below[1.4]>
+
+nbf_util_cloudtc:
+    type: task
+    definitions: trigger
+    script:
+    - ratelimit <player> 1t
+    - define loc <[trigger].below[1]>
+    - define material <material[purple_stained_glass]>
+    - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
