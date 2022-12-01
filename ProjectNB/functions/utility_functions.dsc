@@ -56,7 +56,7 @@ nbf_util_lasergrid:
     - playsound <[player]> sound:ENCHANT_THORNS_HIT volume:0.5 pitch:1.3
     - flag <[player]> nbfence expire:1s
     - kill <[player]>
-    - playsound <[player].location> <[player]> sound:custom:bass custom volume:0.2
+    - playsound <[player].location> <[player]> sound:custom:bass custom volume:1
     - define number <util.random.int[1].to[999]>
     - random:
       - define message "<player.nameplate> was detected in a restricted area."
