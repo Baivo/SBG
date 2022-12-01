@@ -118,9 +118,7 @@ nbf_util_labfloor:
     script:
     - ratelimit <player> 1t
     - define loc <[trigger].below[2]>
-    - define material <material[tinted_glass]>
-    - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
-    - define loc <[trigger].below[3]>
+    - define material <material[skulk]>
     - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
 
 nbf_util_endcrystalbeam:
