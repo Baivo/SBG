@@ -128,6 +128,14 @@ nbf_util_bigdancefloor:
         - define material <material[purple_concrete]>
     - showfake <[material]> <[loc]> duration:5s players:<server.online_players>
     - foreach <[loc].points_around_y[radius=1;points=4]> as:loc:
+        - random:
+            - define material <material[red_concrete]>
+            - define material <material[orange_concrete]>
+            - define material <material[yellow_concrete]>
+            - define material <material[lime_concrete]>
+            - define material <material[light_blue_concrete]>
+            - define material <material[pink_concrete]>
+            - define material <material[purple_concrete]>
         - showfake <[material]> <[loc]> duration:5s players:<server.online_players>
 
 nbf_util_labfloor:
