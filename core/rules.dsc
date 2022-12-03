@@ -54,6 +54,6 @@ rulesFinished:
     definitions: player
     script:
         - narrate "<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&l>You are free to enjoy the server.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&3><&o>Be sure to visit our Bunnings.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&a><&nl><&nl><&7><&o>Join our discord for a Free Pot & Parma<&nl><&nl><&9><&n>discord.io/stoneburner"
-        - group add ruleslawyer <[player]>
+        - execute as_server "lp user <[player]> parent add ruleslawyer"
         - announce to_flagged:Baivo <&b><[player]>
         - execute as_player spawn
