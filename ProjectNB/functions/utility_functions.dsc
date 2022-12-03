@@ -66,6 +66,7 @@ nbfe_util_lazergrid:
     on player dies:
       - if <player.has_flag[nbfence]>:
         - determine passively NO_MESSAGE
+        - define number <util.random.int[1].to[999]>
         - random:
           - define message "<player.nameplate> was detected in a restricted area."
           - define message "<player.nameplate> attempted to enter a restricted area without clearance. This attempt was stopped by <[number]> high calibre rounds."
