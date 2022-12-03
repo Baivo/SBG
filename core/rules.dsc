@@ -45,13 +45,14 @@ rulesPageFive:
 rulesPageSix:
     type: task
     script:
-        - clickable rulesFinished save:correctPageSix
+        - clickable rulesFinished def.player:<player> save:correctPageSix
         - clickable wrongAnswer save:incorrect
         - narrate "<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nbsp><&nbsp><&nbsp><&7><&l>=========<&9>Rules Quiz <&8>[<&a>█████<&8>]<&7><&l>=========<&nl><&nl><&6><&l>Rule 5<&nl><&r><&e>Wheaton's Law is the golden rule of our community, and should be considered for every interaction you have with your fellow playrs.<&nl>Wheaton's Law is simple: Don't be a dick!<&nl><&nl><&7><&l>Question 5:<&nl><&f>Do you agree to follow Wheaton's Law, and the other rules we've covered so far?<&nl><&nl><&a><element[<&l>[Yes!]].on_click[<entry[correctPageSix].command>]><&nl><&nl><element[<&c><&l>[No!]].on_click[<entry[incorrect].command>]>"
 
 rulesFinished:
     type: task
+    definitions: player
     script:
         - narrate "<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&l>You are free to enjoy the server.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&3><&o>Be sure to visit our Bunnings.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&a><&nl><&nl><&7><&o>Join our discord for a Free Pot & Parma<&nl><&nl><&9><&n>discord.io/stoneburner"
-        - group add ruleslawyer
+        - group add ruleslawyer <[player]>
         - execute as_player spawn
