@@ -51,6 +51,7 @@ rulesPageSix:
 
 rulesFinished:
     type: task
+    debug: true
     definitions: player
     script:
         - narrate "<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&l>You are free to enjoy the server.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&3><&o>Be sure to visit our Bunnings.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&a><&nl><&nl><&7><&o>Join our discord for a Free Pot & Parma<&nl><&nl><&9><&n>discord.io/stoneburner"
