@@ -1,4 +1,3 @@
-# https://guide.denizenscript.com/guides/non-denizen/resource-packs.html
 # Perks
 # Begin smelting perks.
 perks_smelt:
