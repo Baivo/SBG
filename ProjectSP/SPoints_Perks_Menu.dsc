@@ -83,7 +83,14 @@ Spoints_PerkUp_precheck:
     script:
         - define cost <[player].flag[perkmenu.cost]>
         - define script Spoints_Perkup
-        - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
+        - define perklevel:<[player].flag[perkmenu.perk]>
+        - if <[perklevel]> <= 9:
+            - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
+        - else:
+            - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
+            - flag <[player]> perkmenu.perk:!
+            - flag <[player]> perkmenu.perkname:!
+            - inventory close
 
 Spoints_PerkUp:
     type: task
