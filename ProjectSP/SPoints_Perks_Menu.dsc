@@ -132,6 +132,7 @@ Spoints_Perkdown_precheck:
             - flag <[player]> <[player].flag[perkmenu.perk]>:--
             - narrate targets:<[player]> "<&a>You have refunded your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
             - execute as_server "spoints add <[player].name> <[refund]>"
+            - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
         - else:
             - narrate targets:<[player]> "<&c>You have reached the min level for this perk"
             - flag <[player]> perkmenu.perk:!
