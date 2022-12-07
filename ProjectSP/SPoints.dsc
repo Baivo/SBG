@@ -84,7 +84,7 @@ spoints_command:
 SPoints_shop_command:
     type: command
     name: redeem
-    debug: true
+    debug: false
     description: Open the Point Shop
     usage: /redeem
     script:
@@ -104,16 +104,6 @@ SPoints_shop_transact:
         - narrate "<&c>Not enough points!" targets:<[player]>
         - inventory close
 
-# SPoints_shop_update:
-#     type: task
-#     definitions: player
-#     script:
-#         - flag server SPoints.<[player].name>:<inventory[SPoints_Shop]>
-#         - note <inventory[<server.flag[SPoints.<[player].name>]>]> as:SPoints_Shop_<[player].name>
-#         - define inv <inventory[SPoints_Shop_<[player].name>]>
-#         - adjust <[inv]> "title:<&a>Point Shop <&7>| <&a>Balance: <&3><[player].flag[SP_balance]>"
-#         - flag <player> SPINVC expire:1s
-#         - inventory open d:<[inv]>
 SPoints_Shop:
     type: inventory
     inventory: chest
@@ -132,7 +122,7 @@ spoints_shop_events:
             - run spoints_shop_transact def.player:<player> def.cost:<context.item.flag[cost]> def.script:<script[<context.item.flag[script]>]>
             - inventory close
 
-## SPoints - Items & Scripts
+## SPoints - Items & Scripts ##
 
 # Gives the player Night Vision until death
 spoints_shop_item_nightvision:
@@ -241,28 +231,6 @@ spoints_shop_script_healthup:
     script:
         - adjust <[player]> max_health:<player.health_max.add_int[2]>
         - narrate "<&a>Your maximum HP is now <&c><player.health_max.div[2]><&a> hearts!" targets:<[player]>
-
-# # Gives the player effect until death
-# spoints_shop_item_effect:
-#     type: item
-#     material: golden_carrot
-#     display name: <&color[#396902]>effect!
-#     lore:
-#     - <&sp>
-#     - <&7>Costs: <&a>10 <&7>points
-#     - <&sp>
-#     - <&7><&o>Lasts until death
-#     flags:
-#         cost: 10
-#         script: spoints_shop_script_effect
-
-# spoints_shop_script_effect:
-#     type: task
-#     debug: false
-#     definitions: player
-#     script:
-#         - cast effect amplifier:0 d:999999 hide_particles <[player]>
-#         - narrate "<&color[#ffffff]>Effect enabled.<&nl>" targets:<[player]>
 
 # Gives the player Damage Resistance until death
 spoints_shop_item_damage_resistance:
