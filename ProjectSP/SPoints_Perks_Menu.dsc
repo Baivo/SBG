@@ -63,12 +63,43 @@ Spoints_Perks_levelup_script:
         - flag <[player]> perkmenu.perk:<[perk]>
         - flag <[player]> perkmenu.perkname:<[perkname]>
         - note <inventory[Spoints_Perks_levelup]> as:Levelup_<[player]>_<[perk]>
-        - define inv <inventory[Levelup_<[player]>_<[perk]>]>
-        - inventory open d:<[inv]>
+        - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
 
-##
+## LevelUP Menu
+
+Spoints_Perks_Levelup_Item_UP:
+    type: item
+    material: furnace
+    display name: <&a>+1 Level
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to level up
+    flags:
+        script: Spoints_PerkUp_precheck
+
+Spoints_PerkUp_precheck:
+    type: task
+    definitions: player
+    script:
+        - define cost <[player].flag[perkmenu.cost]>
+        - define script Spoints_Perkup
+        - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
+
+Spoints_PerkUp:
+    type: task
+    definitions: player
+    script:
+        - define perk <[player].flag[perkmenu.perk]>
+        - if <[perk]> <= 9:
+            - flag <[player]> <[perk]>:+
+            - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[perkmenu.perk]>"
+        - else:
+            - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
+            - flag <[player]> perkmenu.perk:!
+            - flag <[player]> perkmenu.perkname:!
+            - inventory close
 
 
+## Perks
 Spoints_Perks_Menu_Item_FurnaceSpeed:
     type: item
     material: furnace
@@ -76,10 +107,10 @@ Spoints_Perks_Menu_Item_FurnaceSpeed:
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
-        script: SPoints_Perks_Menu_Smelting_Script
+        script: SPoints_Perks_Menu_FurnaceSpeed_Script
 
-SPoints_Perks_Menu_Smelting_Script:
+SPoints_Perks_Menu_FurnaceSpeed_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
