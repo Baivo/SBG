@@ -42,3 +42,40 @@ SPoints_Perks_Menu_Script:
     definitions: player
     script:
         - execute as_player perks
+##
+
+SPoints_Perks_LevelUp:
+    type: inventory
+    title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up
+    inventory: hopper
+    size: 5
+    gui: true
+    data:
+        menu: Spoints_perks_levelup
+
+Spoints_Perks_levelup_script:
+    type: task
+    debug: true
+    definitions: perk|player|perkname
+    script:
+        - note <inventory[Spoints_Perks_levelup]> as:Levelup_<[player]>_<[perk]>
+        - define inv <inventory[Levelup_<[player]>_<[perk]>]>
+        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up <&7><&l><&gt><&gt><&e> <[perkname]>"
+
+##
+
+
+Spoints_Perks_Menu_Item_FurnaceSpeed:
+    type: item
+    material: furnace
+    display name: <&gradient[from=#C7C5FC;to=#C5DFFC]>Furnace Speed
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    flags:
+        script: SPoints_Perks_Menu_Smelting_Script
+
+SPoints_Perks_Menu_Smelting_Script:
+    type: task
+    definitions: player
+    script:
+        - run levelupmenu def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
