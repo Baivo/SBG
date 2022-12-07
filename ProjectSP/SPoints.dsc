@@ -231,7 +231,7 @@ spoints_shop_item_healthup:
     - <&sp>
     - <&7>Costs: <&a>250 <&7>points
     flags:
-        cost: 10
+        cost: 250
         script: spoints_shop_script_healthup
 
 spoints_shop_script_healthup:
@@ -461,4 +461,3 @@ spoints_shop_script_water_breathing:
     script:
         - cast water_breathing amplifier:0 d:999999 hide_particles <[player]>
         - narrate "<&color[#56fcec]>Water breathing enabled" targets:<[player]>
-
