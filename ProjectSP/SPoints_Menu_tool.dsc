@@ -70,8 +70,8 @@ menu_creator_events:
         - define player <player>
         - define perk <player.flag[perkmenu.perk]>
         - define perkname <player.flag[perkmenu.perkname]>
-        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up <&7><&l><&gt><&gt><&e> <[perkname]>"
-        - inventory adjust display:<&7>Current<&sp>Level<&co><&sp><&e><[player].flag[<[perk]>].if_null[1]> d:<[inv]> slot:3
+        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up <&7><&l><&gt><&gt><&e> <[perkname]> <&6>Lvl<&sp><[player].flag[<[perk]>].if_null[1]>"
+        # - inventory adjust display:<&7>Current<&sp>Level<&co><&sp><&e><[player].flag[<[perk]>].if_null[1]> d:<[inv]> slot:3
         #
       - inventory open d:<[inv]>
 
