@@ -1,5 +1,15 @@
 # Perks
+
+# This is the backend logic for the perks system. Players will spend Server Points earned through ProjectSP (https://github.com/Baivo/SBG/tree/main/ProjectSP) to unlock and progress perks.
+# Perks cover all aspects of server gameplay, including custom content not found in the base game.
+# Each perk has 10 base levels, with each player starting from level 1.
+# Each perk will have an additional set of levels per perk above the base 10, but will be locked behind a requirement.
+
 # Begin smelting perks.
+# These two perks are related to smelting speed, and the fuel efficiency of furnace fuel items.
+# The perks are assigned to a player, and will carry over to furnaces that the player crafts.
+# Once crafted, a furnace will have the perks of the player who crafted it assigned to it permanently.
+# Any player or automated crafting system can benefit from the perks applied to the furnace.
 perks_smelt:
     type: data
     # Fuel efficiency. Higher levels provide longer burn duration for furnace fuel items
@@ -86,7 +96,9 @@ perks_smelt_events:
             - flag <context.location> perks.smelt:!
             - determine <[item]>
 # End smelting perks.
+
 # Begin mining perks.
+
 perks_mine:
     type: data
     # Precision. Higher levels increase chance to find additional materials from ore blocks.
@@ -211,7 +223,7 @@ perks_mine_materials:
 
 perks_mine_events:
     type: world
-    debug: true
+    debug: false
     events:
         # precision
         on block drops item from breaking:
