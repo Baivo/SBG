@@ -83,7 +83,8 @@ Spoints_PerkUp_precheck:
     script:
         - define cost <[player].flag[perkmenu.cost]>
         - define script Spoints_Perkup
-        - define perklevel:<[player].flag[perkmenu.perk].if_null[1]>
+        - define perk <[player].flag[perkmenu.perk]>
+        - define perklevel:<[player].flag[<[perk]>].if_null[1]>
         - if <[perklevel]> <= 9:
             - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
         - else:
@@ -97,7 +98,7 @@ Spoints_PerkUp:
     definitions: player
     script:
         - define perk <[player].flag[perkmenu.perk]>
-        - define perklevel:<[player].flag[perkmenu.perk].if_null[1]>
+        - define perklevel:<[player].flag[<[perk]>].if_null[1]>
         - if <[perklevel]> <= 9:
             - flag <[player]> <[player].flag[perkmenu.perk]>:++
             - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[perkmenu.perk]>"
