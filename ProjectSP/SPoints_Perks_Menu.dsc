@@ -109,6 +109,35 @@ Spoints_PerkUp:
             - flag <[player]> perkmenu.perkname:!
             - inventory close
 
+Spoints_Perks_Levelup_Item_DOWN:
+    type: item
+    material: orange_stained_glass_pane
+    display name: <&6>-1 Level
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to refund a level
+    - <&7>Returns 75% of the cost to your balance
+    flags:
+        script: Spoints_PerkDown_precheck
+
+Spoints_Perkdown_precheck:
+    type: task
+    definitions: player
+    script:
+        - define cost <[player].flag[perkmenu.cost]>
+        - define script Spoints_Perkup
+        - define perk <[player].flag[perkmenu.perk]>
+        - define perklevel:<[player].flag[<[perk]>].if_null[1]>
+        - if <[perklevel]> >= 2:
+            - define refund <[cost].mul[0.75]>
+            - flag <[player]> <[player].flag[perkmenu.perk]>:--
+            - narrate targets:<[player]> "<&a>You have refunded your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
+            - execute as_server "spoints add <[refund]> <[player].name>"
+        - else:
+            - narrate targets:<[player]> "<&c>You have reached the min level for this perk"
+            - flag <[player]> perkmenu.perk:!
+            - flag <[player]> perkmenu.perkname:!
+            - inventory close
+
 
 ## Perks
 Spoints_Perks_Menu_Item_FurnaceSpeed:
