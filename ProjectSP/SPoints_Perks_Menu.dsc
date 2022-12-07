@@ -78,4 +78,4 @@ SPoints_Perks_Menu_Smelting_Script:
     type: task
     definitions: player
     script:
-        - run levelupmenu def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
+        - run Spoints_Perks_levelup_script def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
