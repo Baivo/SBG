@@ -65,8 +65,8 @@ Spoints_Perks_levelup_script:
         - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up <&7><&l><&gt><&gt><&e> <[perkname]>"
         - inventory adjust "display:<&7>Current Level: <&e><[player].flag[<[perk]>].if_null[1]>" d:<[inv]> slot:3
         #
-        - wait 1t
         - inventory open d:<[inv]>
+        - inventory update
 
 ##
 
