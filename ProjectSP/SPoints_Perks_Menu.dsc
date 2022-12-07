@@ -72,7 +72,7 @@ Spoints_Perks_levelup_script:
 
 Spoints_Perks_Levelup_Item_UP:
     type: item
-    material: furnace
+    material: lime_stained_glass_pane
     display name: <&a>+1 Level
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to level up
