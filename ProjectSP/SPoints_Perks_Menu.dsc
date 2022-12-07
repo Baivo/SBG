@@ -12,13 +12,14 @@ Spoints_perks_menu_events:
     events:
         on player clicks SPoints_Perks_Menu_Item_* in Spoints_Perks_menu:
         - ratelimit <player> 1s
-        - announce to_flagged:Baivo <context.slot>
         - define script <context.item.flag[script]>
         - run <[script]> def.player:<player>
         on player clicks SPoints_Perks_Menu_Item_Main in Spoints_shop:
         - ratelimit <player> 1s
         - define script <context.item.flag[script]>
         - run <[script]> def.player:<player>
+        on player clicks item in SPoints_Perks_levelup:
+        - announce to_flagged:Baivo <context.slot>
 
 SPoints_Perks_Menu_Command:
     type: command
