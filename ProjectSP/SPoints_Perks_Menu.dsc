@@ -60,13 +60,11 @@ Spoints_Perks_levelup_script:
     debug: true
     definitions: perk|player|perkname
     script:
+        - flag <[player]> perkmenu.perk:<[perk]>
+        - flag <[player]> perkmenu.perkname:<[perkname]>
         - note <inventory[Spoints_Perks_levelup]> as:Levelup_<[player]>_<[perk]>
         - define inv <inventory[Levelup_<[player]>_<[perk]>]>
-        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Level Up <&7><&l><&gt><&gt><&e> <[perkname]>"
-        - inventory adjust display:<&7>Current<&sp>Level<&co><&sp><&e><[player].flag[<[perk]>].if_null[1]> d:<[inv]> slot:3
-        #
         - inventory open d:<[inv]>
-        - inventory update
 
 ##
 
