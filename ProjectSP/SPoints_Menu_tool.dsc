@@ -72,7 +72,9 @@ menu_creator_events:
         - define perkname <player.flag[perkmenu.perkname]>
         - adjust <[inv]> title:<&gradient[from=#C7C5FC;to=#C5DFFC]><&l><[perkname]><&sp><&7><&l><&gt><&gt><&sp><&e>Lvl<&sp><&6><[player].flag[<[perk]>].if_null[1]>
         - inventory adjust d:<[inv]> slot:3 material:emerald
-        - inventory adjust d:<[inv]> slot:3 display:<element[<&7>Cost<&co><[player].flag[perkmenu.cost]>]>
+        - inventory adjust d:<[inv]> slot:3 display:<element[<&7>Cost<&co><&7><&a><[player].flag[perkmenu.cost]>]>
+        - inventory adjust d:<[inv]> slot:5 material:paper
+        - inventory adjust d:<[inv]> slot:5 display:<element[<&a>SP<&sp>Balance:<&sp><&3><player.flag[SP_balance]>]>
       - inventory open d:<[inv]>
 
 menu_creator:
