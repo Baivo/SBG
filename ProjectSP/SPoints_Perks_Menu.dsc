@@ -101,7 +101,7 @@ Spoints_PerkUp:
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
         - if <[perklevel]> <= 9:
             - flag <[player]> <[player].flag[perkmenu.perk]>:++
-            - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[perkmenu.perk]>"
+            - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
             - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
         - else:
             - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
