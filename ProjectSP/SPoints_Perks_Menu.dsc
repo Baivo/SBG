@@ -24,3 +24,17 @@ SPoints_Perks_Menu_Command:
     - note <inventory[Spoints_Perks_Menu]> as:Spoints_Perks_Menu_<player>
     - inventory open d:<inventory[Spoints_Perks_Menu_<player>]>
 
+SPoints_Perks_Menu_Item_Main:
+    type: item
+    material: experience_bottle
+    display name: <&gradient[from=#C7C5FC;to=#C5DFFC]>Perks
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open the perks menu
+    flags:
+        script: SPoints_Perks_Menu_Script
+
+SPoints_Perks_Menu_Script:
+    type: task
+    definitions: player
+    script:
+        - execute as_player perks
