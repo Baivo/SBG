@@ -58,10 +58,11 @@ SPoints_Perks_LevelUp:
 Spoints_Perks_levelup_script:
     type: task
     debug: true
-    definitions: perk|player|perkname
+    definitions: perk|player|perkname|cost
     script:
         - flag <[player]> perkmenu.perk:<[perk]>
         - flag <[player]> perkmenu.perkname:<[perkname]>
+        - flag <[player]> perkmenu.cost:<[cost]>
         - note <inventory[Spoints_Perks_levelup]> as:Levelup_<[player]>_<[perk]>
         - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
 
