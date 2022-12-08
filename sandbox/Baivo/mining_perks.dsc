@@ -243,7 +243,7 @@ perks_mine_events:
     debug: true
     events:
         # precision
-        on player breaks block:
+        on block drops item from breaking:
         - if !<player.has_flag[perks.mine.precision]>:
             - stop
         # add a check to stop the queue from running if the player used a silk touch item
@@ -251,7 +251,8 @@ perks_mine_events:
         - if <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name>:
             - foreach <[drops]> as:item:
                 - define drops:->:<item[<[item]>]>
-        - determine <[drops]>
+        - determine cancelled passively
+        - drop <[drops]> <context.location>
         # # prospecting
         # # reliable
         # on player item takes damage:
