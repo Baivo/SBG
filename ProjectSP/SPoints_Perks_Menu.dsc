@@ -165,9 +165,9 @@ SPoints_Perks_InfoBook_Script:
                 - define curr <script[perks_smelt].data_key[efficiency.<[perklevel]>]>
                 - define next <script[perks_smelt].data_key[efficiency.<[perklevel].add[1]>]>
                 - define star 1
-                - define curr <[star].div[<[curr]>].round_to[3].sub[<[star]>]>
+                - define curr <[star].div[<[curr]>].round_to[3].sub[<[star]>].mul[100]>
                 - define curr "+ <[curr]>%"
-                - define next <[star].div[<[next]>].round_to[3].sub[<[star]>]>
+                - define next <[star].div[<[next]>].round_to[3].sub[<[star]>].mul[100]>
                 - define next "+ <[next]>%"
             #
             #
