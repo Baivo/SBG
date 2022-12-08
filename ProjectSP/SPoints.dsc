@@ -97,7 +97,6 @@ SPoints_shop_transact:
     definitions: player|cost|script
     script:
     - if <[player].flag[SP_Balance]> >= <[cost]>:
-        - narrate "<&c><[cost]><&e> points subtracted from your balance!" targets:<[player]>
         - execute as_server "spoints remove <[player].name> <[cost]>"
         - run <[script]> def.player:<[player]>
     - else:
