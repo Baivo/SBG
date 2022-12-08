@@ -105,11 +105,11 @@ perks_smelt_events:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
             - flag <context.location> perks.smelt:!
             - define inventory <context.location.inventory>
-            - determine <[item]> passively
+            - determine passively <[item]>
             - if <[inventory].is_empty>:
                 - stop
             - foreach <[inventory]> as:slot:
-                - determine <[slot].item> passively
+                - determine passively <[slot].item>
 # End smelting perks.
 
 # Begin mining perks.
