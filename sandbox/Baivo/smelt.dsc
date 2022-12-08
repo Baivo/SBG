@@ -61,10 +61,11 @@ perks_smelt:
         19: 50
         20: 100
         info:
-            - Increases cook/smelt speed.
-            - Applied to furnaces you craft.
-            - Crafted furnace works for all players.
-            - Default time is 10 seconds.
+            - <&7>Increases cook/smelt speed.
+            - <&7>Applied to furnaces you craft.
+            - <&7>Crafted furnace works for all players.
+            - <&7>Default time is 10 seconds.
+            - <&sp>
 
 perks_smelt_events:
     type: world
