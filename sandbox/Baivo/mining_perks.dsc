@@ -249,7 +249,8 @@ perks_mine_events:
         # add a check to stop the queue from running if the player used a silk touch item
         - define drops <context.drop_entities.parse[item]>
         - if <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name>:
-            - define drops:->:<[drops]>
+            - foreach <[drops]> as:item:
+                - define drops:->:<item[<[item]>]>
         - determine <[drops]>
         # prospecting
         # reliable
