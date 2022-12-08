@@ -212,6 +212,8 @@ Spoints_Perks_Menu_Item_MiningPrecision:
     display name: <&gradient[from=#FBB800;to=#FDD800]>Mining Precision
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    mechanisms:
+        hides: all
     flags:
         script: SPoints_Perks_Menu_MiningPrecision_Script
 
