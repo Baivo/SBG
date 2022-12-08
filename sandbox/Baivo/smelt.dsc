@@ -111,6 +111,7 @@ perks_smelt_events:
                 - stop
             - foreach <[inventory]> as:slot:
                 - define drops:->:<[slot]>
+            - determine <[drops]>
 # End smelting perks.
 
 # Begin mining perks.
