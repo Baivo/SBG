@@ -141,10 +141,8 @@ Spoints_Perkdown_precheck:
 
 SPoints_Perks_InfoBook:
     type: item
-    material: book_and_quill
+    material: writable_book
     display name: <&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Info
-    flags:
-        script: SPoints_Perks_InfoBook_Script
 
 SPoints_Perks_InfoBook_Script:
     type: task
