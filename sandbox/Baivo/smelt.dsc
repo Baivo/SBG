@@ -24,16 +24,20 @@ perks_smelt:
         8: 0.65
         9: 0.6
         10: 0.55
-        P1: 0.5
-        P2: 0.45
-        P3: 0.4
-        P4: 0.35
-        P5: 0.3
-        P6: 0.25
-        P7: 0.2
-        P8: 0.15
-        P9: 0.1
-        P10: 0.05
+        11: 0.5
+        12: 0.45
+        13: 0.4
+        14: 0.35
+        15: 0.3
+        16: 0.25
+        17: 0.2
+        18: 0.15
+        19: 0.1
+        20: 0.05
+        info:
+            - Increases burn duration of furnace fuel items.
+            - Applied to furnaces you craft.
+            - Crafted furnace works for all players.
     # Smelt/cook speed. Higher levels provide faster processing time for smelting/cooking items.
     speed:
         1: 1
@@ -46,16 +50,20 @@ perks_smelt:
         8: 4.5
         9: 5
         10: 6
-        P1: 8
-        P2: 10
-        P3: 15
-        P4: 20
-        P5: 25
-        P6: 30
-        P7: 35
-        P8: 40
-        P9: 50
-        P10: 100
+        11: 8
+        12: 10
+        13: 15
+        14: 20
+        15: 25
+        16: 30
+        17: 35
+        18: 40
+        19: 50
+        20: 100
+        info:
+            - Increases cook/smelt speed.
+            - Applied to furnaces you craft.
+            - Crafted furnace works for all players.
 
 perks_smelt_events:
     type: world
