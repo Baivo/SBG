@@ -162,6 +162,13 @@ SPoints_Perks_InfoBook_Script:
                 - define next "<[next]> seconds"
             - case perks.smelt.efficiency:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[efficiency.info]>
+                - define curr <script[perks_smelt].data_key[efficiency.<[perklevel]>]>
+                - define next <script[perks_smelt].data_key[efficiency.<[perklevel].add[1]>]>
+                - define star 1
+                - define curr <[star].div[<[curr]>].round_to[3].sub[<[star]>]>
+                - define curr "+ <[curr]>%"
+                - define next <[star].div[<[next]>].round_to[3].sub[<[star]>]>
+                - define next "+ <[next]>%"
             #
             #
         - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
