@@ -107,7 +107,7 @@ SPoints_Shop:
     type: inventory
     inventory: chest
     title: <&a>Point Shop
-    size: 36
+    size: 18
     gui: true
     data:
         menu: SPoints_menu
