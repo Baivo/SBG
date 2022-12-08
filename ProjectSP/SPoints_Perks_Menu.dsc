@@ -174,7 +174,6 @@ Spoints_Perks_Menu_Item_FurnaceSpeed:
     material: furnace
     display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Speed
     lore:
-    - <&sp>
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_FurnaceSpeed_Script
@@ -190,7 +189,6 @@ Spoints_Perks_Menu_Item_FurnaceFuelEfficiency:
     material: furnace
     display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Fuel Efficiency
     lore:
-    - <&sp>
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_FurnaceFuelEfficiency_Script
