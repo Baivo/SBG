@@ -99,7 +99,7 @@ Spoints_PerkUp:
     script:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
-        - if <[perklevel]> <= 9:
+        - if <[perklevel]> <= 19:
             - flag <[player]> <[player].flag[perkmenu.perk]>:++
             - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
             - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
@@ -164,14 +164,17 @@ SPoints_Perks_InfoBook_Script:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[efficiency.info]>
             #
             #
-        - flag <[player]> perkmenu.perkinfo:->:<element[<&6>Current level: <[curr]>]>
-        - flag <[player]> perkmenu.perkinfo:->:<element[<&e>Next level: <[next]>]>
+        - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&7>Current level: <[curr]>]>
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&6>Next level: <[next]>]>
 ## Perks
+# Smelt Speed
 Spoints_Perks_Menu_Item_FurnaceSpeed:
     type: item
     material: furnace
-    display name: <&gradient[from=#C7C5FC;to=#C5DFFC]>Furnace Speed
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Speed
     lore:
+    - <&sp>
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_FurnaceSpeed_Script
@@ -181,3 +184,19 @@ SPoints_Perks_Menu_FurnaceSpeed_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.speed def.player:<[player]> def.perkname:Furnace<&sp>Speed
+# Smelt Fuel Efficiency
+Spoints_Perks_Menu_Item_FurnaceFuelEfficiency:
+    type: item
+    material: furnace
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Fuel Efficiency
+    lore:
+    - <&sp>
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    flags:
+        script: SPoints_Perks_Menu_FurnaceFuelEfficiency_Script
+
+SPoints_Perks_Menu_FurnaceFuelEfficiency_Script:
+    type: task
+    definitions: player
+    script:
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Efficiency
