@@ -85,7 +85,7 @@ Spoints_PerkUp_precheck:
         - define script Spoints_Perkup
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
-        - if <[perklevel]> <= 9:
+        - if <[perklevel]> <= 19:
             - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
         - else:
             - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
@@ -99,15 +99,9 @@ Spoints_PerkUp:
     script:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
-        - if <[perklevel]> <= 19:
-            - flag <[player]> <[player].flag[perkmenu.perk]>:++
-            - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
-            - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
-        - else:
-            - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
-            - flag <[player]> perkmenu.perk:!
-            - flag <[player]> perkmenu.perkname:!
-            - inventory close
+        - flag <[player]> <[player].flag[perkmenu.perk]>:++
+        - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
+        - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
 
 Spoints_Perks_Levelup_Item_DOWN:
     type: item
