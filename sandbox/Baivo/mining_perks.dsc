@@ -252,7 +252,7 @@ perks_mine_events:
             - foreach <[drops]> as:item:
                 - define drops:->:<item[<[item]>]>
         - determine cancelled passively
-        - drop <[drops]> <context.location>
+        - drop <[drops]> <context.location.center>
         # # prospecting
         # # reliable
         # on player item takes damage:
