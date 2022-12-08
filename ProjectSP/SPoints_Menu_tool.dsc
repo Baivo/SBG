@@ -18,7 +18,7 @@
 #   data:
 #     menu: example_menu
 
-# 1.1 Updated for ProjectSP compatibility 
+# 1.1 Updated for ProjectSP compatibility
 
 # 1.2 Updated logic flow for the on player opens inventory event to allow less static menu operatoin for ProjectSP
 
@@ -70,7 +70,7 @@ menu_creator_events:
         - define player <player>
         - define perk <player.flag[perkmenu.perk]>
         - define perkname <player.flag[perkmenu.perkname]>
-        - adjust <[inv]> title:<&gradient[from=#C7C5FC;to=#C5DFFC]><&l><[perkname]><&sp><&7><&l><&gt><&gt><&sp><&e>Lvl<&sp><&6><[player].flag[<[perk]>].if_null[1]>
+        - adjust <[inv]> title:<&gradient[from=#C7C5FC;to=#C5DFFC]><[perkname]><&sp><&7><&l><&gt><&gt><&sp><&e>Lvl<&sp><&6><[player].flag[<[perk]>].if_null[1]>
         - inventory adjust d:<[inv]> slot:3 display:<element[<&7>Cost<&co><&7><&sp><&a><[player].flag[perkmenu.cost]>]>
         - inventory adjust d:<[inv]> slot:5 display:<element[<&a>SP<&sp>Balance:<&sp><&3><player.flag[SP_balance]>]>
         - run SPoints_Perks_InfoBook_Script def.player:<[player]>
