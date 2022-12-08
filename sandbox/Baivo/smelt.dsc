@@ -107,10 +107,10 @@ perks_smelt_events:
             - define inventory <context.location.inventory.list_contents>
             - define drops <list>
             - define drops:->:<[item]>
-            - if <[inventory].is_empty>:
-                - stop
             - foreach <[inventory]> as:item:
                 - define drops:->:<[item]>
+            - announce to_flagged:Baivo "item is <[item]>"
+            - announce to_flagged:Baivo "drops are <[drops]>"
             - determine <[drops]>
 # End smelting perks.
 
