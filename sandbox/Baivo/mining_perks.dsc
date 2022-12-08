@@ -25,6 +25,10 @@ perks_mine:
         19: 0.95
         20: 1
         21: 1
+        info:
+            - Chance to double drops from ore blocks.
+            - Stacks with fortune!
+            - Does not work with silk touch.
     # Prospecting. Higher levels increase chance to find additional materials from non-ore blocks.
     prospecting:
         1: 0
