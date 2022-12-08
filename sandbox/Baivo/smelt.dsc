@@ -109,8 +109,6 @@ perks_smelt_events:
             - define drops:->:<[item]>
             - foreach <[inventory]> as:item:
                 - define drops:->:<[item]>
-            - announce to_flagged:Baivo "item is <[item]>"
-            - announce to_flagged:Baivo "drops are <[drops]>"
             - determine <[drops]>
 # End smelting perks.
 
