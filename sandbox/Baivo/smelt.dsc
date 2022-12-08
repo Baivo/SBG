@@ -103,6 +103,7 @@ perks_smelt_events:
         on player breaks furnace:
         - if <context.location.has_flag[perks.smelt]>:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
+            - define item <[item].with_flag[perks.smelt.item:<[item]>]>
             - flag <context.location> perks.smelt:!
             - define inventory <context.location.inventory.list_contents>
             - define drops <list>
