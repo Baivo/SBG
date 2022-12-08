@@ -34,6 +34,7 @@ perks_smelt:
         18: 0.15
         19: 0.1
         20: 0.05
+        21: 0.05
         info:
             - Increases burn duration of furnace fuel items.
             - Applied to furnaces you craft.
@@ -60,6 +61,7 @@ perks_smelt:
         18: 40
         19: 50
         20: 100
+        21: 100
         info:
             - Increases cook/smelt speed.
             - Applied to furnaces you craft.
