@@ -204,4 +204,4 @@ SPoints_Perks_Menu_FurnaceFuelEfficiency_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Efficiency
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Saver
