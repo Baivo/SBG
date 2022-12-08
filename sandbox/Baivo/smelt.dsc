@@ -104,13 +104,13 @@ perks_smelt_events:
         - if <context.location.has_flag[perks.smelt]>:
             - define item <item[<context.location.flag[perks.smelt.item]>]>
             - flag <context.location> perks.smelt:!
-            - define inventory <context.location.inventory>
+            - define inventory <context.location.inventory.list_contents>
             - define drops <list>
             - define drops:->:<[item]>
             - if <[inventory].is_empty>:
                 - stop
-            - foreach <[inventory]> as:slot:
-                - define drops:->:<[slot]>
+            - foreach <[inventory]> as:item:
+                - define drops:->:<[item]>
             - determine <[drops]>
 # End smelting perks.
 
