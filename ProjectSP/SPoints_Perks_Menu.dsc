@@ -163,6 +163,12 @@ SPoints_Perks_InfoBook_Script:
                 - define curr "+ <[curr]>%"
                 - define next <[star].div[<[next]>].round_to[3].sub[<[star]>].mul[100]>
                 - define next "+ <[next]>%"
+            - case perks.mine.precision:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_mine].data_key[precision.info]>
+                - define curr <script[perks_mine].data_key[precision.<[perklevel]>]>
+                - define next <script[perks_mine].data_key[precision.<[perklevel].add[1]>]>
+                - define curr "+ <[curr].mul[100]>%"
+                - define next "+ <[next].mul[100]>%"
             #
             #
         - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
@@ -199,3 +205,18 @@ SPoints_Perks_Menu_FurnaceFuelEfficiency_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Saver
+# Mining Precision
+Spoints_Perks_Menu_Item_MiningPrecision:
+    type: item
+    material: golden_pickaxe
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Mining Precision
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    flags:
+        script: SPoints_Perks_Menu_MiningPrecision_Script
+
+SPoints_Perks_Menu_MiningPrecision_Script:
+    type: task
+    definitions: player
+    script:
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.mine.precision def.player:<[player]> def.perkname:Mining<&sp>Precision
