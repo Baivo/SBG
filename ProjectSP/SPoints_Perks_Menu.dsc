@@ -139,7 +139,28 @@ Spoints_Perkdown_precheck:
             - flag <[player]> perkmenu.perkname:!
             - inventory close
 
+SPoints_Perks_InfoBook:
+    type: item
+    material: book_and_quill
+    display name: <&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Info
+    flags:
+        script: SPoints_Perks_InfoBook_Script
 
+SPoints_Perks_InfoBook_Script:
+    type: task
+    definitions: player
+    script:
+        - define perk <[player].flag[perkmenu.perk]>
+        - define perklevel:<[player].flag[<[perk]>].if_null[1]>
+        - choose <[perk]>:
+            - case perks.smelt.speed:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[speed.info]>
+            - case perks.smelt.efficiency:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[efficiency.info]>
+            #
+            #
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&6>Current level: <[perklevel]>]>
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&e>Next level: tbd]>
 ## Perks
 Spoints_Perks_Menu_Item_FurnaceSpeed:
     type: item
