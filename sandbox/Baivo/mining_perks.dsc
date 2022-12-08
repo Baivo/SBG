@@ -133,7 +133,7 @@ perks_mine_events:
             - stop
         - if !<util.random_chance[<script[perks_mine_materials].data_key[<player.flag[perks.mine.precision]>]>]>:
             - stop
-        - if <player.item_in_hand.enchantment_types.contains[silk_touch]>:
+        - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
         - define drops <context.drop_entities.parse[item]>
         - if <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name>:
