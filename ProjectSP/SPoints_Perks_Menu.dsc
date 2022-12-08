@@ -153,12 +153,17 @@ SPoints_Perks_InfoBook_Script:
         - choose <[perk]>:
             - case perks.smelt.speed:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[speed.info]>
+                - define curr <script[perks_smelt].data_key[speed.<[perklevel]>]>
+                - define next <script[perks_smelt].data_key[speed.<[perklevel].add[1]>]>
+                - define star 10
+                - define curr <[star].div[<[curr]>].round_down>
+                - define next <[star].div[<[next]>].round_down>
             - case perks.smelt.efficiency:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[efficiency.info]>
             #
             #
-        - flag <[player]> perkmenu.perkinfo:->:<element[<&6>Current level: <[perklevel]>]>
-        - flag <[player]> perkmenu.perkinfo:->:<element[<&e>Next level: tbd]>
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&6>Current level: <[curr]>]>
+        - flag <[player]> perkmenu.perkinfo:->:<element[<&e>Next level: <[next]>]>
 ## Perks
 Spoints_Perks_Menu_Item_FurnaceSpeed:
     type: item
