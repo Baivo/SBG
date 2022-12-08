@@ -247,18 +247,10 @@ perks_mine_events:
         - if !<player.has_flag[perks.mine.precision]>:
             - stop
         # add a check to stop the queue from running if the player used a silk touch item
-        - if <script[perks_mine_materials].data_key[precision.regular].contains_any[<context.drop_entities.parse[item]>]>:
-            - define drops <list[<context.drop_entities.parse[item]>].include[<context.drop_entities.parse[item]>]>
-            - announce to_flagged:Baivo <[drops]>
-            - determine <[drops]>
-        - if <script[perks_mine_materials].data_key[precision.deepslate].contains_any[<context.drop_entities.parse[item]>]>:
-            - define drops <list[<context.drop_entities.parse[item]>].include[<context.drop_entities.parse[item]>]>
-            - announce to_flagged:Baivo <[drops]>
-            - determine <[drops]>
-        - if <script[perks_mine_materials].data_key[precision.nether].contains_any[<context.drop_entities.parse[item]>]>:
-            - define drops <list[<context.drop_entities.parse[item]>].include[<context.drop_entities.parse[item]>]>
-            - announce to_flagged:Baivo <[drops]>
-            - determine <[drops]>
+        - define drops <context.drop_entities.parse[item]>
+        - if <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name>:
+            - define drops:->:<[drops]>
+        - determine <[drops]>
         # prospecting
         # reliable
         on player item takes damage:
