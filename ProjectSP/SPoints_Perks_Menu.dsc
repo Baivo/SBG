@@ -86,7 +86,8 @@ Spoints_PerkUp_precheck:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
         - if <[perklevel]> <= 19:
-            - run SPoints_shop_transact def.player:<[player].name> def.cost:<[cost]> def.script:<[script]>
+            - announce to_flagged:Baivo "<&a>Spoints perkup precheck player is <[player]>"
+            - run SPoints_shop_transact def.player:<[player]> def.cost:<[cost]> def.script:<[script]>
         - else:
             - narrate targets:<[player]> "<&c>You have reached the max level for this perk"
             - flag <[player]> perkmenu.perk:!
