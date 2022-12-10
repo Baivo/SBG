@@ -166,3 +166,10 @@ nbf_util_cloudtc:
     - define loc <[trigger].below[1]>
     - define material <material[purple_stained_glass]>
     - showfake <[material]> <[loc]> duration:2s players:<server.online_players>
+
+nbf_util_fly:
+    type: task
+    definitions: player
+    script:
+    - ratelimit <player> 1m
+    - execute as_server "fly <[player]>"
