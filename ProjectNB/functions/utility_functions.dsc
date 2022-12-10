@@ -172,4 +172,4 @@ nbf_util_fly:
     definitions: player
     script:
     - ratelimit <player> 1m
-    - execute as_server "fly <[player]>"
+    - execute as_server "fly <[player].name>"
