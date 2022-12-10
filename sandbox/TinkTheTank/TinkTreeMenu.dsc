@@ -69,3 +69,10 @@ Tink_tree_page5:
     data:
         menu: Tink_tree_page5
 
+Tink_Tree_Menu_Command:
+    type: command
+    name: ttm
+    description: Open the tink tree menu
+    usage: /ttm
+    script:
+    - inventory open d:Tink_Tree_menu
