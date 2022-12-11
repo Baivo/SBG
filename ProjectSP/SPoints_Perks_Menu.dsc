@@ -222,3 +222,21 @@ SPoints_Perks_Menu_MiningPrecision_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.mine.precision def.player:<[player]> def.perkname:Mining<&sp>Precision
+
+# The same as mining precision but for farming and called green thumb instead
+Spoints_Perks_Menu_Item_GreenThumb:
+    type: item
+    material: golden_hoe
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Green Thumb
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    mechanisms:
+        hides: all
+    flags:
+        script: SPoints_Perks_Menu_GreenThumb_Script
+
+SPoints_Perks_Menu_GreenThumb_Script:
+    type: task
+    definitions: player
+    script:
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.farm.greenthumb def.player:<[player]> def.perkname:Green<&sp>Thumb
