@@ -23,6 +23,9 @@ Tink_tree_menu_events:
                 - inventory open d:Tink_tree_page4
             - case 5:
                 - inventory open d:Tink_tree_page5
+        on player clicks item in tink_tree_page*:
+        - ratelimit <player> 5t
+        - drop <context.item.with_flag[tinktreeitem]> <player.location> quantity:<context.item.material.max_stack_size>
 
 Tink_tree_page1:
     type: inventory
