@@ -204,7 +204,7 @@ SPoints_Perks_Menu_FurnaceFuelEfficiency_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Saver
+        - run Spoints_Perks_levelup_script def.cost:50 def.perk:perks.smelt.efficiency def.player:<[player]> def.perkname:Furnace<&sp>Fuel<&sp>Saver
 # Mining Precision
 Spoints_Perks_Menu_Item_MiningPrecision:
     type: item
@@ -239,4 +239,4 @@ SPoints_Perks_Menu_GreenThumb_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.farm.greenthumb def.player:<[player]> def.perkname:Green<&sp>Thumb
+        - run Spoints_Perks_levelup_script def.cost:50 def.perk:perks.farm.greenthumb def.player:<[player]> def.perkname:Green<&sp>Thumb
