@@ -140,7 +140,7 @@ perks_mine_events:
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
         - define drops <context.drop_entities.parse[item]>
-        - if <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name>:
+        - if ( <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name> ) || ( <script[perks_mine_materials].data_key[precision.nether]> contains <context.material.name> ) || ( <script[perks_mine_materials].data_key[precision.deepslate]> contains <context.material.name> ):
             - foreach <[drops]> as:item:
                 - define drops:->:<item[<[item]>]>
         - drop <[drops]> <context.location.center>
