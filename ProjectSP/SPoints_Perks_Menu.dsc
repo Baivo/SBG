@@ -122,7 +122,7 @@ Spoints_Perkdown_precheck:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
         - if <[perklevel]> >= 2:
-            - define refund <[cost].mul[0.75]>
+            - define refund <[cost].mul[0.75].round_to[0]>
             - flag <[player]> <[player].flag[perkmenu.perk]>:--
             - execute as_server "spoints add <[player].name> <[refund]>"
             - narrate targets:<[player]> "<&a>You have refunded your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
