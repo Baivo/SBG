@@ -173,4 +173,4 @@ nbf_util_fly:
     script:
     - ratelimit <player> 1m
     - execute as_server "fly <[player].name>"
-    - narrate "&#42fb42Y&#52ec42o&#62dc43u &#72cd43n&#82be43o&#92af43w &#a29f44h&#b29044a&#c28144v&#d27244e &#e26245f&#f25345l&#f84e45i&#e85d45g&#d86d44h&#c87c44t &#b88b44m&#a89a44o&#97aa43d&#87b943e &#77c843o&#67d743n &#57e742u&#47f642n&#4df142t&#5de242i&#6dd243l &#7dc343y&#8db443o&#9da543u &#ad9544l&#bd8644o&#cd7744g&#dd6844o&#ed5845u&#fd4945t" targets:<[player]>
+    - /ex narrate <element[<&gradient[from=#FD4945;to=#42FB42]>You now <&r><&gradient[from=#FD4945;to=#42FB42]>have flight <&r><&gradient[from=#FD4945;to=#42FB42]>mode on <&r><&gradient[from=#FD4945;to=#42FB42]>until you logout]> targets:<[player]>
