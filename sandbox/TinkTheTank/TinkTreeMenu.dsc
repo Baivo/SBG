@@ -32,7 +32,7 @@ Tink_tree_page1:
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Build your ornament!<&co>
     inventory: chest
     size: 54
-    gui: false
+    gui: true
     data:
         menu: Tink_tree_page1
 
@@ -41,7 +41,7 @@ Tink_tree_page2:
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Build your ornament!<&co>
     inventory: chest
     size: 54
-    gui: false
+    gui: true
     data:
         menu: Tink_tree_page2
 
@@ -50,7 +50,7 @@ Tink_tree_page3:
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Build your ornament!<&co>
     inventory: chest
     size: 54
-    gui: false
+    gui: true
     data:
         menu: Tink_tree_page3
 
@@ -59,7 +59,7 @@ Tink_tree_page4:
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Build your ornament!<&co>
     inventory: chest
     size: 54
-    gui: false
+    gui: true
     data:
         menu: Tink_tree_page4
 
@@ -68,7 +68,7 @@ Tink_tree_page5:
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Build your ornament!<&co>
     inventory: chest
     size: 54
-    gui: false
+    gui: true
     data:
         menu: Tink_tree_page5
 
