@@ -169,6 +169,12 @@ SPoints_Perks_InfoBook_Script:
                 - define next <script[perks_mine].data_key[precision.<[perklevel].add[1]>]>
                 - define curr "+ <[curr].mul[100]>%"
                 - define next "+ <[next].mul[100]>%"
+            - case perks.farm.greenthumb:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_farm].data_key[greenthumb.info]>
+                - define curr <script[perks_farm].data_key[greenthumb.<[perklevel]>]>
+                - define next <script[perks_farm].data_key[greenthumb.<[perklevel].add[1]>]>
+                - define curr "+ <[curr].mul[100]>%"
+                - define next "+ <[next].mul[100]>%"
             #
             #
         - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
