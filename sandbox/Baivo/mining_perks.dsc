@@ -104,7 +104,6 @@ perks_mine_materials:
         nether:
             - nether_gold_ore
             - nether_quartz_ore
-            - ancient_debris
             - gilded_blackstone
     prospecting:
         regular:
