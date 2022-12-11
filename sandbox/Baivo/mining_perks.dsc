@@ -1,4 +1,4 @@
-# Begin mining perks.
+## Mining perks.
 
 perks_mine:
     type: data
@@ -129,12 +129,13 @@ perks_mine_materials:
 
 perks_mine_events:
     type: world
-    debug: true
+    debug: false
     events:
         on block drops item from breaking:
         - if !<player.has_flag[perks.mine.precision]>:
             - stop
-        - if !<util.random_chance[<script[perks_mine_materials].data_key[<player.flag[perks.mine.precision]>]>]>:
+        - define chance <element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>
+        - if !<util.random_chance[<[chance]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
