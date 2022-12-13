@@ -14,19 +14,19 @@ SPoints_Perks_InfoBook_Script:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[speed.info]>
                 - define curr <script[perks_smelt].data_key[speed.<[perklevel]>]>
                 - define next <script[perks_smelt].data_key[speed.<[perklevel].add[1]>]>
-                - define star 10
-                - define curr <[star].div[<[curr]>].round_to[3]>
+                - define 10 10
+                - define curr <[10].div[<[curr]>].round_to[3]>
                 - define curr "<[curr]> seconds"
-                - define next <[star].div[<[next]>].round_to[3]>
+                - define next <[10].div[<[next]>].round_to[3]>
                 - define next "<[next]> seconds"
             - case perks.smelt.efficiency:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[efficiency.info]>
                 - define curr <script[perks_smelt].data_key[efficiency.<[perklevel]>]>
                 - define next <script[perks_smelt].data_key[efficiency.<[perklevel].add[1]>]>
-                - define star 1
-                - define curr <[star].div[<[curr]>].round_to[3].sub[<[star]>].mul[100]>
+                - define 1 1
+                - define curr <[1].div[<[curr]>].round_to[3].sub[<[1]>].mul[100]>
                 - define curr "+ <[curr]>%"
-                - define next <[star].div[<[next]>].round_to[3].sub[<[star]>].mul[100]>
+                - define next <[1].div[<[next]>].round_to[3].sub[<[1]>].mul[100]>
                 - define next "+ <[next]>%"
             - case perks.mine.precision:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_mine].data_key[precision.info]>
