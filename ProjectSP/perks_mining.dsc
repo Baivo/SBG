@@ -123,24 +123,20 @@ perks_mine_materials:
             - netherrack
             - basalt
             - blackstone
-        end:
-            - end_stone
 
 
-perks_mine_events:
+perks_mine_precision_event:
     type: world
     debug: false
     events:
         on block drops item from breaking:
-        - if !<player.has_flag[perks.mine.precision]>:
-            - stop
-        - define chance <element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>
-        - if !<util.random_chance[<[chance]>]>:
+        - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
         - define drops <context.drop_entities.parse[item]>
-        - if ( <script[perks_mine_materials].data_key[precision.regular]> contains <context.material.name> ) || ( <script[perks_mine_materials].data_key[precision.nether]> contains <context.material.name> ) || ( <script[perks_mine_materials].data_key[precision.deepslate]> contains <context.material.name> ):
+        - define mat <context.material.name>
+        - if <[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
             - foreach <[drops]> as:item:
                 - define drops:->:<item[<[item]>]>
         - drop <[drops]> <context.location.center>
@@ -155,6 +151,30 @@ perks_mine_events:
         # on player damages block:
         # - if <player.flag[perks.mine.veinminer].exists>:
         #     - determine instabreak
+
+perks_mine_prospecting_event:
+    type: world
+    debug: false
+    events:
+        on block drops item from breaking:
+        - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
+            - stop
+        - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
+            - stop
+        - define drops <context.drop_entities.parse[item]>
+        - define mat <context.material.name>
+        - if <[mat].is_in[<script[perks_mine_materials].data_key[prospecting.regular]>]>:
+            - define bns <script[perks_mine_materials].data_key[precision.regular].random>
+        - if <[mat].is_in[<script[perks_mine_materials].data_key[prospecting.deepslate]>]>:
+            - define bns <script[perks_mine_materials].data_key[precision.deepslate].random>
+        - if <[mat].is_in[<script[perks_mine_materials].data_key[prospecting.nether]>]>:
+            - define bns <script[perks_mine_materials].data_key[precision.nether].random>
+        - if !<[bns].exists>:
+            - stop
+        - modifyblock <context.location> <[bns]>
+        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
+        - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.5 pitch:1.0 at:<context.location.center>
+
 ## perk menu item logic
 # Mining Precision
 Spoints_Perks_Menu_Item_MiningPrecision:
