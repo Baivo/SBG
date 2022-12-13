@@ -1,0 +1,34 @@
+slime splits | event
+cancel it to make slimes less annoying
+
+<entity> shoots <item> | event (e.g. bow) 
+event can chance force + take ListTag to determine new entities to shoot
+combat perk
+
+<player> combusts | event
+1 off perk to make player totally immune to fire always
+
+<entity> dies | event
+can determine xp and loot for combat or adventure perks
+<entity> drops item | event
+might be needed for above to work as expected tbd
+
+<block> grows | event
+for farming perks, speed up growth
+
+<entity> breeds | event
+for farming perks, can determine children
+increased quantity, spawn as adult etc.
+
+<player> changes food level | event
+attributes or adventuring perk 
+reduce hunger rate
+
+<projectile> hits <block>|<entity> | event
+that em2 explosion could use this
+
+General attributes worth looking into to adjust:
+max_no_damage_duration to increase invulnerability window
+max_oxygen explains itself
+speed explains itself, need to determine if anything messes this up
+tracking_range stealth perk??
