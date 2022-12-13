@@ -1,0 +1,80 @@
+==== Utility ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| help | - | Views a list of available commands. | **/<command> [search term] [page]** | Everyone |
+| kit | kits | Obtains a kit or list all kits available to you. | **/<command> [kit] [player]** | Everyone |
+| ptime | playertime | Adjust your client time. Add @ prefix to stop time at that value. | **/<command> [list|reset|day|night|dawn|17:30|4pm|4000ticks]** | Everyone |
+| pweather | playerweather | Adjust the weather for yourself only | **/<command> [list|reset|storm|sun|clear] [player|*]** | Everyone |
+| suicide | - | Commit sudoku | **/<command>** | Everyone |
+| skull | head, playerskull | Get the player head item with your skin or a skin of a specified player, or change the skin of the head in your hand. | **/<command> [owner]** | Everyone |
+| | | | | |
+| seen | - | Shows the last logout time of a player. | **/<command> <playername>** | Member |
+| | | | | |
+| invsee | - | See the inventory of other players. | **/<command> <player> [armor]** | Trusted |
+| ext | extinguish | Extinguish yourself. | **/<command>** | Trusted |
+| feed | eat | Satisfy the hunger, without the calories. | **/<command> [player]** | Trusted |
+| heal | - | Heals you or the given player. | **/<command> [player]** | Trusted |
+| jail | unjail | Jails/Unjails a player, TPs them to the jail specified. Current server jail is IHORD. | **/<command> <player> <jailname> [datediff]** | Trusted |
+| jails | - | List all jails. | **/<command>** | Trusted |
+| kick | - | Kicks a specified player with a reason. | **/<command> <player> [reason]** | Trusted |
+| speed | flyspeed, fspeed, walkspeed, wspeed | Change your walk or fly speed. | **/<command> [type] <speed> [player]** | Trusted |
+| time | day, night | Display/Change the world time. Defaults to current world. | **/<command> [day|night|dawn|17:30|4pm|4000ticks] [worldname|all]** | Trusted |
+| whois | - | Displays player information | **/<command> <nickname|playername>** | Trusted |
+
+==== Crafting / Inventory ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| clearinventory | ci, clean, clear | Clear all items in your inventory. You will not have your inventory restored if you do this by accident. | **/<command> [player] [item[:<data>]] [amount]** | Everyone |
+| condense | compact, blocks, toblocks | Condenses compatible inventory items (ingots to blocks etc.) | **/<command> [itemname]** | Everyone |
+| disposal | trash, sapling, urmom, manchestercity | Opens a portable trashbag. | **/<command>** | Everyone |
+| | | | | |
+| cartographytable | carttable | Opens up a cartography table. | **/<command>** | Member |
+| enderchest | echest, ec | Your enderchest, now on-demand. | **/<command> [player]** | Member |
+| grindstone | - | Opens up a grindstone. | **/<command>** | Member |
+| loom | - | Opens up a loom. | **/<command>** | Member |
+| smithingtable | smithtable | Opens up a smithing table. | **/<command>** | Member |
+| stonecutter | - | Opens up a stonecutter. | **/<command>** | Member |
+| workbench | craft, wb, wbench | Opens up a workbench. | **/<command>** | Member |
+| anvil | - | Opens up an Anvil. | **/<command>** | Trusted |
+
+
+==== Communication ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| me | action, describe | Roleplay as a soft/shy wolf-boy on twitter. | **/<command> <description>** | Everyone |
+| mail | memo | Send and receive messages with offline players | **/<command> [read|clear|clear [number]|send [to] [message]|sendtemp [to] [expire time] [message]|sendall [message]]** | Everyone |
+| msg | w, m, t, pm, tell, whisper | Sends a private message to the specified player. | **/<command> <to> <message>** | Everyone |
+| r | reply | Quickly reply to the last player to message you. | **/<command> <message>** | Everyone |
+
+==== Economy ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| balance | bal, money | Check your balance. | **/<command> [player]** | Everyone |
+| balancetop | baltop | Lists all player balances. | **/<command> [page]** | Everyone |
+| pay | - | Pays another player from your balance. | **/<command> <player> <amount>** | Everyone |
+
+==== Teleportation / Movement ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| sethome | createhome | Set a home at your current location. | **/<command> [player:]<name>** | Everyone |
+| home | homes | Teleport to your home, or list saved homes. | **/<command> [player:]<name>** | Everyone |
+| delhome | remhome, rmhome | Removes a saved home. | **/<command> [player:]<name>** | Everyone |
+| tpa | tpask | Request to teleport to the specified player. | **/<command> <player>** | Everyone |
+| tpahere | - | Ask a player to teleport to you. | **/<command> <player>** | Everyone |
+| tpaccept | tpyes | Accept incoming teleport requests. | **/<command> [player|*]** | Everyone |
+| tpdeny | tpno | Reject incoming teleport requests. | **/<command> [player|*]** | Everyone |
+| tpacancel | - | Cancel all outstanding teleport requests. Specify [player] to cancel requests with them. | **/<command> [player]** | Everyone |
+| tptoggle | - | Toggle if you receive incoming teleport requests. | **/<command> [player] [on|off]** | Everyone |
+| back | return | Teleports you to your location prior to teleports or death. | **/<command>** | Everyone |
+| warp | - | Warp to the named location. | **/<command> <pagenumber|warp> [player]** | Everyone |
+| | | | | |
+| setwarp | createwarp | Creates a new warp. | **/<command> <warp>** | Trusted |
+| top | - | Teleport to the highest block at your current position. | **/<command>** | Trusted |
+| jump | j, jumpto | Jumps to the nearest block in the line of sight. | **/<command>** | Trusted |
+| fly | - | Toggle fly mode. | **/<command> [player] [on|off]** | Trusted |
+
+
+==== Fun ====
+^ Command ^ Aliases ^ Description ^ Syntax ^ Rank ^
+| hat | - | Puts a held block/item on your head | **/<command> [remove]** | Everyone |
+| | | | | |
+| antioch | tnt | Don't count to 4. | **/<command> [message]** | Trusted |
+| beezooka | beecannon | Throw an exploding bee. | **/<command>** | Trusted |
+| fireball | fireskull | Throw a fireball or other assorted projectiles. | **/<command> [fireball|small|large|arrow|skull|egg|snowball|expbottle|dragon|splashpotion|lingeringpotion|trident] [speed]** | Trusted |
+| ice | freeze | Cools a player off. | **/<command> [player]** | Trusted |
+| smite |  shock, lightning, strike, thor | Ezekiel 25:17 | **/<command> [player] [power]** | Trusted |
