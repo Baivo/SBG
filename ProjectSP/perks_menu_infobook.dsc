@@ -40,6 +40,12 @@ SPoints_Perks_InfoBook_Script:
                 - define next <script[perks_farm].data_key[greenthumb.<[perklevel].add[1]>]>
                 - define curr "+ <[curr].mul[100]>%"
                 - define next "+ <[next].mul[100]>%"
+            - case perks.attributes.health:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_attributes].data_key[health.info]>
+                - define curr <script[perks_attributes].data_key[health.<[perklevel]>]>
+                - define next <script[perks_attributes].data_key[health.<[perklevel].add[1]>]>
+                - define curr "<[curr].div[2]> hearts"
+                - define next "<[next].div[2]> hearts"
             #
         - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
         - flag <[player]> perkmenu.perkinfo:->:<element[<&7>Current level: <[curr]>]>
