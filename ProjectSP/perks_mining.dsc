@@ -127,7 +127,7 @@ perks_mine_materials:
 
 perks_mine_precision_event:
     type: world
-    debug: true
+    debug: false
     events:
         on player breaks block:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
@@ -142,7 +142,7 @@ perks_mine_precision_event:
 
 perks_mine_prospecting_event:
     type: world
-    debug: true
+    debug: false
     events:
         on player breaks block:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
