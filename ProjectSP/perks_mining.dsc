@@ -129,7 +129,7 @@ perks_mine_precision_event:
     type: world
     debug: true
     events:
-        after block drops item from breaking:
+        after block drops item from breaking priority:1:
         - announce to_flagged:Baivo "broke <context.material> at <context.location.simple> and originally dropped <context.drop_entities>"
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
             - stop
@@ -156,7 +156,7 @@ perks_mine_prospecting_event:
     type: world
     debug: true
     events:
-        after block drops item from breaking:
+        after block drops item from breaking priority:2:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
