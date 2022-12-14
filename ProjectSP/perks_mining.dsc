@@ -145,7 +145,7 @@ perks_mine_prospecting_event:
     debug: true
     events:
         on player breaks block:
-        - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
+        - if !<util.random_chance[<element[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
