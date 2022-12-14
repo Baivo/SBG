@@ -46,6 +46,7 @@ Spoints_Perks_Menu_Item_AttributesHealth:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_AttributesHealth_Script
+        cost: 100
 
 SPoints_Perks_Menu_AttributesHealth_Script:
     type: task

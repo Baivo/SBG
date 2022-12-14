@@ -68,7 +68,7 @@ menu_creator_events:
         - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Menu <&7><&l>| <&a>SP Balance: <&3><player.flag[SP_balance]>"
         - foreach <[inv].map_slots> key:slot as:item:
           - define lore <[item].lore>
-          - define lore:->:<&7>Cost<&co><&sp><&a><[item].script.parsed_key[data.cost].if_null[999]>
+          - define lore:->:<&7>Cost<&co><&sp><&a><[item].script.parsed_key[flag.cost].if_null[999]>
           - inventory adjust d:<[inv]> slot:<[slot]> lore:<[lore]>
       - if <context.inventory.script.name> == spoints_perks_levelup:
         - define player <player>

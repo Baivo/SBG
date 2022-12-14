@@ -103,11 +103,12 @@ perks_smelt_events:
 Spoints_Perks_Menu_Item_FurnaceSpeed:
     type: item
     material: furnace
-    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Speed
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace - Speed
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_FurnaceSpeed_Script
+        cost: 100
 
 SPoints_Perks_Menu_FurnaceSpeed_Script:
     type: task
@@ -118,11 +119,12 @@ SPoints_Perks_Menu_FurnaceSpeed_Script:
 Spoints_Perks_Menu_Item_FurnaceFuelEfficiency:
     type: item
     material: furnace
-    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace Fuel Efficiency
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Furnace - Fuel Saver
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
         script: SPoints_Perks_Menu_FurnaceFuelEfficiency_Script
+        cost: 50
 
 SPoints_Perks_Menu_FurnaceFuelEfficiency_Script:
     type: task

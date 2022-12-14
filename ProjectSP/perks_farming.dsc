@@ -41,32 +41,30 @@ perks_farm_events:
     type: world
     debug: false
     events:
-        on block drops item from breaking:
+        on player breaks block:
         - if !<player.has_flag[perks.farm.greenthumb]>:
             - stop
-        - define chance <element[<script[perks_farm].data_key[greenthumb.<player.flag[perks.farm.greenthumb].if_null[1]>]>].mul[100]>
-        - if !<util.random_chance[<[chance]>]>:
+        - if !<util.random_chance[<element[<script[perks_farm].data_key[greenthumb.<player.flag[perks.farm.greenthumb].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
-        - define drops <context.drop_entities.parse[item]>
-        - if <script[perks_farm].data_key[greenthumb_crops]> contains <context.material.name>:
-            - foreach <[drops]> as:item:
-                - define drops:->:<item[<[item]>]>
-        - drop <[drops]> <context.location.center>
-        - determine cancelled passively
+        - if !<context.material.name.is_in[<script[perks_farm].data_key[greenthumb_crops]>]>:
+            - stop
+        - define drops <context.location.drops[<player.item_in_hand>].first.if_null[<item[air]>]>
+        - drop <[drops]> <context.location>
 ## perk menu item logic
 # Green Thumb
 Spoints_Perks_Menu_Item_GreenThumb:
     type: item
     material: golden_hoe
-    display name: <&gradient[from=#FBB800;to=#FDD800]>Green Thumb
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Farming - Green Thumb
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     mechanisms:
         hides: all
     flags:
         script: SPoints_Perks_Menu_GreenThumb_Script
+        cost: 50
 
 SPoints_Perks_Menu_GreenThumb_Script:
     type: task
