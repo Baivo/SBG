@@ -139,34 +139,12 @@ perks_mine_precision_event:
             - stop
         - define drops <context.location.drops[<player.item_in_hand>].first.if_null[<item[air]>]>
         - drop <[drops]> <context.location>
-        # after * drops * from breaking priority:1:
-        # - announce to_flagged:Baivo "broke <context.material> at <context.location.simple> and originally dropped <context.drop_entities>"
-        # - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
-        #     - stop
-        # - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
-        #     - stop
-        # - define drops <context.drop_entities.parse[item]>
-        # - define bns <list>
-        # - define mat <context.material.name>
-        # - if !<[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
-        #     - stop
-        # - drop <[drops]> <context.drop_entities.first.location>
-        # # prospecting
-        # # reliable
-        # on player item takes damage:
-        # - if <player.flag[perks.mine.reliable].exists>:
-        #     - if <util.random_chance[<player.flag[]>]>
-        #     - determine cancelled
-        # # vein miner
-        # on player damages block:
-        # - if <player.flag[perks.mine.veinminer].exists>:
-        #     - determine instabreak
 
 perks_mine_prospecting_event:
     type: world
     debug: true
     events:
-        after block drops item from breaking priority:2:
+        on player breaks block:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
