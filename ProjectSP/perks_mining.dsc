@@ -52,6 +52,10 @@ perks_mine:
         19: 0.19
         20: 0.2
         21: 0.2
+        info:
+            - Chance to find ore drops in non-ore blocks
+            - Stone, Deepslate, Netherrack etc.
+            - Drops based on the block broken.
     # Vein Miner. Reach level five in both of the above perks to unlock this perk.
     vein_miner:
         0: 0
