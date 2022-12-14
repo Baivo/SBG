@@ -24,7 +24,7 @@
 
 menu_creator_events:
   type: world
-  debug: false
+  debug: true
   events:
     on player clicks menu_* in menu_creator_invtype:
       - flag <player> new_menu.type:<context.item.script.name>

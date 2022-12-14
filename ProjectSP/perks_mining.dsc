@@ -127,7 +127,7 @@ perks_mine_materials:
 
 perks_mine_precision_event:
     type: world
-    debug: false
+    debug: true
     events:
         on block drops item from breaking:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
@@ -139,7 +139,7 @@ perks_mine_precision_event:
         - if <[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
             - foreach <[drops]> as:item:
                 - define drops:->:<item[<[item]>]>
-        - drop <[drops]> <context.location.center>
+        - drop <[drops]> <player.cursor_on>
         - determine cancelled passively
         # # prospecting
         # # reliable
