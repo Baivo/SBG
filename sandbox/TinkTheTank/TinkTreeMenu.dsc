@@ -81,9 +81,9 @@ Tink_tree_page5:
 Tink_Tree_Menu_Command:
     type: command
     name: ttm
+    permission: tinktree.menu
+    permission message: <&c>Member rank is required to access materials. Please contact Tink for assistance.
     description: Open the tink tree menu
     usage: /ttm
     script:
     - inventory open d:Tink_Tree_menu
-
-
