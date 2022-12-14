@@ -188,6 +188,7 @@ Spoints_Perks_Menu_Item_MiningPrecision:
         hides: all
     flags:
         script: SPoints_Perks_Menu_MiningPrecision_Script
+        cost: 100
 
 SPoints_Perks_Menu_MiningPrecision_Script:
     type: task
@@ -206,6 +207,7 @@ Spoints_Perks_Menu_Item_MiningProspecting:
         hides: all
     flags:
         script: SPoints_Perks_Menu_MiningProspecting_Script
+        cost: 100
 
 SPoints_Perks_Menu_MiningProspecting_Script:
     type: task
