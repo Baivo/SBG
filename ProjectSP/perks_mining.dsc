@@ -154,14 +154,13 @@ perks_mine_precision_event:
 
 perks_mine_prospecting_event:
     type: world
-    debug: false
+    debug: true
     events:
         on block drops item from breaking:
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
-        - define drops <context.drop_entities.parse[item]>
         - define mat <context.material.name>
         - if <[mat].is_in[<script[perks_mine_materials].data_key[prospecting.regular]>]>:
             - define bns <script[perks_mine_materials].data_key[precision.regular].random>
@@ -174,13 +173,15 @@ perks_mine_prospecting_event:
         - modifyblock <context.location> <[bns]>
         - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
         - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.5 pitch:1.0 at:<context.location.center>
+        - wait 1t
+        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
 
 ## perk menu item logic
 # Mining Precision
 Spoints_Perks_Menu_Item_MiningPrecision:
     type: item
     material: golden_pickaxe
-    display name: <&gradient[from=#FBB800;to=#FDD800]>Mining Precision
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Mining - Precision
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     mechanisms:
@@ -193,3 +194,21 @@ SPoints_Perks_Menu_MiningPrecision_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.mine.precision def.player:<[player]> def.perkname:Mining<&sp>Precision
+
+# Mining Prospecting
+Spoints_Perks_Menu_Item_MiningProspecting:
+    type: item
+    material: iron_pickaxe
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Mining - Prospecting
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    mechanisms:
+        hides: all
+    flags:
+        script: SPoints_Perks_Menu_MiningProspecting_Script
+
+SPoints_Perks_Menu_MiningProspecting_Script:
+    type: task
+    definitions: player
+    script:
+        - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.mine.prospecting def.player:<[player]> def.perkname:Mining<&sp>Prospecting
