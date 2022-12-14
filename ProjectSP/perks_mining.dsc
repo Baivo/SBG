@@ -139,7 +139,7 @@ perks_mine_precision_event:
         - define mat <context.material.name>
         - if !<[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
             - stop
-        - drop <[bns]> <context.drop_entities.first.location>
+        - drop <[drops]> <context.drop_entities.first.location>
         # # prospecting
         # # reliable
         # on player item takes damage:
