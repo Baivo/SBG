@@ -41,7 +41,7 @@ perks_attributes_tasks:
 Spoints_Perks_Menu_Item_AttributesHealth:
     type: item
     material: apple
-    display name: <&gradient[from=#FBB800;to=#FDD800]>Maximum Health
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Attributes - Health
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
     flags:
