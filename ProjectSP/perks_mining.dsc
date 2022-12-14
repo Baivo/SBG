@@ -130,6 +130,7 @@ perks_mine_precision_event:
     debug: true
     events:
         on block drops item from breaking:
+        - announce to_flagged:Baivo "broke <context.material> at <context.location.simple.xyz> and originally dropped <context.drop_entities>"
         - if !<util.random_chance[<element[<script[perks_mine].data_key[precision.<player.flag[perks.mine.precision].if_null[1]>]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
@@ -172,7 +173,6 @@ perks_mine_prospecting_event:
         - modifyblock <context.location> <[bns]>
         - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
         - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.5 pitch:1.0 at:<context.location.center>
-        - wait 1t
         - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
 
 ## perk menu item logic
