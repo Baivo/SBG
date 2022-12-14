@@ -99,7 +99,7 @@ Spoints_PerkUp:
     script:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
-        - flag <[player]> <[player].flag[perkmenu.perk]>:++
+        - flag <[player]> <[player].flag[perkmenu.perk]>:<[perklevel].add[1]>
         - narrate targets:<[player]> "<&a>You have leveled up your <[player].flag[perkmenu.perkname]> to level <&e><[player].flag[<[perk]>]>"
         - run Perk_refresh def.player:<[player]> def.perk:<[perk]>
         - inventory open d:<inventory[Levelup_<[player]>_<[perk]>]>
