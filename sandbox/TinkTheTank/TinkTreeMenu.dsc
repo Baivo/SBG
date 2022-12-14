@@ -27,6 +27,11 @@ Tink_tree_menu_events:
         - ratelimit <player> 5t
         - define item <context.item.with_flag[tinktreeitem]>
         - drop <[item]> <player.location> quantity:<[item].material.max_stack_size>
+        on player places block:
+        - if <context.item_in_hand.has_flag[tinktreeitem]>:
+            - flag <context.location> tinktreeitem:<player.name>
+        on player breaks block location_flagged:tinktreeitem:
+        - flag <context.location> tinktreeitem:!
 
 Tink_tree_page1:
     type: inventory
@@ -80,3 +85,5 @@ Tink_Tree_Menu_Command:
     usage: /ttm
     script:
     - inventory open d:Tink_Tree_menu
+
+
