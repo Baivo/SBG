@@ -159,9 +159,9 @@ perks_mine_prospecting_event:
         - if !<[bns].exists>:
             - stop
         - modifyblock <context.location> <[bns]>
-        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
-        - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.5 pitch:1.0 at:<context.location.center>
-        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1,1,1 quantity:5
+        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1.2,1.2,1.2 quantity:5
+        - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.7 pitch:1.0 at:<context.location.center>
+        - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1.2,1.2,1.2 quantity:5
 
 ## perk menu item logic
 # Mining Precision
