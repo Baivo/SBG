@@ -135,12 +135,11 @@ perks_mine_precision_event:
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
         - define drops <context.drop_entities.parse[item]>
+        - define bns <list>
         - define mat <context.material.name>
-        - if <[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
-            - foreach <[drops]> as:item:
-                - define drops:->:<item[<[item]>]>
-        - drop <[drops]> <player.cursor_on>
-        - determine cancelled passively
+        - if !<[mat].is_in[<script[perks_mine_materials].data_key[precision.regular]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.deepslate]>]> || <[mat].is_in[<script[perks_mine_materials].data_key[precision.nether]>]>:
+            - stop
+        - drop <[bns]> <context.drop_entities.first.location>
         # # prospecting
         # # reliable
         # on player item takes damage:
