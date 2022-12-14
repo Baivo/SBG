@@ -32,26 +32,26 @@ perks_mine:
     # Prospecting. Higher levels increase chance to find additional materials from non-ore blocks.
     prospecting:
         1: 0
-        2: 0.01
-        3: 0.02
-        4: 0.03
-        5: 0.04
-        6: 0.05
-        7: 0.06
-        8: 0.07
-        9: 0.08
-        10: 0.1
-        11: 0.11
-        12: 0.12
-        13: 0.13
-        14: 0.14
-        15: 0.15
-        16: 0.16
-        17: 0.17
-        18: 0.18
-        19: 0.19
-        20: 0.2
-        21: 0.2
+        2: 0.005
+        3: 0.01
+        4: 0.015
+        5: 0.02
+        6: 0.025
+        7: 0.03
+        8: 0.035
+        9: 0.04
+        10: 0.05
+        11: 0.06
+        12: 0.07
+        13: 0.08
+        14: 0.09
+        15: 0.1
+        16: 0.11
+        17: 0.12
+        18: 0.13
+        19: 0.14
+        20: 0.15
+        21: 0.15
         info:
             - Chance to find ore drops in non-ore blocks
             - Stone, Deepslate, Netherrack etc.
