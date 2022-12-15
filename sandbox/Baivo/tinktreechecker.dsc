@@ -1,5 +1,5 @@
 # Command to search for tinktree menu items and blocks
-Tink_Tree_Menu_Command:
+Tink_Tree_cjecler_Command:
     type: command
     name: bivttms
     permission: bivttms
