@@ -17,3 +17,4 @@ Tink_Tree_Menu_Command:
                     - teleport <player> <[block]>
                     - narrate "<&a>Teleported to <&e><[block].location>"
                 - narrate <element[<&a>Click to teleport to <&e><[block].location>].on_click[<entry[toblock]>]>
+    - narrate "<&a>Done searching for tinktree menu items and blocks."
