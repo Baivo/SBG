@@ -3,6 +3,11 @@ Toggle_Armour_Command:
     name: togglearmour
     description: Hide or show your armour
     usage: /togglearmour
+    aliases:
+    - ta
+    - togglearmor
+    - hidearmor
+    - hidearmour
     script:
     - if <player.has_flag[armouroff]>:
         - flag <player> armouroff:!
@@ -20,7 +25,7 @@ toggle_armour_script:
     - if !<player.has_flag[armouroff]>:
         - fakeequip <player> for:<server.online_players> reset
     - else:
-        - if ( <player.inventory.slot[chest]> == elytra ) || ( <player.inventory.slot[chest]> == leather ):
+        - if ( <player.inventory.slot[chest].material.name> == elytra ) || ( <player.inventory.slot[chest].material.name> == leather ):
             - fakeequip <player> for:<server.online_players> head:air legs:air feet:air
         - else:
             - fakeequip <player> for:<server.online_players> head:air chest:air legs:air feet:air
