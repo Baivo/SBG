@@ -176,7 +176,7 @@ perks_mine_reliable_event:
     type: world
     events:
         on player *_pickaxe takes damage:
-        - if !<util.random_chance[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.reliable].if_null[1]>].mul[100]>]>:
+        - if !<util.random_chance[<script[perks_mine].data_key[reliable.<player.flag[perks.mine.reliable].if_null[1]>].mul[100]>]>:
             - stop
         - else:
             - determine cancelled
