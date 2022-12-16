@@ -128,6 +128,10 @@ Tink_Tree_Item_Blocker:
         - playeffect at:<context.location> effect:villager_happy offset:1.2 quantity:10
         - playeffect at:<context.location> effect:cloud offset:0.2 quantity:3
         - determine nothing
+        on item recipe formed:
+        - foreach <context.recipe> as:item:
+            - if <[item].has_flag[tinktreeitem]>:
+                - determine dirt
 
 ## Netblock stuff
 nbf_util_ttm:
