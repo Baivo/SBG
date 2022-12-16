@@ -28,3 +28,8 @@ Tink_Tree_Item_Blocker:
             - stop
         - if <context.inventory> != <player.inventory>:
             - determine dirt
+        on player drags item in inventory:
+        - if <player.name> != Baivo:
+            - stop
+        - if <context.inventory> != <player.inventory>:
+            - determine cancelled
