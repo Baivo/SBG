@@ -7,7 +7,7 @@ Toggle_Armour_Command:
     - if <player.has_flag[armouroff]>:
         - flag <player> armouroff:!
     - else:
-        - flag <player> armoroff
+        - flag <player> armouroff
     - run toggle_armour_script def.player:<player>
 
 toggle_armour_script:
