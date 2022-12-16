@@ -110,15 +110,11 @@ Tink_Tree_Item_Blocker:
     debug: false
     events:
         on player clicks item in inventory:
-        - if <player.name> != Baivo:
-            - stop
         - if !<context.item.has_flag[tinktreeitem]>:
             - stop
         - if <context.inventory> != <player.inventory>:
             - determine dirt
         on player drags item in inventory:
-        - if <player.name> != Baivo:
-            - stop
         - if !<context.item.has_flag[tinktreeitem]>:
             - stop
         - if <context.inventory> != <player.inventory>:
@@ -132,7 +128,6 @@ Tink_Tree_Item_Blocker:
         - playeffect at:<context.location> effect:villager_happy offset:1.2 quantity:10
         - playeffect at:<context.location> effect:cloud offset:.2 quantity:3
         - determine nothing
-
 
 ## Netblock stuff
 nbf_util_ttm:
