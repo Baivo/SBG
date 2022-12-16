@@ -6,8 +6,11 @@ Toggle_Armour_Command:
     script:
     - if <player.has_flag[armouroff]>:
         - flag <player> armouroff:!
+        - narrate "<&a>Armour is now visible"
     - else:
         - flag <player> armouroff
+        - narrate "<&e>Armour is now hidden"
+        - narrate "<&e>UI will show no armor, but you are still protected."
     - run toggle_armour_script def.player:<player>
 
 toggle_armour_script:
