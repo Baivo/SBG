@@ -124,9 +124,9 @@ Tink_Tree_Item_Blocker:
             - flag <context.location> tinktreeitem:<player.name>
         on player breaks block location_flagged:tinktreeitem:
         - flag <context.location> tinktreeitem:!
-        - playeffect at:<context.location> effect:redstone offset:1.2 quantity:10
+        - playeffect at:<context.location> effect:redstone_torch_burnout offset:1.2 quantity:10
         - playeffect at:<context.location> effect:villager_happy offset:1.2 quantity:10
-        - playeffect at:<context.location> effect:cloud offset:.2 quantity:3
+        - playeffect at:<context.location> effect:cloud offset:0.2 quantity:3
         - determine nothing
 
 ## Netblock stuff
