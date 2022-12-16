@@ -32,6 +32,7 @@ Tink_tree_menu_events:
             - flag <context.location> tinktreeitem:<player.name>
         on player breaks block location_flagged:tinktreeitem:
         - flag <context.location> tinktreeitem:!
+        - determine nothing
 
 Tink_tree_page1:
     type: inventory
@@ -87,3 +88,60 @@ Tink_Tree_Menu_Command:
     usage: /ttm
     script:
     - inventory open d:Tink_Tree_menu
+
+## Command to search for tinktree menu items and blocks
+Tink_Tree_cjecler_Command:
+    type: command
+    name: bivttms
+    permission: bivttms
+    permission message: <&c>No.
+    description: Yes
+    usage: /bivttms
+    script:
+    - foreach <server.worlds> as:world:
+        - foreach <[world].loaded_chunks> as:chunk:
+            - foreach <[chunk].blocks_flagged[tinktreeitem]> as:block:
+                - narrate "<&a>Found a tinktree menu item block at <&e><[block].location>"
+                - narrate "<&a>Block is <&e><[block].material> placed by <[block].flag[tinktreeitem]>"
+                # clickable to teleport to location
+                - clickable def.block:<[block]> save:toblock:
+                    - teleport <player> <[block]>
+                    - narrate "<&a>Teleported to <&e><[block].location>"
+                - narrate <element[<&a>Click to teleport to <&e><[block].location>].on_click[<entry[toblock]>]>
+    - narrate "<&a>Done searching for tinktree menu items and blocks."
+
+## Event to stop players stealing decorations
+Tink_Tree_Item_Blocker:
+    type: world
+    debug: false
+    events:
+        on player clicks item in inventory:
+        - if <player.name> != Baivo:
+            - stop
+        - if !<context.item.has_flag[tinktreeitem]>:
+            - stop
+        - if <context.inventory> != <player.inventory>:
+            - determine dirt
+        on player drags item in inventory:
+        - if <player.name> != Baivo:
+            - stop
+        - if !<context.item.has_flag[tinktreeitem]>:
+            - stop
+        - if <context.inventory> != <player.inventory>:
+            - determine cancelled
+
+
+## Netblock stuff
+nbf_util_ttm:
+    type: task
+    definitions: player
+    script:
+    - ratelimit <player> 1s
+    - flag <player> tinktree expire:1s
+
+nbf_util_ttm_handler:
+    type: world
+    events:
+        on player opens chest flagged:tinktree:
+        - ratelimit <player> 1s
+        - execute as_server "sudo <player.name> ttm"
