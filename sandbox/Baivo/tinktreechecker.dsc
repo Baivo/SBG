@@ -24,7 +24,7 @@ Tink_Tree_Item_Blocker:
     debug: false
     events:
         on player clicks item in inventory:
-        - announce to_flagged:Baivo "<&a>Inventory is <context.inventory>"
-        - announce to_flagged:Baivo "<&b>Clicked inventory is <context.clicked_inventory>"
-        - announce to_flagged:Baivo "<&c>Clicked item is <context.item>"
-        - announce to_flagged:Baivo "<&d>Click type was <context.click>"
+        - if <player.name> != Baivo:
+            - stop
+        - if <context.inventory> != <player.inventory>:
+            - determine dirt
