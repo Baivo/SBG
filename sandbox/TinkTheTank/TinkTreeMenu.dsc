@@ -138,8 +138,8 @@ nbf_util_ttm:
     type: task
     definitions: player
     script:
-    - ratelimit <player> 1s
-    - flag <player> tinktree expire:1s
+    - ratelimit <player> 1t
+    - flag <player> tinktree expire:3s
 
 nbf_util_ttm_handler:
     type: world
