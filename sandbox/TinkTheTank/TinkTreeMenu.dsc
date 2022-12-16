@@ -27,12 +27,6 @@ Tink_tree_menu_events:
         - ratelimit <player> 5t
         - define item <context.item.with_flag[tinktreeitem]>
         - drop <[item]> <player.location> quantity:<[item].material.max_stack_size>
-        on player places block:
-        - if <context.item_in_hand.has_flag[tinktreeitem]>:
-            - flag <context.location> tinktreeitem:<player.name>
-        on player breaks block location_flagged:tinktreeitem:
-        - flag <context.location> tinktreeitem:!
-        - determine nothing
 
 Tink_tree_page1:
     type: inventory
@@ -129,6 +123,12 @@ Tink_Tree_Item_Blocker:
             - stop
         - if <context.inventory> != <player.inventory>:
             - determine cancelled
+        on player places block:
+        - if <context.item_in_hand.has_flag[tinktreeitem]>:
+            - flag <context.location> tinktreeitem:<player.name>
+        on player breaks block location_flagged:tinktreeitem:
+        - flag <context.location> tinktreeitem:!
+        - determine nothing
 
 
 ## Netblock stuff
