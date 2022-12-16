@@ -237,3 +237,18 @@ SPoints_Perks_Menu_MiningReliable_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.mine.reliable def.player:<[player]> def.perkname:Mining<&sp>Reliable
+
+### Blast mining
+# Blast mining event
+perks_mine_blastmining_event:
+    type: world
+    debug: true
+    events:
+        on player right clicks block with:*_pickaxe:
+            - ratelimit <player> 1t
+            - define counter <player.flag[blastmine].if_null[0]>
+            - define counter:++
+            - flag player blastmine:<[counter]> expire:2t
+            - if <[counter]> > 20:
+                - narrate "bang!"
+                - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
