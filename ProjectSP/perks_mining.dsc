@@ -264,7 +264,7 @@ blastmine_run:
     script:
     - define power <[player].flag[perks.mine.blastmining].if_null[1]>
     - define target <[player].eye_location.ray_trace[return=precise;raysize=2;entities:*;range=50;ignore=<[player]>]>
-    - define targetlist <[target].location.find_blocks[!air].within[<[power]>]||null>
+    - define targetlist <[target].find_blocks[!air].within[<[power]>]||null>
     - if <[targetlist].is_empty>:
         - playeffect at:<[player].location> effect:smoke quantity:3 offset:1
         - playsound <[player].location> sound:ENTITY_GENERIC_EXTINGUISH_FIRE
