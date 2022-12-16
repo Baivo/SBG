@@ -248,7 +248,8 @@ perks_mine_blastmining_event:
             - ratelimit <player> 1t
             - define counter <player.flag[blastmine].if_null[0]>
             - define counter:++
-            - flag player blastmine:<[counter]> expire:2t
+            - flag <player> blastmine:<[counter]> expire:2t
+            - narrate <[counter]>
             - if <[counter]> > 20:
-                - narrate "bang!"
+                - narrate bang!
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
