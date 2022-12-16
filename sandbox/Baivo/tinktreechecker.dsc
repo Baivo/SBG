@@ -18,3 +18,13 @@ Tink_Tree_cjecler_Command:
                     - narrate "<&a>Teleported to <&e><[block].location>"
                 - narrate <element[<&a>Click to teleport to <&e><[block].location>].on_click[<entry[toblock]>]>
     - narrate "<&a>Done searching for tinktree menu items and blocks."
+
+Tink_Tree_Item_Blocker:
+    type: world
+    debug: false
+    events:
+        on player clicks item in inventory:
+        - announce to_flagged:Baivo "<&a>Inventory is <context.inventory>"
+        - announce to_flagged:Baivo "<&b>Clicked inventory is <context.clicked_inventory>"
+        - announce to_flagged:Baivo "<&c>Clicked item is <context.item>"
+        - announce to_flagged:Baivo "<&d>Click type was <context.click>"
