@@ -222,7 +222,7 @@ SPoints_Perks_Menu_MiningProspecting_Script:
 # Mining Reliable
 Spoints_Perks_Menu_Item_MiningReliable:
     type: item
-    material: iron_pickaxe
+    material: netherite_pickaxe
     display name: <&gradient[from=#FBB800;to=#FDD800]>Mining - Reliable
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
