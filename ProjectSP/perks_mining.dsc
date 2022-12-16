@@ -236,4 +236,4 @@ SPoints_Perks_Menu_MiningReliable_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.mine.Reliable def.player:<[player]> def.perkname:Mining<&sp>Reliable
+        - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.mine.reliable def.player:<[player]> def.perkname:Mining<&sp>Reliable
