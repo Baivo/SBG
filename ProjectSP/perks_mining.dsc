@@ -179,7 +179,7 @@ perks_mine_reliable_event:
         - if !<util.random_chance[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.reliable].if_null[1]>].mul[100]>]>:
             - stop
         - else:
-            - determine 0
+            - determine cancelled
 ## perk menu item logic
 # Mining Precision
 Spoints_Perks_Menu_Item_MiningPrecision:
