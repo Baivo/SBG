@@ -52,6 +52,12 @@ SPoints_Perks_InfoBook_Script:
                 - define next <script[perks_attributes].data_key[health.<[perklevel].add[1]>]>
                 - define curr "<[curr].div[2]> hearts"
                 - define next "<[next].div[2]> hearts"
+            - case perks.mine.reliable:
+                - flag <[player]> perkmenu.perkinfo:<script[perks_mine].data_key[prospecting.info]>
+                - define curr <script[perks_mine].data_key[prospecting.<[perklevel]>]>
+                - define next <script[perks_mine].data_key[prospecting.<[perklevel].add[1]>]>
+                - define curr "- <[curr].mul[100]>%"
+                - define next "- <[next].mul[100]>%"
             #
         - flag <[player]> perkmenu.perkinfo:->:<&sp><&r>
         - flag <[player]> perkmenu.perkinfo:->:<element[<&7>Current level: <[curr]>]>

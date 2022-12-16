@@ -83,6 +83,11 @@ perks_mine:
         18: 0.9
         19: 0.95
         20: 1
+        21: 1
+        info:
+            - Reduces durability loss from mining.
+            - Stacks with unbreaking!
+            - Max level removes durability loss completely!
 
 perks_mine_materials:
     type: data
@@ -149,7 +154,7 @@ perks_mine_prospecting_event:
     debug: false
     events:
         on player breaks block:
-        - if !<util.random_chance[<element[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]>]>:
+        - if !<util.random_chance[[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
@@ -167,6 +172,14 @@ perks_mine_prospecting_event:
         - playsound sound:BLOCK_AMETHYST_CLUSTER_PLACE volume:0.7 pitch:1.0 at:<context.location.center>
         - playeffect at:<context.location.center> effect:block_crack special_data:<[bns]> offset:1.2,1.2,1.2 quantity:5
 
+perks_mine_reliable_event:
+    type: world
+    events:
+        on player *_pickaxe takes damage:
+        - if !<util.random_chance[<script[perks_mine].data_key[reliable.<player.flag[perks.mine.reloable].if_null[1]>]>.mul[100]]>:
+            - stop
+        - else:
+            - determine 0
 ## perk menu item logic
 # Mining Precision
 Spoints_Perks_Menu_Item_MiningPrecision:
@@ -205,3 +218,22 @@ SPoints_Perks_Menu_MiningProspecting_Script:
     definitions: player
     script:
         - run Spoints_Perks_levelup_script def.cost:100 def.perk:perks.mine.prospecting def.player:<[player]> def.perkname:Mining<&sp>Prospecting
+
+# Mining Reliable
+Spoints_Perks_Menu_Item_MiningReliable:
+    type: item
+    material: iron_pickaxe
+    display name: <&gradient[from=#FBB800;to=#FDD800]>Mining - Reliable
+    lore:
+    - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu
+    mechanisms:
+        hides: all
+    flags:
+        script: SPoints_Perks_Menu_MiningReliable_Script
+        cost: 20
+
+SPoints_Perks_Menu_MiningReliable_Script:
+    type: task
+    definitions: player
+    script:
+        - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.mine.Reliable def.player:<[player]> def.perkname:Mining<&sp>Reliable
