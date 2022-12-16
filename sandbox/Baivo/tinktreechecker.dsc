@@ -26,10 +26,14 @@ Tink_Tree_Item_Blocker:
         on player clicks item in inventory:
         - if <player.name> != Baivo:
             - stop
+        - if !<context.item.has_flag[tinktreeitem]>:
+            - stop
         - if <context.inventory> != <player.inventory>:
             - determine dirt
         on player drags item in inventory:
         - if <player.name> != Baivo:
+            - stop
+        - if !<context.item.has_flag[tinktreeitem]>:
             - stop
         - if <context.inventory> != <player.inventory>:
             - determine cancelled
