@@ -245,12 +245,37 @@ perks_mine_blastmining_event:
     debug: true
     events:
         on player right clicks block with:*_pickaxe:
+            - if <player.name> != Baivo:
+                - stop
             - ratelimit <player> 1t
             - define counter <player.flag[blastmine].if_null[0]>
             - define counter:++
             - flag <player> blastmine:<[counter]> expire:5t
             - narrate <[counter]>
-            - if <[counter]> > 10:
+            - if <[counter]> >= 10:
                 - narrate bang!
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
                 - flag <player> blastmine:!
+                - run blastmine_run def.player:<player>
+
+blastmine_run:
+    type: task
+    definitions: player
+    script:
+    - define power <[player].flag[perks.mine.blastmining].if_null[1]>
+    - define target <[player].eye_location.ray_trace[return=precise;raysize=2;entities:*;range=50;ignore=<[player]>]>
+    - define targetlist <[player].location.find_blocks[!air].within[<[power]>]||null>
+    - if <[targetlist].is_empty>:
+        - playeffect at:<[player].location> effect:smoke quantity:3 offset:1
+        - playsound <[player].location> sound:ENTITY_GENERIC_EXTINGUISH_FIRE
+        - determine cancelled
+    - else:
+        - foreach <[targetlist]> as:targetblock:
+            - spawn falling_block[fallingblock_type=<[targetblock].material>] <[targetblock].above[1]> save:block
+            - adjust <[targetblock]> coreprotect_log_removal:[user=<[player].nameplate>;material=<[targetblock].material.name>]
+            - modifyblock <[targetblock]> air
+            - define block <entry[block].spawned_entity>
+            - define material <[targetblock].material>
+            - flag <[block]> emblock:<[player].nameplate>
+            - define logtype placement
+            - shoot <[block]> origin:<[block].location> destination:<[block].location.face[<[target]>].backward[5]>
