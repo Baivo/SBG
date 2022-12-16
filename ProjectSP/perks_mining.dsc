@@ -154,7 +154,7 @@ perks_mine_prospecting_event:
     debug: false
     events:
         on player breaks block:
-        - if !<util.random_chance[[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>]>].mul[100]]>:
+        - if !<util.random_chance[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.prospecting].if_null[1]>].mul[100]>]>:
             - stop
         - if <player.item_in_hand.enchantment_types.contains[<enchantment[silk_touch]>]>:
             - stop
@@ -176,7 +176,7 @@ perks_mine_reliable_event:
     type: world
     events:
         on player *_pickaxe takes damage:
-        - if !<util.random_chance[<script[perks_mine].data_key[reliable.<player.flag[perks.mine.reloable].if_null[1]>]>.mul[100]]>:
+        - if !<util.random_chance[<script[perks_mine].data_key[prospecting.<player.flag[perks.mine.reliable].if_null[1]>].mul[100]>]>:
             - stop
         - else:
             - determine 0
