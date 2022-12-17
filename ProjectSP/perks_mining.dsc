@@ -240,10 +240,20 @@ SPoints_Perks_Menu_MiningReliable_Script:
 
 ### Blast mining
 # Blast mining event
+
 perks_mine_blastmining_event:
     type: world
     debug: true
     events:
+        on delta time secondly:
+        - if <player.name> != Baivo:
+            - stop
+        - define counter <player.flag[blastmine].if_null[0]>
+        - if <[counter]> <= 0:
+            - define id <player.flag[blastmineprogressbar]>
+            - flag <player> blastmineprogressbar:!
+            - if <[id].exists>:
+                - bossbar remove id:<[id]>
         on player right clicks block with:*_pickaxe:
             - if <player.name> != Baivo:
                 - stop
@@ -252,10 +262,18 @@ perks_mine_blastmining_event:
             - define counter:++
             - flag <player> blastmine:<[counter]> expire:5t
             - narrate <[counter]>
+            - if !<player.has_flag[blastmineprogressbar]>:
+                - define id <player.flag[blastmineprogressbar]>
+                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]>
+            - else:
+                - flag <player> blastmineprogressbar:blastmine_<player.name>
+                - bossbar create id:blastmine_<player.name> title:<&gradient[from=#FBB800;to=#FDD800]>Blast<&sp>Mining<&sp>Progress color:yellow progress:<[counter].div[10]> style:segmented_10 players:<player>
             - if <[counter]> >= 10:
                 - narrate bang!
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
                 - flag <player> blastmine:!
+                - flag <player> blastmineprogressbar:!
+                - bossbar id:blastmine_<player> remove
                 - run blastmine_run def.player:<player>
 
 blastmine_run:
