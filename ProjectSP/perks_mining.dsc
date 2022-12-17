@@ -259,13 +259,15 @@ perks_mine_blastmining_event:
             - define counter <player.flag[blastmine].if_null[0]>
             - define counter:++
             - flag <player> blastmine:<[counter]> expire:5t
-            - narrate <[counter]>
             - if <player.has_flag[blastmineprogressbar]>:
                 - define id <player.flag[blastmineprogressbar]>
-                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]> style:segmented_10
+                - repeat 10:
+                    - define incriment 0.<[value]>
+                    - define incriment <[counter].div[10].add[<[incriment]>]>
+                    - bossbar update id:<[id]> color:yellow progress:<[incriment]> style:segmented_10
             - else:
                 - flag <player> blastmineprogressbar:blastmine_<player.name>
-                - bossbar create id:blastmine_<player.name> title:<&gradient[from=#FBB800;to=#FDD800]>Blast<&sp>Mining<&sp>Progress color:yellow progress:<[counter].div[10]> style:segmented_10 players:<player>
+                - bossbar create id:blastmine_<player.name> title:Blast<&sp>Mining<&sp>Progress color:yellow progress:<[counter].div[10]> style:segmented_10 players:<player>
             - if <[counter]> >= 10:
                 - narrate bang!
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
