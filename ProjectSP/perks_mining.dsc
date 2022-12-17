@@ -241,6 +241,12 @@ SPoints_Perks_Menu_MiningReliable_Script:
 ### Blast mining
 # Blast mining event
 
+# ability_bossbar_task:
+#     type: task
+#     definitions: player|id|counter
+#     script:
+#     - stop
+
 perks_mine_blastmining_event:
     type: world
     debug: true
@@ -261,15 +267,11 @@ perks_mine_blastmining_event:
             - flag <player> blastmine:<[counter]> expire:5t
             - if <player.has_flag[blastmineprogressbar]>:
                 - define id <player.flag[blastmineprogressbar]>
-                - repeat 9:
-                    - define incriment 0.0<[value]>
-                    - define incriment <[counter].div[10].add[<[incriment]>]>
-                    - bossbar update id:<[id]> color:yellow progress:<[incriment]> style:solid
+                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10].mul[2]> style:solid
             - else:
                 - flag <player> blastmineprogressbar:blastmine_<player.name>
                 - bossbar create id:blastmine_<player.name> title:<&e>Blast<&sp>Mining<&sp>-<&sp>Charging... color:yellow progress:<[counter].div[10]> style:solid players:<player>
-            - if <[counter]> >= 10:
-                - narrate bang!
+            - if <[counter]> >= 5:
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
                 - flag <player> blastmine:!
                 - flag <player> blastmineprogressbar:!
