@@ -277,6 +277,7 @@ perks_mine_blastmining_event:
                 - flag <player> blastmineprogressbar:!
                 - bossbar id:blastmine_<player> remove
                 - run blastmine_run def.player:<player>
+                - ratelimit <player> 3s
 
 blastmine_run:
     type: task
