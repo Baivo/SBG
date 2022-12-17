@@ -264,7 +264,7 @@ perks_mine_blastmining_event:
             - narrate <[counter]>
             - if <player.has_flag[blastmineprogressbar]>:
                 - define id <player.flag[blastmineprogressbar]>
-                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]>
+                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]> style:segmented_10
             - else:
                 - flag <player> blastmineprogressbar:blastmine_<player.name>
                 - bossbar create id:blastmine_<player.name> title:<&gradient[from=#FBB800;to=#FDD800]>Blast<&sp>Mining<&sp>Progress color:yellow progress:<[counter].div[10]> style:segmented_10 players:<player>
