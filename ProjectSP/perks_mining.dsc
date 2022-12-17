@@ -252,8 +252,7 @@ perks_mine_blastmining_event:
         - if <[counter]> <= 0:
             - define id <player.flag[blastmineprogressbar]>
             - flag <player> blastmineprogressbar:!
-            - if <[id].exists>:
-                - bossbar remove id:<[id]>
+            - bossbar remove id:<[id]>
         on player right clicks block with:*_pickaxe:
             - if <player.name> != Baivo:
                 - stop
