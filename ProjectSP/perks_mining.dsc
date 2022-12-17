@@ -267,7 +267,7 @@ perks_mine_blastmining_event:
                     - bossbar update id:<[id]> color:yellow progress:<[incriment]> style:segmented_10
             - else:
                 - flag <player> blastmineprogressbar:blastmine_<player.name>
-                - bossbar create id:blastmine_<player.name> title:Blast<&sp>Mining<&sp>Progress color:yellow progress:<[counter].div[10]> style:solid players:<player>
+                - bossbar create id:blastmine_<player.name> title:<&e>Blast<&sp>Mining<&sp>-<&sp>Charging... color:yellow progress:<[counter].div[10]> style:solid players:<player>
             - if <[counter]> >= 10:
                 - narrate bang!
                 - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
