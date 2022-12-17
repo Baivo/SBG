@@ -262,7 +262,7 @@ perks_mine_blastmining_event:
             - define counter:++
             - flag <player> blastmine:<[counter]> expire:5t
             - narrate <[counter]>
-            - if !<player.has_flag[blastmineprogressbar]>:
+            - if <player.has_flag[blastmineprogressbar]>:
                 - define id <player.flag[blastmineprogressbar]>
                 - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]>
             - else:
