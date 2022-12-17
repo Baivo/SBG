@@ -246,11 +246,12 @@ perks_mine_blastmining_event:
     debug: true
     events:
         on delta time secondly:
-        - if <player.name> != Baivo:
-            - stop
-        - if <player.flag[blastmine].if_null[0]> <= 0:
-            - flag <player> blastmineprogressbar:!
-            - bossbar remove id:blastmine_<player.name>
+        - foreach <server.online_players> as:player:
+            - if <[player].name> != Baivo:
+                - foreach next
+            - if <[player].flag[blastmine].if_null[0]> <= 0:
+                - flag <[player]> blastmineprogressbar:!
+                - bossbar remove id:blastmine_<[player].name>
         on player right clicks block with:*_pickaxe:
             - if <player.name> != Baivo:
                 - stop
