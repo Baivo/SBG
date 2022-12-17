@@ -264,7 +264,7 @@ perks_mine_blastmining_event:
                 - repeat 9:
                     - define incriment 0.0<[value]>
                     - define incriment <[counter].div[10].add[<[incriment]>]>
-                    - bossbar update id:<[id]> color:yellow progress:<[incriment]> style:segmented_10
+                    - bossbar update id:<[id]> color:yellow progress:<[incriment]> style:solid
             - else:
                 - flag <player> blastmineprogressbar:blastmine_<player.name>
                 - bossbar create id:blastmine_<player.name> title:<&e>Blast<&sp>Mining<&sp>-<&sp>Charging... color:yellow progress:<[counter].div[10]> style:solid players:<player>
