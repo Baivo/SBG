@@ -241,11 +241,6 @@ SPoints_Perks_Menu_MiningReliable_Script:
 ### Blast mining
 # Blast mining event
 
-# ability_bossbar_task:
-#     type: task
-#     definitions: player|id|counter
-#     script:
-#     - stop
 
 perks_mine_blastmining_event:
     type: world
@@ -277,7 +272,7 @@ perks_mine_blastmining_event:
                 - flag <player> blastmineprogressbar:!
                 - bossbar id:blastmine_<player> remove
                 - run blastmine_run def.player:<player>
-                - ratelimit <player> 3s
+                - ratelimit <player> 30s
 
 blastmine_run:
     type: task
