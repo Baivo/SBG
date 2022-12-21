@@ -117,7 +117,7 @@ SPoints_Perks_Menu_GreenThumb_Script:
 # Farming Reliable
 Spoints_Perks_Menu_Item_FarmingReliable:
     type: item
-    material: netherite_pickaxe
+    material: netherite_hoe
     display name: <&gradient[from=#FBB800;to=#FDD800]>Farming - Reliable
     lore:
     - <&gradient[from=#C7C5FC;to=#C5DFFC]>Click to open Level-Up menu

@@ -2,7 +2,7 @@ SPoints_Perks_menu:
     type: inventory
     title: <&gradient[from=#C7C5FC;to=#C5DFFC]>Perks Shop
     inventory: chest
-    size: 9
+    size: 36
     gui: true
     data:
         menu: Spoints_perks_menu
