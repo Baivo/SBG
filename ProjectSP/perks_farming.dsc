@@ -59,8 +59,8 @@ perks_farm:
         20: 1
         21: 1
         info:
-            - Reduces durability loss from mining.
-            - Stacks with unbreaking!
+            - Reduces durability loss for farm tools.
+            - Works with Hoes, Shears.
             - Max level removes durability loss completely!
 
 perks_farm_events:
@@ -79,11 +79,19 @@ perks_farm_events:
         - define drops <context.location.drops[<player.item_in_hand>].first.if_null[<item[air]>]>
         - drop <[drops]> <context.location>
 
-perks_farm_reliable_event:
+perks_farm_reliable_hoeevent:
     type: world
     events:
-        on player *_pickaxe takes damage:
-        - if !<util.random_chance[<script[perks_farm].data_key[reliable.<player.flag[perks.mine.reliable].if_null[1]>].mul[100]>]>:
+        on player *_hoe takes damage:
+        - if !<util.random_chance[<script[perks_farm].data_key[reliable.<player.flag[perks.farm.reliable].if_null[1]>].mul[100]>]>:
+            - stop
+        - else:
+            - determine cancelled
+perks_farm_reliable_shearevent:
+    type: world
+    events:
+        on player shears takes damage:
+        - if !<util.random_chance[<script[perks_farm].data_key[reliable.<player.flag[perks.farm.reliable].if_null[1]>].mul[100]>]>:
             - stop
         - else:
             - determine cancelled
