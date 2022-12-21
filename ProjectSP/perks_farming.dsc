@@ -131,4 +131,4 @@ SPoints_Perks_Menu_FarmingReliable_Script:
     type: task
     definitions: player
     script:
-        - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.farm.reliable def.player:<[player]> def.perkname:Farming<&sp>Reliable
+        - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.farm.reliable def.player:<[player]> def.perkname:Reliable<&sp>Farm<&sp>Tools
