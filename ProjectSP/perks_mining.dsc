@@ -240,8 +240,6 @@ SPoints_Perks_Menu_MiningReliable_Script:
 
 ### Blast mining
 # Blast mining event
-    
-
 perks_mine_blastmining_event:
     type: world
     debug: true
