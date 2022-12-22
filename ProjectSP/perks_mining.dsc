@@ -88,6 +88,28 @@ perks_mine:
             - Reduces durability loss from mining.
             - Stacks with unbreaking!
             - Max level removes durability loss completely!
+    blastmining:
+        1: 1
+        2: 2
+        3: 2.2
+        4: 2.4
+        5: 2.6
+        6: 2.8
+        7: 3
+        8: 3.2
+        9: 3.4
+        10: 4
+        11: 4.5
+        12: 5
+        13: 5.5
+        14: 6
+        15: 6.5
+        16: 7
+        17: 7.5
+        18: 8
+        19: 8.5
+        20: 9
+        21: 9
 
 perks_mine_materials:
     type: data
@@ -275,7 +297,7 @@ perks_mine_blastmining_event:
                 - flag <player> blastmineprogressbar:!
                 - bossbar id:blastmine_<player> remove
                 - run blastmine_run def.player:<player>
-                - flag <player> blastminecooldown expire:30s
+                - flag <player> blastminecooldown expire:3s
 
 blastmine_run:
     type: task
