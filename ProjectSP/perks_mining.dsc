@@ -255,7 +255,8 @@ perks_mine_blastmining_event:
                 - bossbar remove id:blastmine_<[player].name>
         on player right clicks block with:*_pickaxe:
             - if <player.has_flag[blastminecooldown]>:
-                - narrate "<&c>You are still on cooldown for blast mining!"
+                - define cooldown <player.flag_expiration[blastminecooldown].duration_since[<util.time_now>]>
+                - actionbar "<&c>You must wait <&e><[cooldown].round_to[0].formatted> <&c>before using Blast Mining again."
                 - ratelimit <player> 1s
                 - stop
             - if <player.name> != Baivo:
