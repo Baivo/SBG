@@ -276,14 +276,14 @@ abilitycooldown:
         - flag <[player]> <[ability]>:<[counter]> expire:1s
         - if <[player].has_flag[<[ability]>progressbar]>:
             - define id <[player].flag[<[ability]>progressbar]>
-            - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]> style:solid
+            - bossbar update id:<[id]> color:yellow progress:<[counter].div[5]> style:solid
         - else:
             - flag <[player]> <[ability]>progressbar:<[ability]>_<[player].name>
-            - bossbar create id:<[ability]>_<[player].name> title:<[ability]> progress:<[counter].div[10]> color:yellow style:solid
+            - bossbar create id:<[ability]>_<[player].name> title:<[ability]> progress:<[counter].div[5]> color:yellow style:solid
         - if <[counter]> >= 5:
             - flag <[player]> <[ability]>progressbar:!
             - bossbar remove id:<[ability]>_<[player].name>
-            - flag <[player]> <[ability]>cooldown:<[cooldown]>
+            - flag <[player]> <[ability]>cooldown expire:<[cooldown]>
             - flag <[player]> <[ability]>:!
             - run <[ability]>_run def.player:<[player]>
 abilityremovebar:
