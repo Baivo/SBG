@@ -332,3 +332,4 @@ blastmine_run:
             - flag <[block]> emblock:<[player].nameplate>
             - define logtype placement
             - shoot <[block]> origin:<[block].location> destination:<[block].location.face[<[target]>].backward[5]>
+            - playeffect at:<[targetblock]> effect:flash
