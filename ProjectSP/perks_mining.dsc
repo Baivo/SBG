@@ -333,3 +333,4 @@ blastmine_run:
             - define logtype placement
             - shoot <[block]> origin:<[block].location> destination:<[block].location.face[<[target]>].backward[5]>
             - playeffect at:<[targetblock]> effect:flash
+            - playeffect at:<[targetblock]> effect:explosion_normal
