@@ -286,7 +286,7 @@ abilitycooldown:
             - flag <[player]> <[ability]>cooldown expire:<[cooldown]>
             - flag <[player]> <[ability]>:!
             - run <[ability]>_run def.player:<[player]>
-            - wait 2t
+            - wait 6t
             - bossbar remove id:<[ability]>_<[player].name>
 abilityremovebar:
     type: world
