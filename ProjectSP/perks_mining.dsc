@@ -260,52 +260,59 @@ SPoints_Perks_Menu_MiningReliable_Script:
     script:
         - run Spoints_Perks_levelup_script def.cost:20 def.perk:perks.mine.reliable def.player:<[player]> def.perkname:Reliable<&sp>Pickaxes
 
-### Blast mining
-# Blast mining event
-perks_mine_blastmining_event:
+## Generic ability
+abilitycooldown:
+    type: task
+    definitions: player|ability|cooldown
+    script:
+        - if <[player].name> != Baivo:
+            - stop
+        - if <[player].has_flag[<[ability]>cooldown]>:
+            - define cooldown <[player].flag_expiration[<[ability]>cooldown].duration_since[<util.time_now>]>
+            - actionbar "<&c>You must wait <&e><[cooldown].formatted> <&c>before using <[ability]> again."
+            - stop
+        - define counter <[player].flag[<[ability]>cooldown].if_null[0]>
+        - define counter:++
+        - flag <[player]> <[ability]>:<[counter]>
+        - if <[player].has_flag[<[ability]>progressbar]>:
+            - define id <[player].flag[<[ability]>progressbar]>
+            - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]> style:solid
+        - else:
+            - flag <[player]> <[ability]>progressbar:<[ability]>_<[player].name>
+            - bossbar create id:<[ability]>_<[player].name> title:<[ability]> progress:<[counter].div[10]> color:yellow style:solid
+        - if <[counter]> >= 5:
+            - flag <[player]> <[ability]>progressbar:!
+            - bossbar remove id:<[ability]>_<[player].name>
+            - flag <[player]> <[ability]>cooldown:<[cooldown]>
+            - flag <[player]> <[ability]>:!
+            - run <[ability]>_run def.player:<[player]>
+abilityremovebar:
     type: world
-    debug: true
     events:
         on delta time secondly:
+        # blastmine
         - foreach <server.online_players> as:player:
             - if <[player].name> != Baivo:
                 - foreach next
             - if <[player].flag[blastmine].if_null[0]> <= 0:
                 - flag <[player]> blastmineprogressbar:!
                 - bossbar remove id:blastmine_<[player].name>
+
+### Blast mining
+# Blast mining event
+perks_mine_blastmining_event:
+    type: world
+    debug: true
+    events:
         on player right clicks block with:*_pickaxe:
-            - if <player.has_flag[blastminecooldown]>:
-                - define cooldown <player.flag_expiration[blastminecooldown].duration_since[<util.time_now>]>
-                - actionbar "<&c>You must wait <&e><[cooldown].formatted> <&c>before using Blast Mining again."
-                - ratelimit <player> 1s
-                - stop
-            - if <player.name> != Baivo:
-                - stop
             - ratelimit <player> 1t
-            - define counter <player.flag[blastmine].if_null[0]>
-            - define counter:++
-            - flag <player> blastmine:<[counter]> expire:5t
-            - if <player.has_flag[blastmineprogressbar]>:
-                - define id <player.flag[blastmineprogressbar]>
-                - bossbar update id:<[id]> color:yellow progress:<[counter].div[10].mul[2]> style:solid
-            - else:
-                - flag <player> blastmineprogressbar:blastmine_<player.name>
-                - bossbar create id:blastmine_<player.name> title:<&e>Blast<&sp>Mining<&sp>-<&sp>Charging... color:yellow progress:<[counter].div[10]> style:solid players:<player>
-            - if <[counter]> >= 5:
-                - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
-                - flag <player> blastmine:!
-                - flag <player> blastmineprogressbar:!
-                - bossbar id:blastmine_<player> remove
-                - run blastmine_run def.player:<player>
-                - if <player.has_flag[big]>:
-                    - flag <player> blastminecooldown expire:30s
-                    - stop
-                - flag <player> blastminecooldown expire:3s
+            - run abilitycooldown def.player:<player> def.ability:blastmine def.cooldown:3s
 
 blastmine_run:
     type: task
     definitions: player
     script:
+    - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
     - define power <[player].flag[perks.mine.blastmining].if_null[1]>
     - define target <[player].eye_location.ray_trace[return=precise;raysize=2;entities:*;range=50;ignore=<[player]>]>
     - define targetlist <[target].find_blocks[!air].within[<[power]>]||null>
