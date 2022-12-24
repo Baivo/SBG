@@ -263,7 +263,7 @@ SPoints_Perks_Menu_MiningReliable_Script:
 ## Generic ability
 abilitycooldown:
     type: task
-    definitions: player|ability|cooldown
+    definitions: player|ability|cooldown|title|endtitle
     script:
         - if <[player].name> != Baivo:
             - stop
@@ -279,13 +279,15 @@ abilitycooldown:
             - bossbar update id:<[id]> color:yellow progress:<[counter].div[5]> style:solid
         - else:
             - flag <[player]> <[ability]>progressbar:<[ability]>_<[player].name>
-            - bossbar create id:<[ability]>_<[player].name> title:<[ability]> progress:<[counter].div[5]> color:yellow style:solid
+            - bossbar create id:<[ability]>_<[player].name> title:<[title]> progress:<[counter].div[5]> color:yellow style:solid
         - if <[counter]> >= 5:
+            - bossbar update id:<[id]> color:green progress:<[counter].div[5]> style:solid title:<[endtitle]>
             - flag <[player]> <[ability]>progressbar:!
-            - bossbar remove id:<[ability]>_<[player].name>
             - flag <[player]> <[ability]>cooldown expire:<[cooldown]>
             - flag <[player]> <[ability]>:!
             - run <[ability]>_run def.player:<[player]>
+            - wait 2t
+            - bossbar remove id:<[ability]>_<[player].name>
 abilityremovebar:
     type: world
     events:
@@ -306,7 +308,7 @@ perks_mine_blastmining_event:
     events:
         on player right clicks block with:*_pickaxe:
             - ratelimit <player> 1t
-            - run abilitycooldown def.player:<player> def.ability:blastmine def.cooldown:3s
+            - run abilitycooldown def.player:<player> def.ability:blastmine def.cooldown:3s def.title:<&e>Blast<&sp>Mine<&sp>Charging... def.endtitle:<&a>Blast<&sp>Mine<&sp>Ready!
 
 blastmine_run:
     type: task
