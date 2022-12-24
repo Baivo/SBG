@@ -273,7 +273,7 @@ abilitycooldown:
             - stop
         - define counter <[player].flag[<[ability]>cooldown].if_null[0]>
         - define counter:++
-        - flag <[player]> <[ability]>:<[counter]>
+        - flag <[player]> <[ability]>:<[counter]> expire:1s
         - if <[player].has_flag[<[ability]>progressbar]>:
             - define id <[player].flag[<[ability]>progressbar]>
             - bossbar update id:<[id]> color:yellow progress:<[counter].div[10]> style:solid
