@@ -271,7 +271,7 @@ abilitycooldown:
             - define cooldown <[player].flag_expiration[<[ability]>cooldown].duration_since[<util.time_now>]>
             - actionbar "<&c>You must wait <&e><[cooldown].formatted> <&c>before using <[ability]> again."
             - stop
-        - define counter <[player].flag[<[ability]>cooldown].if_null[0]>
+        - define counter <[player].flag[<[ability]>].if_null[0]>
         - define counter:++
         - flag <[player]> <[ability]>:<[counter]> expire:1s
         - if <[player].has_flag[<[ability]>progressbar]>:
