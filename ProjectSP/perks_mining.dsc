@@ -265,7 +265,7 @@ abilitycooldown:
     type: task
     definitions: player|ability|cooldown|title|endtitle
     script:
-        - if <[player].name> != Baivo:
+        - if <[player].name> != cyxptdthegamer:
             - stop
         - if <[player].has_flag[<[ability]>cooldown]>:
             - define cooldown <[player].flag_expiration[<[ability]>cooldown].duration_since[<util.time_now>]>
