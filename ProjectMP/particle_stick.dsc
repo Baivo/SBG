@@ -3,7 +3,7 @@ particle_stick:
     material: stick
     mechanisms:
         custom_model_data: 17
-    display name: <&d>Particle Stick
+    display name: &dParticle Stick
     lore:
     - Right click to place particles
     - Left click to remove particles
@@ -39,7 +39,7 @@ sparkle:
     debug: true
     events:
         on delta time secondly:
-        - foreach <server.flag[particle_stick_location]> as:location:
+        - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - foreach <server.flag[particle_stick_location.<[location]>]> as:particle:
                 - if <server.flag[particle_stick_location.<[location]>.<[particle]>.animation]> == sparkle:
                     - playeffect at:<[location]> effect:<server.flag[particle_stick_location.<[location]>.<[particle]>.particle]> quantity:<server.flag[particle_stick_location.<[location]>.<[particle]>.count]> offset:0.5,0.5,0.5 speed:0.5 data:0
