@@ -39,7 +39,7 @@ sparkle:
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location]> as:location:
-            - foreach <[location].id> as:particle:
+            - foreach <[location].flag[id]> as:particle:
                 - if <[particle].flag[animation]> == sparkle:
                     - playeffect at:<[location]> effect:<[particle].flag[particle]> quantity:<[particle].flag[count]> offset:0.5,0.5,0.5 speed:0.5 data:0
                 - else:
