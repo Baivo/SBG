@@ -33,7 +33,7 @@ particle_stick_events:
         - flag <[location]> particle:!
         on player drops particle_stick:
         - determine cancelled passively
-        - narrate menu opens
+        - inventory open d:<inventory[particle_inventory]>
 
 sparkle:
     type: world
@@ -61,3 +61,18 @@ circle:
                             - playeffect at:<[loc].center> effect:<[id].get[particle]> count:<[id].get[count]> offset:0 speed:0.5
                     - else:
                         - foreach next
+
+particle_inventory:
+    type: inventory
+    title: Particle Menu
+    inventory: chest
+    size: 54
+    procedural items:
+        - define list <list>
+        - foreach <server.particle_types> as:particle:
+            - define item <item[stick]>
+            - define item <[item].with[display name=<&c><[particle]>]>
+            - define item <[item].with[lore=<list[<&a>Click to select this particle]>]>
+            - define item <[item].with_flag[particle:<[particle]>]>
+            - define list <[list].include[<[item]>]>
+        - determine <[list]>
