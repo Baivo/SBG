@@ -36,6 +36,7 @@ particle_stick_events:
 
 sparkle:
     type: world
+    debug: true
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location]> as:location:
