@@ -34,6 +34,10 @@ particle_stick_events:
         on player drops particle_stick:
         - determine cancelled passively
         - inventory open d:<inventory[particle_inventory]>
+        on player clicks item in particle_inventory:
+        - determine cancelled passively
+        - define particle <context.item.flag[particle]>
+        - flag <player.item_in_hand> particle:<[particle]>
 
 sparkle:
     type: world
