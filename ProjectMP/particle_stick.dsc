@@ -3,7 +3,7 @@ particle_stick:
     material: stick
     mechanisms:
         custom_model_data: 17
-    display name: &dParticle Stick
+    display name: <&d>Particle Stick
     lore:
     - Right click to place particles
     - Left click to remove particles
@@ -36,6 +36,7 @@ particle_stick_events:
 
 sparkle:
     type: world
+    debug: true
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location]> as:location:
