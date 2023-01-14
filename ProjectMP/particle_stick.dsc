@@ -56,11 +56,11 @@ circle:
     debug: true
     events:
         on delta time secondly:
-            - ~foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-                - ~foreach <[location].flag[particle]> as:id:
+            - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
+                - foreach <[location].flag[particle]> as:id:
                     - if <[id].get[animation]> == circle:
-                        - ~foreach <[location].center.points_around_y[radius=0.5;points=20]> as:loc:
-                            - ~playeffect at:<[loc]> effect:<[id].get[particle]> count:<[id].get[count]> offset:0 speed:0.5
+                        - foreach <[location].center.points_around_y[radius=0.5;points=20]> as:loc:
+                            - playeffect at:<[loc]> effect:<[id].get[particle]> count:<[id].get[count]> offset:0 speed:0.5
                             - wait 1t
                     - else:
                         - foreach next
