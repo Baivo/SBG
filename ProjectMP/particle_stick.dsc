@@ -22,10 +22,10 @@ particle_stick_events:
         - define id <util.random_uuid>
         - flag server particle_stick_location:.<[location]>
         - flag server particle_stick_location.<[location]>.<[id]>
-        - flag server particle_stick_location.<[location]>.<[id]>.owner:->:<player.name>
-        - flag server particle_stick_location.<[location]>.<[id]>.particle:->:<player.item_in_hand.flag[particle]>
-        - flag server particle_stick_location.<[location]>.<[id]>.count:->:<player.item_in_hand.flag[particle_count]>
-        - flag server particle_stick_location.<[location]>.<[id]>.animation:->:<player.item_in_hand.flag[particle_animation]>
+        - flag server particle_stick_location.<[location]>.<[id]>.owner:<player.name>
+        - flag server particle_stick_location.<[location]>.<[id]>.particle:<player.item_in_hand.flag[particle]>
+        - flag server particle_stick_location.<[location]>.<[id]>.count:<player.item_in_hand.flag[particle_count]>
+        - flag server particle_stick_location.<[location]>.<[id]>.animation:<player.item_in_hand.flag[particle_animation]>
         on player left clicks bllck with:particle_stick:
         - determine cancelled passively
         - define location <context.relative>
