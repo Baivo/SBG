@@ -21,11 +21,11 @@ particle_stick_events:
         - define location <context.relative>
         - define id <util.random_uuid>
         - flag server particle_stick_location:->:<[location]>
-        - flag server particle_stick_location.<[location]>:->:<[id]>
-        - flag server particle_stick_location.<[location]>.<[id]>.owner:<player.name>
-        - flag server particle_stick_location.<[location]>.<[id]>.particle:<player.item_in_hand.flag[particle]>
-        - flag server particle_stick_location.<[location]>.<[id]>.count:<player.item_in_hand.flag[particle_count]>
-        - flag server particle_stick_location.<[location]>.<[id]>.animation:<player.item_in_hand.flag[particle_animation]>
+        - flag <[location]> particle:->:<[id]>
+        - flag <[location]> particle.<[id]>.owner:<player.name>
+        - flag <[location]> particle.<[id]>.particle:<player.item_in_hand.flag[particle]>
+        - flag <[location]> particle.<[id]>.count:<player.item_in_hand.flag[particle_count]>
+        - flag <[location]> particle.<[id]>.animation:<player.item_in_hand.flag[particle_animation]>
         on player left clicks bllck with:particle_stick:
         - determine cancelled passively
         - define location <context.relative>
@@ -40,8 +40,8 @@ sparkle:
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-            - foreach <server.flag[particle_stick_location.<[location]>]> as:id:
-                - if <server.flag[particle_stick_location.<[location]>.<[id]>.animation]> == sparkle:
-                    - playeffect at:<[location]> effect:<server.flag[particle_stick_location.<[location]>.<[id]>.particle]> quantity:<server.flag[particle_stick_location.<[location]>.<[id]>.count]> offset:0.5,0.5,0.5 speed:0.5 data:0
+            - foreach <[location].flag[particle]> as:id:
+                - if <[location].flag[particle.<[id]>.animation]> == sparkle:
+                    - playeffect at:<[location]> effect:<[location].flag[particle.<[id]>.particle]> count:<[location].flag[particle.<[id]>.count]> offset:0.5,0.5,0.5 speed:0.5 data:0
                 - else:
                     - foreach next
