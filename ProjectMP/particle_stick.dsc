@@ -3,7 +3,7 @@ particle_stick:
     material: stick
     mechanisms:
         custom_model_data: 17
-    display name: <&e>Particle Stick
+    display name: <&a>Particle Stick
     lore:
     - Right click to place particles
     - Left click to remove particles
@@ -20,7 +20,7 @@ particle_stick_events:
         - determine cancelled passively
         - define location <context.relative>
         - define id <util.random_uuid>
-        - flag server particle_stick_location:.<[location]>
+        - flag server particle_stick_location.<[location]>
         - flag server particle_stick_location.<[location]>.<[id]>
         - flag server particle_stick_location.<[location]>.<[id]>.owner:<player.name>
         - flag server particle_stick_location.<[location]>.<[id]>.particle:<player.item_in_hand.flag[particle]>
