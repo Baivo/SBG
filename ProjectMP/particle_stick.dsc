@@ -71,7 +71,7 @@ particle_inventory:
         - define list <list>
         - foreach <server.particle_types> as:particle:
             - define item <item[stick]>
-            - define item <[item].with[display name=<&c><[particle]>]>
+            - define item <[item].with[display_name=<&c><[particle]>]>
             - define item <[item].with[lore=<list[<&a>Click to select this particle]>]>
             - define item <[item].with_flag[particle:<[particle]>]>
             - define list <[list].include[<[item]>]>
