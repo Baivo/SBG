@@ -70,7 +70,7 @@ ps_shape_circle_bottom:
             - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
         - foreach <[location].center.below[0.4].points_around_y[radius=0.15;points=5]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
-        - wait 1t
+
     
 
 ps_shape_circle_top:
