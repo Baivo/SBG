@@ -73,10 +73,10 @@ ps_particle_inventory_events:
         # Handle page arrows
         on player clicks particle_inventory_left_item in ps_particle_inventory_2 priority:1:
         - determine passively cancelled
-        - inventory open d:ps_particle_inventory_1
+        - inventory open d:<inventory[ps_particle_inventory_1]>
         on player clicks particle_inventory_right_item in ps_particle_inventory_1 priority:1:
         - determine passively cancelled
-        - inventory open d:ps_particle_inventory_2
+        - inventory open d:<inventory[ps_particle_inventory_2]>
 
 ps_particle_inventory_1:
     type: inventory
