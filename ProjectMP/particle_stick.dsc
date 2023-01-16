@@ -73,6 +73,8 @@ ps_particle_inventory_events:
             - inventory open d:<inventory[ps_particle_inventory_1]>
         - else if <context.item.script.name.if_null[no name]> == particle_inventory_right_item:
             - inventory open d:<inventory[ps_particle_inventory_2]>
+        - else if !<context.item.has_flag[particle]>:
+            - determine cancelled
         - else:
             - define particle <context.item.flag[particle]>
             - inventory flag slot:hand particle:<[particle]>
