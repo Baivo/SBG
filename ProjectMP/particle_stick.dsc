@@ -3,11 +3,12 @@ particle_stick:
     material: stick
     mechanisms:
         custom_model_data: 17
-    display name: <&a>Particle Stick
+    display name: <&e>Particle Stick
     lore:
-    - Right click to place particles
-    - Left click to remove particles
-    - Throw (Q) to change particle type
+    - <&8>
+    - <&7>Right click to place particles
+    - <&7>Left click to remove particles
+    - <&7>Throw (Q) to change particle type
     flags:
         particle: SPELL_WITCH
         particle_count: 10
