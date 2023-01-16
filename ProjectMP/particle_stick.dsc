@@ -65,10 +65,6 @@ ps_shape_circle:
 ps_particle_inventory_events:
     type: event
     events:
-        on player clicks item in ps_particle_inventory_* with:!air priority:1:
-        # Only cancel if they clicked the scripted inventory (as opposed to their own playe rinventory)
-        - if <context.clicked_inventory.script.exists>:
-            - determine cancelled
         # Handle particle selection
         on player clicks item in ps_particle_inventory_*:
         - define particle <context.item.flag[particle]>
