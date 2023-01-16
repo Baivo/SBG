@@ -38,7 +38,7 @@ ps_item_events:
 
 ps_shape_sparkle:
     type: world
-    debug: true
+    debug: false
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
@@ -50,7 +50,7 @@ ps_shape_sparkle:
 
 ps_shape_circle:
     type: world
-    debug: true
+    debug: false
     events:
         on delta time secondly:
             - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
@@ -76,9 +76,6 @@ ps_particle_inventory_events:
             - inventory flag slot:hand particle:<[particle]>
             - narrate <&a>You have selected the <&c><[particle].to_sentence_case> <&a>particle.
             - inventory close
-
-
-        
 
 ps_particle_inventory_1:
     type: inventory
