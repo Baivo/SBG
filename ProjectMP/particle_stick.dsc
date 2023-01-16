@@ -13,7 +13,7 @@ particle_stick:
         particle_count: 10
         particle_animation: circle
 
-particle_stick_events:
+ps_item_events:
     type: world
     events:
         on player right clicks block with:particle_stick:
@@ -39,7 +39,7 @@ particle_stick_events:
         - define particle <context.item.flag[particle]>
         - inventory flag slot:hand particle:<[particle]>
 
-sparkle:
+ps_shape_sparkle:
     type: world
     debug: true
     events:
@@ -51,7 +51,7 @@ sparkle:
                 - else:
                     - foreach next
 
-circle:
+ps_shape_circle:
     type: world
     debug: true
     events:
@@ -65,7 +65,22 @@ circle:
                     - else:
                         - foreach next
 
-particle_inventory_2:
+ps_particle_inventory_events:
+    type: event
+    events:
+        on player clicks item in particle_inventory_* with:!air priority:1:
+        # Only cancel if they clicked the scripted inventory (as opposed to their own playe rinventory)
+        - if <context.clicked_inventory.script.exists>:
+            - determine cancelled
+        # Handle page arrows
+        on player clicks particle_inventory_left_itemin ps_particle_inventory_2:
+        - determine passively cancelled
+        - inventory open d:ps_particle_inventory_1
+        on player clicks particle_inventory_right_item in ps_particle_inventory_1:
+        - determine passively cancelled
+        - inventory open d:ps_particle_inventory_2
+
+ps_particle_inventory_1:
     type: inventory
     title: Particle Menu
     inventory: chest
@@ -79,14 +94,31 @@ particle_inventory_2:
                 - define item <[item].with[lore=<list[<&8>|<&a><&o>Click to select this particle]>]>
                 - define item <[item].with_flag[particle:<[particle]>]>
             - else:
-                - define item <item[particle_right_item]>
+                - define item <item[particle_inventory_right_item]>
             - define list <[list].include[<[item]>]>
         - determine <[list]>
 
+ps_particle_inventory_2:
+    type: inventory
+    title: Particle Menu
+    inventory: chest
+    size: 54
+    procedural items:
+        - define list <list>
+        - foreach <server.particle_types> as:particle:
+            - if <[loop_index]> < 53:
+                - foreach next
+            - else if <[loop_index]> == 53:
+                - define item <item[particle_inventory_left_item]>
+            - else:
+                - define item <item[stick]>
+                - define item <[item].with[display_name=<&c><[particle].to_sentence_case>]>
+                - define item <[item].with[lore=<list[<&8>|<&a><&o>Click to select this particle]>]>
+                - define item <[item].with_flag[particle:<[particle]>]>
+            - define list <[list].include[<[item]>]>
+        - determine <[list]>
 
-
-
-particle_left_item:
+particle_inventory_left_item:
     type: item
     debug: false
     material: player_head
@@ -94,25 +126,10 @@ particle_left_item:
     mechanisms:
         skull_skin: 6d9cb85a-2b76-4e1f-bccc-941978fd4de0|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTE4NWM5N2RiYjgzNTNkZTY1MjY5OGQyNGI2NDMyN2I3OTNhM2YzMmE5OGJlNjdiNzE5ZmJlZGFiMzVlIn19fQ==
 
-particle_right_item:
+particle_inventory_right_item:
     type: item
     debug: false
     material: player_head
     display name: <&a>Next Page
     mechanisms:
         skull_skin: 3cd9b7a3-c8bc-4a05-8cb9-0b6d4673bca9|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFjMGVkZWRkNzExNWZjMWIyM2Q1MWNlOTY2MzU4YjI3MTk1ZGFmMjZlYmI2ZTQ1YTY2YzM0YzY5YzM0MDkxIn19fQ
-
-head_list_inventory_open_task:
-    type: task
-    debug: false
-    definitions: heads|page
-    script:
-    - flag player current_head_list:<[heads]>
-    - flag player current_head_page:<[page]>
-    - define inv <inventory[head_list_inventory]>
-    - inventory set d:<[inv]> o:<[heads].get[<[page].sub[1].mul[45].max[1]>].to[<[page].mul[45]>]>
-    - if <[page]> > 1:
-        - inventory set d:<[inv]> o:head_list_arrow_left_item slot:46
-    - if <[heads].size> > <[page].mul[45]>:
-        - inventory set d:<[inv]> o:head_list_arrow_right_item slot:54
-    - inventory open d:<[inv]>
