@@ -66,15 +66,15 @@ ps_particle_inventory_events:
     type: event
     events:
         # Handle particle selection
-        on player clicks !particle_inventory_left_item|particle_inventory_right_item in ps_particle_inventory_*:
+        on player clicks item in ps_particle_inventory_* priority:2:
         - define particle <context.item.flag[particle]>
         - inventory flag slot:hand particle:<[particle]>
         - narrate <&a>You have selected the <&c><[particle].to_sentence_case> <&a>particle.
         # Handle page arrows
-        on player clicks particle_inventory_left_item in ps_particle_inventory_2:
+        on player clicks particle_inventory_left_item in ps_particle_inventory_2 priority:1:
         - determine passively cancelled
         - inventory open d:ps_particle_inventory_1
-        on player clicks particle_inventory_right_item in ps_particle_inventory_1:
+        on player clicks particle_inventory_right_item in ps_particle_inventory_1 priority:1:
         - determine passively cancelled
         - inventory open d:ps_particle_inventory_2
 
