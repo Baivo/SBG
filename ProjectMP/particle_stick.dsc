@@ -69,7 +69,6 @@ ps_particle_inventory_events:
     events:
         # Handle particle selection
         on player clicks item in ps_particle_inventory_*:
-        - narrate <context.item.script.name>
         - if <context.item.script.name.if_null[no name]> == particle_inventory_left_item:
             - inventory open d:<inventory[ps_particle_inventory_1]>
         - else if <context.item.script.name.if_null[no name]> == particle_inventory_right_item:
