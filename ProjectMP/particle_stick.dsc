@@ -65,17 +65,21 @@ ps_shape_circle_bottom:
     type: task
     definitions: location|particle|count
     script:
-    - foreach <[location].center.below[0.4].points_around_y[radius=0.4;points=10]> as:loc:
-        - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
-        - wait 2t
+    - repeat 10:
+        - foreach <[location].center.below[0.4].points_around_y[radius=0.35;points=10]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
+        - foreach <[location].center.below[0.4].points_around_y[radius=0.15;points=5]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
+        - wait 1t
+    
 
 ps_shape_circle_top:
     type: task
     definitions: location|particle|count
     script:
-    - foreach <[location].points_around_x[radius=0.4;points=10]> as:loc:
+    - foreach <[location].center.above[0.4].points_around_y[radius=0.35;points=10]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
-
+        - wait 1t
         
 
 ps_particle_inventory_events:
