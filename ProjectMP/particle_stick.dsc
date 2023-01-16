@@ -66,7 +66,7 @@ ps_shape_circle_bottom:
     definitions: location|particle|count
     script:
     - repeat <[count]>:
-        - wait <[count]>t
+        - wait 1t
         - foreach <[location].center.below[0.4].points_around_y[radius=0.35;points=5]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0 speed:0.5
         - foreach <[location].center.below[0.4].points_around_y[radius=0.15;points=7]> as:loc:
