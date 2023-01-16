@@ -75,6 +75,11 @@ ps_shape_qcircle:
     script:
     - foreach <[location].points_around_x[radius=0.5;points=20]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
+        - wait 1t
+    - foreach <[location].points_around_x[radius=0.5;points=20]> as:loc:
+        - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
+        - wait 1t
+        
 
 ps_particle_inventory_events:
     type: world
