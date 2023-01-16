@@ -17,6 +17,7 @@ ps_item_events:
     type: world
     events:
         on player right clicks block with:particle_stick:
+        - ratelimit <player> 2t
         - determine cancelled passively
         - define location <context.relative>
         - define id <util.random_uuid>
