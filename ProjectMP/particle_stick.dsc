@@ -33,7 +33,7 @@ ps_item_events:
         - flag <[location]> particle:!
         on player drops particle_stick:
         - determine cancelled passively
-        - inventory open d:<inventory[particle_inventory]>
+        - inventory open d:<inventory[ps_particle_inventory_1]>
         on player clicks item in particle_inventory:
         - determine cancelled passively
         - define particle <context.item.flag[particle]>
