@@ -45,8 +45,14 @@ ps_ticker:
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-            - foreach <[location].flag[particle]> as:id:
-                - ~run ps_shape_<[id].get[animation]> def.location:<[location]> def.particle:<[id].get[particle]> def.count:<[id].get[count]>
+            - ~run ps_ticker2 def.location:<[location]>
+            
+ps_ticker2:
+    type: task
+    definitions: location
+    script:
+        - foreach <[location].flag[particle]> as:id:
+            - ~run ps_shape_<[id].get[animation]> def.location:<[location]> def.particle:<[id].get[particle]> def.count:<[id].get[count]>
                     
 ps_shape_sparkle:
     type: task
