@@ -34,10 +34,7 @@ ps_item_events:
         on player drops particle_stick:
         - determine cancelled passively
         - inventory open d:<inventory[ps_particle_inventory_1]>
-        on player clicks item in particle_inventory:
-        - determine cancelled passively
-        - define particle <context.item.flag[particle]>
-        - inventory flag slot:hand particle:<[particle]>
+        
 
 ps_shape_sparkle:
     type: world
@@ -68,10 +65,14 @@ ps_shape_circle:
 ps_particle_inventory_events:
     type: event
     events:
-        on player clicks item in particle_inventory_* with:!air priority:1:
+        on player clicks item in ps_particle_inventory_* with:!air priority:1:
         # Only cancel if they clicked the scripted inventory (as opposed to their own playe rinventory)
         - if <context.clicked_inventory.script.exists>:
             - determine cancelled
+        # Handle particle selection
+        on player clicks item in ps_particle_inventory_*:
+        - define particle <context.item.flag[particle]>
+        - inventory flag slot:hand particle:<[particle]>
         # Handle page arrows
         on player clicks particle_inventory_left_itemin ps_particle_inventory_2:
         - determine passively cancelled
@@ -88,7 +89,7 @@ ps_particle_inventory_1:
     procedural items:
         - define list <list>
         - foreach <server.particle_types> as:particle:
-            - if <[loop_index]> < 53:
+            - if <[loop_index]> < 54:
                 - define item <item[stick]>
                 - define item <[item].with[display_name=<&c><[particle].to_sentence_case>]>
                 - define item <[item].with[lore=<list[<&8>|<&a><&o>Click to select this particle]>]>
