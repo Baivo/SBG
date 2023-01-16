@@ -63,7 +63,8 @@ ps_shape_circle:
                         - foreach next
 
 ps_particle_inventory_events:
-    type: event
+    type: world
+    debug: true
     events:
         # Handle particle selection
         on player clicks item in ps_particle_inventory_*:
