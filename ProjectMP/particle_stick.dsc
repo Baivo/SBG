@@ -64,19 +64,19 @@ ps_shape_circle:
 
 ps_particle_inventory_events:
     type: world
-    debug: true
+    debug: false
     events:
         # Handle particle selection
         on player clicks item in ps_particle_inventory_*:
-        - narrate <context.item.script.name.if_null["no name"]>
-        - if <context.item.script.name> == particle_inventory_left_item:
+        - narrate <context.item.script.name>
+        - if <context.item.script.name.if_null[no name]> == particle_inventory_left_item:
             - inventory open d:<inventory[ps_particle_inventory_1]>
-        - else if <context.item.script.name> == particle_inventory_right_item:
+        - else if <context.item.script.name.if_null[no name]> == particle_inventory_right_item:
             - inventory open d:<inventory[ps_particle_inventory_2]>
         - else:
             - define particle <context.item.flag[particle]>
             - inventory flag slot:hand particle:<[particle]>
-            - narrate <&a>You have selected the <&c><[particle].to_sentence_case> <&a>particle.
+            - narrate "<&a>You have selected the <&c><[particle].to_sentence_case> <&a>particle."
             - inventory close
 
 ps_particle_inventory_1:
