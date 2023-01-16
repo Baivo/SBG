@@ -27,6 +27,7 @@ ps_item_events:
         - flag <[location]> particle.<[id]>.particle:<player.item_in_hand.flag[particle]>
         - flag <[location]> particle.<[id]>.count:<player.item_in_hand.flag[particle_count]>
         - flag <[location]> particle.<[id]>.animation:<player.item_in_hand.flag[particle_animation]>
+        - narrate "Placed particle at <[location]>"
         on player left clicks block with:particle_stick:
         - determine cancelled passively
         - define location <context.relative>
