@@ -61,24 +61,21 @@ ps_shape_sparkle:
     - playeffect at:<[location].center> effect:<[particle]> count:<[count]> offset:0.5,0.5,0.5 speed:0.5
 
 
-ps_shape_circle:
+ps_shape_circle_bottom:
     type: task
     definitions: location|particle|count
     script:
-    - foreach <[location].points_around_y[radius=0.5;points=20]> as:loc:
+    - foreach <[location].center.below[0.5].points_around_y[radius=0.5;points=20]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
         - wait 1t
 
-ps_shape_qcircle:
+ps_shape_circle_top:
     type: task
     definitions: location|particle|count
     script:
-    - foreach <[location].points_around_x[radius=0.5;points=20]> as:loc:
+    - foreach <[location].points_around_x[radius=0.5;points=10]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
-        - wait 1t
-    - foreach <[location].points_around_x[radius=0.5;points=20]> as:loc:
-        - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
-        - wait 1t
+
         
 
 ps_particle_inventory_events:
