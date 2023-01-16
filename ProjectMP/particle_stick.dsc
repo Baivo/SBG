@@ -52,7 +52,7 @@ ps_ticker2:
     definitions: location
     script:
         - foreach <[location].flag[particle]> as:id:
-            - ~run ps_shape_<[id].get[animation]> def.location:<[location]> def.particle:<[id].get[particle]> def.count:<[id].get[count]>
+            - run ps_shape_<[id].get[animation]> def.location:<[location]> def.particle:<[id].get[particle]> def.count:<[id].get[count]>
                     
 ps_shape_sparkle:
     type: task
