@@ -38,31 +38,29 @@ ps_item_events:
         - inventory open d:<inventory[ps_particle_inventory_1]>
         
 
-ps_shape_sparkle:
+ps_ticker:
     type: world
     debug: false
     events:
         on delta time secondly:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - foreach <[location].flag[particle]> as:id:
-                - if <[id].get[animation]> == sparkle:
-                    - playeffect at:<[location]> effect:<[id].get[particle]> count:<[id].get[count]> offset:0.5,0.5,0.5 speed:0.5
-                - else:
-                    - foreach next
+                - ~run ps_shape_<[id].get[animation]> def.location:<[location]> def.particle:<[id].get[particle]> def.count:<[id].get[count]>
+                    
+ps_shape_sparkle:
+    type: task
+    definitions: location|particle|count
+    script:
+    - playeffect at:<[location].center> effect:<[particle]> count:<[count]> offset:0.5,0.5,0.5 speed:0.5
+
 
 ps_shape_circle:
-    type: world
-    debug: false
-    events:
-        on delta time secondly:
-            - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-                - foreach <[location].flag[particle]> as:id:
-                    - if <[id].get[animation]> == circle:
-                        - foreach <[location].center.points_around_y[radius=0.5;points=20]> as:loc:
-                            - playeffect at:<[loc]> effect:<[id].get[particle]> count:<[id].get[count]> offset:0 speed:0.5
-                            - wait 1t
-                    - else:
-                        - foreach next
+    type: task
+    definitions: location|particle|count
+    script:
+    - foreach <[location].center.points_around_y[radius=0.5;points=20]> as:loc:
+        - playeffect at:<[loc]> effect:<[particle]> count:<[count]> offset:0 speed:0.5
+        - wait 1t
 
 ps_particle_inventory_events:
     type: world
