@@ -78,4 +78,21 @@ particle_inventory:
             - define item <[item].with[lore=<list[<&a>Click to select this particle]>]>
             - define item <[item].with_flag[particle:<[particle]>]>
             - define list <[list].include[<[item]>]>
+        - announce to_flagged:Baivo "List size is: <[list].size>"
         - determine <[list]>
+
+
+head_list_inventory_open_task:
+    type: task
+    debug: false
+    definitions: heads|page
+    script:
+    - flag player current_head_list:<[heads]>
+    - flag player current_head_page:<[page]>
+    - define inv <inventory[head_list_inventory]>
+    - inventory set d:<[inv]> o:<[heads].get[<[page].sub[1].mul[45].max[1]>].to[<[page].mul[45]>]>
+    - if <[page]> > 1:
+        - inventory set d:<[inv]> o:head_list_arrow_left_item slot:46
+    - if <[heads].size> > <[page].mul[45]>:
+        - inventory set d:<[inv]> o:head_list_arrow_right_item slot:54
+    - inventory open d:<[inv]>
