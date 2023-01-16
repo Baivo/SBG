@@ -67,6 +67,7 @@ ps_particle_inventory_events:
     events:
         # Handle particle selection
         on player clicks !particle_inventory_left_item|particle_inventory_right_item in ps_particle_inventory_*:
+        - determine passively cancelled
         - define particle <context.item.flag[particle]>
         - inventory flag slot:hand particle:<[particle]>
         - narrate <&a>You have selected the <&c><[particle].to_sentence_case> <&a>particle.
