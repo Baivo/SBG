@@ -109,7 +109,7 @@ ps_shape_inventory:
     gui: true
     size: 9
     slots:
-    - [ps_shapes_item_single] [ps_shapes_item_circle] [] [] [] [] [] [] []
+    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [] [] [] [] [] []
 
 ps_frequency_inventory:
     type: inventory
@@ -253,6 +253,19 @@ ps_shapes_item_single:
     - <&8>
     - <&7>Creates a single particle,
     - <&7>centered at the block face.
+
+ps_shapes_item_ring:
+    type: item
+    material: light_gray_dye
+    display name: <&e>Ring
+    flags:
+        shape: ring
+    lore:
+    - <&8>
+    - <&a>Click to change shape to <&e>Ring
+    - <&8>
+    - <&7>Creates a ring of particles
+    - <&7>around the edge of a block.
 
 # Spacers #
 ps_inventory_spacer:
@@ -633,10 +646,10 @@ ps_shape_alchemy:
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - define animtic <server.flag[animtic].if_null[0]>
-        - if <[animtic]> <= 174:
+        - if <[animtic]> <= 354:
             - define animtic <[animtic].add[3]>
             - flag server animtic:<[animtic]>
-        - else if <[animtic]> == 177:
+        - else if <[animtic]> == 357:
             - define animtic 0
             - flag server animtic:0
         - define location <[location].rotate_yaw[<[animtic]>]>
