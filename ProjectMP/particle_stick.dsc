@@ -387,32 +387,25 @@ ps_menu_description_handler:
         on player opens ps_menu_inventory:
         #particle item
         - define pitem <item[ps_inventory_particle_item]>
-        - define plore <[pitem].lore>
-        - define plore:->:<element[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
+        - define plore <[pitem].lore.include[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
         - adjust <[pitem]> lore:<[plore]>
         #shape item
         - define sitem <item[ps_inventory_shape_item]>
-        - define slore <[sitem].lore>
-        - define slore:->:<element[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
+        - define slore <[sitem].lore.include[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
         - adjust <[sitem]> lore:<[slore]>
         #rotation item
         - define ritem <item[ps_inventory_rotation_item]>
-        - define rlore <[ritem].lore>
-        - define rlore:->:<element[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
+        - define rlore <[ritem].lore.include[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
         - adjust <[ritem]> lore:<[rlore]>
         #frequency item
         - define fitem <item[ps_inventory_frequency_item]>
-        - define flore <[fitem].lore>
-        - define flore:->:<element[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
+        - define flore <[fitem].lore.include[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
         - adjust <[fitem]> lore:<[flore]>
         - inventory set slot:2 o:<[pitem]> d:<context.inventory>
         - inventory set slot:3 o:<[sitem]> d:<context.inventory>
         - inventory set slot:4 o:<[ritem]> d:<context.inventory>
         - inventory set slot:5 o:<[fitem]> d:<context.inventory>
         - inventory update
-        on player clicks item in ps_menu_inventory:
-        - narrate "<&7>Clicked slot: <&f><context.slot>"
-        - narrate "<&7>In inventory <context.inventory>"
 
 ps_menu_inventory:
     type: inventory
@@ -420,7 +413,7 @@ ps_menu_inventory:
     gui: true
     size: 5
     slots:
-    - [ps_inventory_info_item] [] [] [] []
+    - [ps_inventory_info_item] [ps_inventory_particle_item] [ps_inventory_shape_item] [ps_inventory_rotation_item] [ps_inventory_frequency_item]
 
 ps_inventory_particle_item:
     type: item
