@@ -660,10 +660,10 @@ ps_shape_alchemy:
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - define animtic <server.flag[animtic].if_null[0]>
-        - if <[animtic]> <= 354:
-            - define animtic <[animtic].add[3]>
+        - if <[animtic]> <= 358:
+            - define animtic <[animtic].add[1]>
             - flag server animtic:<[animtic]>
-        - else if <[animtic]> == 357:
+        - else if <[animtic]> == 359:
             - define animtic 0
             - flag server animtic:0
         - define location <[location].rotate_yaw[<[animtic]>]>
