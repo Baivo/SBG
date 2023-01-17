@@ -109,7 +109,7 @@ ps_shape_inventory:
     gui: true
     size: 9
     slots:
-    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [] [] [] [] [] []
+    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [ps_shapes_item_alchemy] [] [] [] [] []
 
 ps_frequency_inventory:
     type: inventory
@@ -266,6 +266,20 @@ ps_shapes_item_ring:
     - <&8>
     - <&7>Creates a ring of particles
     - <&7>around the edge of a block.
+
+ps_shapes_item_alchemy:
+    type: item
+    material: light_gray_dye
+    display name: <&e>Alchemy
+    flags:
+        shape: ring
+    lore:
+    - <&8>
+    - <&a>Click to change shape to <&e>Alchemy
+    - <&8>
+    - <&7>Creates a spooky ring of particles
+    - <&7>across many blocks!
+    - <&7>No rotation support (yet).
 
 # Spacers #
 ps_inventory_spacer:
@@ -592,9 +606,7 @@ ps_shape_ring:
     type: task
     definitions: location|particle|frequency|rotation
     script:
-    - repeat <[frequency]>:
-        - wait <element[20].div[<[frequency]>].round_down>t
-        # Set particle origion from rotation option
+    # Set particle origion from rotation option
         - choose <[rotation]>:
             - case center:
                 - define axis y
@@ -616,6 +628,8 @@ ps_shape_ring:
             - case west:
                 - define location <[location].center.with_x[<[location].center.x.sub[0.4]>]>
                 - define axis x
+    - repeat <[frequency]>:
+        - wait <element[20].div[<[frequency]>].round_down>t
         # Determine x|y|z axis choice based on rotation and play particles accordingly
         - choose <[axis]>:
             - case x:
