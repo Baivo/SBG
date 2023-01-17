@@ -614,3 +614,11 @@ ps_shape_ring:
             - case z:
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+
+ps_shape_face:
+    type: task
+    definitions: location|particle|frequency|rotation
+    script:
+    - define face <list[0.375,-0.25,0|1.5,-0.25,0|0.375,-0.375,0|1.5,-0.375,0|0.375,-0.5,0|1.5,-0.5,0|0.375,-0.625,0|1.5,-0.625,0|0.875,-0.75,0|0.875,-0.875,0|1,-0.875,0|1,-1,0|0.875,-1.125,0|0.25,-1.375,0|0.375,-1.375,0|1.5,-1.375,0|1.625,-1.375,0|0.375,-1.5,0|0.5,-1.5,0|0.625,-1.5,0|1.25,-1.5,0|1.375,-1.5,0|1.5,-1.5,0|0.625,-1.625,0|0.75,-1.625,0|0.875,-1.625,0|1,-1.625,0|1.125,-1.625,0|1.25,-1.625,0|]>
+    - foreach <[face]> as:vec:
+        - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> count:1 offset:0 speed:0
