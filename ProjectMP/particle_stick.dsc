@@ -52,11 +52,15 @@ ps_item_events:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - if <[location].chunk.is_loaded>:
                 - ~run ps_ticker def.location:<[location]>
-        - repeat 10:
-            - ~run anim_ticker
-            - wait 2t
+        - ~run anim_ticker_run
 # Particle Stick Event Scripts #
-
+anim_ticker_run:
+    type: task
+    definitions: location
+    script:
+        - repeat 10:
+            - run anim_ticker
+            - wait 2t
 ps_ticker:
     type: task
     definitions: location
