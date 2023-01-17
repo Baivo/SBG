@@ -418,7 +418,7 @@ ps_menu_inventory:
 
 ps_inventory_particle_item:
     type: item
-    material: redstone_dust
+    material: redstone
     display name: <&e>Change Particle
     lore:
     - <&8>
