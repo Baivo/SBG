@@ -97,13 +97,7 @@ ps_particle_inventory_2:
             - define list <[list].include[<[item]>]>
         - determine <[list]>
 
-ps_menu_inventory:
-    type: inventory
-    inventory: hopper
-    gui: true
-    size: 5
-    slots:
-    - [ps_inventory_info_item] [ps_inventory_particle_item] [ps_inventory_shape_item] [ps_inventory_rotation_item] [ps_inventory_frequency_item]
+
 
 ps_shape_inventory:
     type: inventory
@@ -383,6 +377,20 @@ ps_inventory_frequencyreset_item:
         frequency: 0
 
 # Particle Stick GUI Menu Items
+ps_menu_inventory:
+    type: inventory
+    inventory: hopper
+    gui: true
+    size: 5
+    procedural items:
+    - define list <list>
+    - define list:->:<item[ps_inventory_info_item]>
+    - define list:->:<item[ps_inventory_particle_item]>
+    - define list:->:<item[ps_inventory_shape_item]>
+    - define list:->:<item[ps_inventory_rotation_item]>
+    - define list:->:<item[ps_inventory_frequency_item]>
+    - determine <[list]>
+
 ps_inventory_particle_item:
     type: item
     material: redstone_dust
