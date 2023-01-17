@@ -50,7 +50,11 @@ ps_item_events:
         - inventory open d:<inventory[ps_menu_inventory]>
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-            - run ps_ticker def.location:<[location]>
+            - if <[location].chunk.is_loaded>:
+                - ~run ps_ticker def.location:<[location]>
+        - repeat 10:
+            - ~run anim_ticker
+            - wait 2t
 # Particle Stick Event Scripts #
 
 ps_ticker:
@@ -651,6 +655,16 @@ ps_shape_ring:
 #     - define face <list[]>
 #     - foreach <[face]> as:vec:
 #         - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> count:1 offset:0 speed:0
+anim_ticker:
+    type: task
+    script:
+    - define animtic <server.flag[animtic].if_null[0]>
+    - if <[animtic]> <= 358:
+        - define animtic <[animtic].add[1]>
+        - flag server animtic:<[animtic]>
+    - else if <[animtic]> == 359:
+        - define animtic 0
+        - flag server animtic:0
 
 ps_shape_alchemy:
     type: task
@@ -660,12 +674,6 @@ ps_shape_alchemy:
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - define animtic <server.flag[animtic].if_null[0]>
-        - if <[animtic]> <= 358:
-            - define animtic <[animtic].add[1]>
-            - flag server animtic:<[animtic]>
-        - else if <[animtic]> == 359:
-            - define animtic 0
-            - flag server animtic:0
         - define location <[location].rotate_yaw[<[animtic]>]>
         - announce to_flagged:listen <[animtic]>
         - foreach <[face]> as:vec:
