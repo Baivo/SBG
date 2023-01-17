@@ -491,13 +491,39 @@ ps_shape_single:
         - wait <element[20].div[<[frequency]>].round_down>t
         - playeffect at:<[location]> effect:<[particle]> count:1 offset:0.05 speed:0.5
 
+# Location is the starting location where the particles were placed
+#
+# Particle is the particle type
+#
+# Frequency is the amount of times the script is run per second, 20 is the max
+#
+#   Some frequency examples:
+#    1 = 1 particle per second at the start of each new second.
+#    2 = 2 particles per second, 1 particle every 0.5 seconds.
+#    5 = 5 particles per second, 1 particle every 0.2 seconds.
+#    20 = 20 particles per second, 1 particle every in-game tick.
+#
+# Particles in the examples above describes each 'run' of the particle shape.
+# i.e 5 = 5 instances of the circle shape per second, 1 instance every 0.2 seconds.
+#
+# Rotation is the direction the particle is facing, this is used to determine the starting location of the particle.
+#   Valid options are:
+#    center = The center of the block
+#    top = The top of the block
+#    bottom = The bottom of the block
+#    north = The north side of the block
+#    east = The east side of the block
+#    south = The south side of the block
+#    west = The west side of the block
+
+
 # Particle Shape: Circle #
 ps_shape_circle:
     type: task
     definitions: location|particle|frequency|rotation
     script:
     # Set particle origion from rotation option
-    - switch <[rotation]>:
+    - choose <[rotation]>:
         - case center:
             - define location <[location].center>
         - case top:
@@ -513,7 +539,7 @@ ps_shape_circle:
         - case west:
             - define location <[location].center.with_z[<[location].center.x.sub[0.4]>]>
     # Determine x|y|z axis choice based on rotation and play particles accordingly
-    - switch <[rotation]>:
+    - choose <[rotation]>:
         - case center|top|bottom:
             - repeat <[frequency]>:
                 - wait <element[20].div[<[frequency]>].round_down>t
