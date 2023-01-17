@@ -381,40 +381,43 @@ ps_inventory_frequencyreset_item:
         frequency: 0
 
 # Particle Stick GUI Menu Items
+ps_menu_description_handler:
+    type: world
+    events:
+        on player opens ps_menu_inventory:
+        #particle item
+        - define pitem <item[ps_inventory_particle_item]>
+        - define plore <[pitem].lore>
+        - define plore:->:<element[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
+        - adjust <[pitem]> lore:<[plore]>
+        #shape item
+        - define sitem <item[ps_inventory_shape_item]>
+        - define slore <[sitem].lore>
+        - define slore:->:<element[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
+        - adjust <[sitem]> lore:<[slore]>
+        #rotation item
+        - define ritem <item[ps_inventory_rotation_item]>
+        - define rlore <[ritem].lore>
+        - define rlore:->:<element[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
+        - adjust <[ritem]> lore:<[rlore]>
+        #frequency item
+        - define fitem <item[ps_inventory_frequency_item]>
+        - define flore <[fitem].lore>
+        - define flore:->:<element[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
+        - adjust <[fitem]> lore:<[flore]>
+        - inventory set slot:1 o:<[pitem]>
+        - inventory set slot:2 o:<[sitem]>
+        - inventory set slot:3 o:<[ritem]>
+        - inventory set slot:4 o:<[fitem]>
+        - inventory update
+
 ps_menu_inventory:
     type: inventory
     inventory: hopper
     gui: true
     size: 5
-    procedural items:
-    - define list <list>
-    - define list:->:<item[ps_inventory_info_item]>
-    #particle item
-    - define pitem <item[ps_inventory_particle_item]>
-    - define plore <[pitem].lore>
-    - define plore:->:<element[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
-    - adjust <[pitem]> lore:<[plore]>
-    - define list:->:<[pitem]>
-    #shape item
-    - define sitem <item[ps_inventory_shape_item]>
-    - define slore <[sitem].lore>
-    - define slore:->:<element[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
-    - adjust <[sitem]> lore:<[slore]>
-    - define list:->:<[sitem]>
-    #rotation item
-    - define ritem <item[ps_inventory_rotation_item]>
-    - define rlore <[ritem].lore>
-    - define rlore:->:<element[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
-    - adjust <[ritem]> lore:<[rlore]>
-    - define list:->:<[ritem]>
-    #frequency item
-    - define fitem <item[ps_inventory_frequency_item]>
-    - define flore <[fitem].lore>
-    - define flore:->:<element[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
-    - adjust <[fitem]> lore:<[flore]>
-    - define list:->:<[fitem]>
-    #finish
-    - determine <[list]>
+    slots:
+    - [ps_inventory_info_item] [] [] [] []
 
 ps_inventory_particle_item:
     type: item
