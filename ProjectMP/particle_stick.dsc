@@ -528,21 +528,28 @@ ps_shape_circle:
     - choose <[rotation]>:
         - case center:
             - define location <[location].center>
+            - define axis y
         - case top:
             - define location <[location].above[0.4]>
+            - define axis y
         - case bottom:
             - define location <[location].below[0.4]>
+            - define axis y
         - case north:
             - define location <[location].center.with_z[<[location].center.z.sub[0.4]>]>
+            - define axis z
         - case east:
             - define location <[location].center.with_x[<[location].center.x.add[0.4]>]>
+            - define axis x
         - case south:
             - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
+            - define axis z
         - case west:
-            - define location <[location].center.with_z[<[location].center.x.sub[0.4]>]>
+            - define location <[location].center.with_x[<[location].center.x.sub[0.4]>]>
+            - define axis x
     # Determine x|y|z axis choice based on rotation and play particles accordingly
-    - choose <[rotation]>:
-        - case center|top|bottom:
+    - choose <[axis]>:
+        - case y:
             - repeat <[frequency]>:
                 - wait <element[20].div[<[frequency]>].round_down>t
                 - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
@@ -553,7 +560,7 @@ ps_shape_circle:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
                 - foreach <[location].points_around_y[radius=0.15;points=3]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - case north|south:
+        - case z:
             - repeat <[frequency]>:
                 - wait <element[20].div[<[frequency]>].round_down>t
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
@@ -564,7 +571,7 @@ ps_shape_circle:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
                 - foreach <[location].points_around_z[radius=0.45;points=3]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - case east|west:
+        - case x:
             - repeat <[frequency]>:
                 - wait <element[20].div[<[frequency]>].round_down>t
                 - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
