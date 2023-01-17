@@ -523,6 +523,8 @@ ps_shape_circle:
     definitions: location|particle|frequency|rotation
     script:
     # Set particle origion from rotation option
+    - announce to_flagged:Baivo "Rotation is: <[rotation]>"
+    - announce to_flagged:Baivo "Location is: <[location]>"
     - choose <[rotation]>:
         - case center:
             - define location <[location].center>
