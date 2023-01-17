@@ -549,11 +549,11 @@ ps_shape_circle:
             - case x:
                 - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_x[radius=0.45;points=7]> as:loc:
+                - foreach <[location].points_around_x[radius=0.35;points=7]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_x[radius=0.45;points=5]> as:loc:
+                - foreach <[location].points_around_x[radius=0.25;points=5]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_x[radius=0.45;points=3]> as:loc:
+                - foreach <[location].points_around_x[radius=0.15;points=3]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
             - case y:
                 - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
@@ -567,9 +567,9 @@ ps_shape_circle:
             - case z:
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_z[radius=0.45;points=7]> as:loc:
+                - foreach <[location].points_around_z[radius=0.35;points=7]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_z[radius=0.45;points=5]> as:loc:
+                - foreach <[location].points_around_z[radius=0.25;points=5]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-                - foreach <[location].points_around_z[radius=0.45;points=3]> as:loc:
+                - foreach <[location].points_around_z[radius=0.15;points=3]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
