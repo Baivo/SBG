@@ -388,10 +388,31 @@ ps_menu_inventory:
     procedural items:
     - define list <list>
     - define list:->:<item[ps_inventory_info_item]>
-    - define list:->:<item[ps_inventory_particle_item]>
-    - define list:->:<item[ps_inventory_shape_item]>
-    - define list:->:<item[ps_inventory_rotation_item]>
-    - define list:->:<item[ps_inventory_frequency_item]>
+    #particle item
+    - define pitem <item[ps_inventory_particle_item]>
+    - define plore <[pitem].lore>
+    - define plore:->:<element[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
+    - adjust <[pitem]> lore:<[plore]>
+    - define list:->:<[pitem]>
+    #shape item
+    - define sitem <item[ps_inventory_shape_item]>
+    - define slore <[sitem].lore>
+    - define slore:->:<element[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
+    - adjust <[sitem]> lore:<[slore]>
+    - define list:->:<[sitem]>
+    #rotation item
+    - define ritem <item[ps_inventory_rotation_item]>
+    - define rlore <[ritem].lore>
+    - define rlore:->:<element[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
+    - adjust <[ritem]> lore:<[rlore]>
+    - define list:->:<[ritem]>
+    #frequency item
+    - define fitem <item[ps_inventory_frequency_item]>
+    - define flore <[fitem].lore>
+    - define flore:->:<element[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
+    - adjust <[fitem]> lore:<[flore]>
+    - define list:->:<[fitem]>
+    #finish
     - determine <[list]>
 
 ps_inventory_particle_item:
@@ -401,27 +422,22 @@ ps_inventory_particle_item:
     lore:
     - <&8>
     - <&a>Click to change the particle type.
-    - <&b>Current particle: <&e><player.item_in_hand.flag[particle].if_null[shit]>
 
 ps_inventory_shape_item:
     type: item
-    material: golden_
+    material: gray_dye
     display name: <&e>Change Shape
     lore:
     - <&8>
     - <&a>Click to change particle animation / shape.
-    - <&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].if_null[shit]>
 
 ps_inventory_frequency_item:
     type: item
-    material: apple
+    material: clock
     display name: <&e>Change Frequency
     lore:
     - <&8>
     - <&a>Click to change the shape frequency.
-    - <&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[shit]>
-    - <&7>
-    - <&7><&o>See the info book for help.
 
 ps_inventory_rotation_item:
     type: item
@@ -430,9 +446,6 @@ ps_inventory_rotation_item:
     lore:
     - <&8>
     - <&a><&o>Click to change the shape rotation.
-    - <&b><&o>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].if_null[shit]>
-    - <&7>
-    - <&7><&o>See the info book for help.
 
 ps_inventory_info_item:
     type: item
@@ -441,9 +454,6 @@ ps_inventory_info_item:
     lore:
     - <&8>
     - <&a>Click to open the user manual.
-    - <&7>
-    - <&7><&o>Check out the demo sphere
-    - <&7><&o>/warp particle_demo
 
 ## Particle Shapes ##
 ps_shape_debug:
