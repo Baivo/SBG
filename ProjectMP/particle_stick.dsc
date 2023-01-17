@@ -667,5 +667,6 @@ ps_shape_alchemy:
             - define animtic 0
             - flag server animtic:0
         - define location <[location].rotate_yaw[<[animtic]>]>
+        - announce to_flagged:listen <[animtic]>
         - foreach <[face]> as:vec:
             - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> count:1 offset:0 speed:0
