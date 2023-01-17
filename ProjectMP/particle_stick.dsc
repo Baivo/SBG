@@ -406,6 +406,7 @@ ps_menu_description_handler:
 ps_menu_inventory:
     type: inventory
     inventory: hopper
+    title: <&3>Particle Stick Menu
     gui: true
     size: 5
     slots:
