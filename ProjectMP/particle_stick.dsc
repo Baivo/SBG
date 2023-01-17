@@ -401,7 +401,7 @@ ps_inventory_particle_item:
     lore:
     - <&8>
     - <&a>Click to change the particle type.
-    - <&b>Current particle: <&e><player.item_in_hand.flag[particle].if_null[<player.item_in_hand.flag[particle].if_null[shit]>]>
+    - <&b>Current particle: <&e><player.item_in_hand.flag[particle].if_null[shit]>
 
 ps_inventory_shape_item:
     type: item
@@ -410,7 +410,7 @@ ps_inventory_shape_item:
     lore:
     - <&8>
     - <&a>Click to change particle animation / shape.
-    - <&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].if_null[invalid item, don't switch from the stick while using this menu bozo]>
+    - <&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].if_null[shit]>
 
 ps_inventory_frequency_item:
     type: item
@@ -419,7 +419,7 @@ ps_inventory_frequency_item:
     lore:
     - <&8>
     - <&a>Click to change the shape frequency.
-    - <&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[invalid item, don't switch from the stick while using this menu bozo]>
+    - <&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[shit]>
     - <&7>
     - <&7><&o>See the info book for help.
 
@@ -430,7 +430,7 @@ ps_inventory_rotation_item:
     lore:
     - <&8>
     - <&a><&o>Click to change the shape rotation.
-    - <&b><&o>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].if_null[invalid item, don't switch from the stick while using this menu bozo]>
+    - <&b><&o>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].if_null[shit]>
     - <&7>
     - <&7><&o>See the info book for help.
 
