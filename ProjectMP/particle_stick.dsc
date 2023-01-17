@@ -32,7 +32,7 @@ ps_item_events:
         - flag <[location]> particle.<[id]>.shape:<player.item_in_hand.flag[particle_shape]>
         - flag <[location]> particle.<[id]>.rotation:<player.item_in_hand.flag[particle_rotation]>
         - actionbar "<&7>Particles created at: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
-        on player left clicks block with:particle_stick:
+        on player left clicks !air with:particle_stick:
         - if <context.material.name> == air:
             - determine cancelled
         - else:
