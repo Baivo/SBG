@@ -222,6 +222,7 @@ ps_inventory_frequency_task:
     script:
     - inventory flag slot:hand particle_frequency:<[frequency]>
     - actionbar "<&a>Frequency set to: <&e><[frequency]>"
+    - inventory open d:<inventory[ps_frequency_inventory]>
 
 ## Inventory Items ##
 
