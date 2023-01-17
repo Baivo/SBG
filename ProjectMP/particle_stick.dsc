@@ -489,7 +489,7 @@ ps_shape_single:
         - wait <element[20].div[<[frequency]>].round_down>t
         - playeffect at:<[location]> effect:<[particle]> count:1 offset:0.05 speed:0.5
 
-# Location is the starting location where the particles were placed
+# Location is the centre of the block the particle is being played at
 #
 # Particle is the particle type
 #
