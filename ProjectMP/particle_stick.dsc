@@ -58,9 +58,9 @@ anim_ticker_run:
     type: task
     definitions: location
     script:
-        - repeat 10:
+        - repeat 2:
             - run anim_ticker
-            - wait 2t
+            - wait 10t
 ps_ticker:
     type: task
     definitions: location
