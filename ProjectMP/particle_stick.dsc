@@ -46,6 +46,7 @@ ps_item_events:
             - actionbar "<&7>No particles to remove at: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
         on player drops particle_stick:
         - determine cancelled passively
+        - wait 2t
         - inventory open d:<inventory[ps_menu_inventory]>
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
