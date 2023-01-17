@@ -58,7 +58,7 @@ ps_ticker:
     definitions: location
     script:
         - foreach <[location].flag[particle]> as:id:
-            - ~run ps_shape_<[id].get[shape]> def.location:<[location]> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
+            - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
 ps_particle_inventory_1:
@@ -473,8 +473,6 @@ ps_shape_single:
     definitions: location|particle|frequency|rotation
     script:
     - switch <[rotation]>:
-        - case center:
-            - define location <[location].center>
         - case top:
             - define location <[location].above[0.4]>
         - case bottom:
@@ -527,7 +525,6 @@ ps_shape_circle:
         # Set particle origion from rotation option
         - choose <[rotation]>:
             - case center:
-                - define location <[location].center>
                 - define axis y
             - case top:
                 - define location <[location].above[0.4]>
