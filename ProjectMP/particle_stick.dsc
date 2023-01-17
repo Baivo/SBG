@@ -607,27 +607,27 @@ ps_shape_ring:
     definitions: location|particle|frequency|rotation
     script:
     # Set particle origion from rotation option
-        - choose <[rotation]>:
-            - case center:
-                - define axis y
-            - case top:
-                - define location <[location].above[0.4]>
-                - define axis y
-            - case bottom:
-                - define location <[location].below[0.4]>
-                - define axis y
-            - case north:
-                - define location <[location].center.with_z[<[location].center.z.sub[0.4]>]>
-                - define axis z
-            - case east:
-                - define location <[location].center.with_x[<[location].center.x.add[0.4]>]>
-                - define axis x
-            - case south:
-                - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
-                - define axis z
-            - case west:
-                - define location <[location].center.with_x[<[location].center.x.sub[0.4]>]>
-                - define axis x
+    - choose <[rotation]>:
+        - case center:
+            - define axis y
+        - case top:
+            - define location <[location].above[0.4]>
+            - define axis y
+        - case bottom:
+            - define location <[location].below[0.4]>
+            - define axis y
+        - case north:
+            - define location <[location].center.with_z[<[location].center.z.sub[0.4]>]>
+            - define axis z
+        - case east:
+            - define location <[location].center.with_x[<[location].center.x.add[0.4]>]>
+            - define axis x
+        - case south:
+            - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
+            - define axis z
+        - case west:
+            - define location <[location].center.with_x[<[location].center.x.sub[0.4]>]>
+            - define axis x
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         # Determine x|y|z axis choice based on rotation and play particles accordingly
