@@ -529,7 +529,7 @@ ps_shape_circle_east:
     type: task
     definitions: location|particle|frequency
     script:
-    - define location <[location].center.with_x[<[location].center.z.add[0.4]>]>
+    - define location <[location].center.with_x[<[location].center.x.add[0.4]>]>
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
@@ -561,7 +561,7 @@ ps_shape_circle_west:
     type: task
     definitions: location|particle|frequency
     script:
-    - define location <[location].center.with_x[<[location].center.z.sub[0.4]>]>
+    - define location <[location].center.with_x[<[location].center.x.sub[0.4]>]>
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
