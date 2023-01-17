@@ -11,8 +11,9 @@ particle_stick:
     - <&8><&gt> <&7>Throw (Q) to change particles
     flags:
         particle: SPELL_WITCH
-        particle_frequency: 10
+        particle_frequency: 3
         particle_shape: circle
+        particle_rotation: bottom
 
 # particle Stick Events #
 ps_item_events:
@@ -53,7 +54,7 @@ ps_ticker:
     definitions: location
     script:
         - foreach <[location].flag[particle]> as:id:
-            - ~run ps_shape_<[id].get[shape]> def.location:<[location]> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]>
+            - ~run ps_shape_<[id].get[shape]>_<[id].get[rotation]> def.location:<[location]> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]>
 
 # Inventory Scripts #
 ps_particle_inventory_1:
@@ -110,7 +111,7 @@ ps_shape_inventory:
     gui: true
     size: 9
     slots:
-    - [] [] [] [] [] [] [] [] []
+    - [ps_shapes_item_circle] [] [] [] [] [] [] [] []
 
 ps_frequency_inventory:
     type: inventory
@@ -118,7 +119,7 @@ ps_frequency_inventory:
     gui: true
     size: 5
     slots:
-    - [] [] [] [] []
+    - [ps_inventory_frequencyup_item] [ps_inventory_frequencyup5_item] [ps_inventory_frequencyinfo_item] [ps_inventory_frequencydown_item] [ps_inventory_frequencydown5_item]
 
 ps_rotation_inventory:
     type: inventory
@@ -126,7 +127,7 @@ ps_rotation_inventory:
     gui: true
     size: 9
     slots:
-    - [ps_inventory_top_arrow] [ps_inventory_spacer] [ps_inventory_spacer]
+    - [ps_inventory_top_arrow] [ps_inventory_center_arrow] [ps_inventory_spacer]
     - [ps_inventory_bottom_arrow] [ps_inventory_north_arrow] [ps_inventory_east_arrow]
     - [ps_inventory_spacer] [ps_inventory_west_arrow] [ps_inventory_south_arrow]
 
@@ -170,8 +171,85 @@ ps_particle_inventory_events:
                 - inventory close
             - else:
                 - narrate "<&c>You must be holding a particle stick to select a rotation."
+        on player clicks item in ps_shape_inventory:
+        - if <context.item.has_flag[shape]>:
+            - if <player.item_in_hand.has_flag[particle_shape]>:
+                - inventory flag slot:hand particle_shape:<context.item.flag[shape]>
+                - actionbar "<&a>Shape set to: <&e><context.item.flag[shape].to_sentence_case>"
+                - inventory close
+            - else:
+                - narrate "<&c>You must be holding a particle stick to select a shape."
+        on player clicks item in ps_frequency_inventory:
+        - choose <context.item.script.name.if_null[no_name]>:
+            - case ps_inventory_frequencyup_item:
+                - define frequency <player.item_in_hand.flag[particle_frequency]>
+                - if <[frequency]> <= 19:
+                    - ~run ps_inventory_frequency_task def.frequency:<[frequency].add[1]>
+                - else if <[frequency]> == 20:
+                    - narrate "<&c>Frequency cannot be higher than 20."
+                    - inventory close
+            - case ps_inventory_frequencyup5_item:
+                - define frequency <player.item_in_hand.flag[particle_frequency]>
+                - if <[frequency]> <= 15:
+                    - ~run ps_inventory_frequency_task def.frequency:<[frequency].add[5]>
+                - else if <[frequency]> > 15:
+                    - ~run ps_iinventory_frequency_task def.frequency:20
+                    - inventory close
+                - else if <[frequency]> == 20:
+                    - narrate "<&c>Frequency cannot be higher than 20."
+                    - inventory close
+            - case ps_inventory_frequencydown_item:
+                - define frequency <player.item_in_hand.flag[particle_frequency]>
+                - if <[frequency]> >= 2:
+                    - ~run ps_inventory_frequency_task def.frequency:<[frequency].sub[1]>
+                - else if <[frequency]> == 1:
+                    - narrate "<&c>Frequency cannot be lower than 1."
+                    - inventory close
+            - case ps_inventory_frequencydown5_item:
+                - define frequency <player.item_in_hand.flag[particle_frequency]>
+                - if <[frequency]> >= 6:
+                    - ~run ps_inventory_frequency_task def.frequency:<[frequency].sub[5]>
+                - else if <[frequency]> < 6:
+                    - ~run ps_inventory_frequency_task def.frequency:1
+                    - inventory close
+                - else if <[frequency]> == 1:
+                    - narrate "<&c>Frequency cannot be lower than 1."
+                    - inventory close
+            - case ps_inventory_frequencyreset_item:
+                - ~run ps_inventory_frequency_task def.frequency:1
 
-# Inventory Items #
+ps_inventory_frequency_task:
+    type: task
+    debug: false
+    definitions: frequency
+    script:
+    - inventory flag slot:hand particle_frequency:<[frequency]>
+    - actionbar "<&a>Frequency set to: <&e><[frequency]>"
+
+## Inventory Items ##
+
+# Shape Items #
+ps_shapes_item_circle:
+    type: item
+    material: gray_dye
+    display name: <&a>Circle
+    flags:
+        shape: circle
+    lore:
+    - <&8>
+    - <&a>Click to change shape to <&e>Circle
+    - <&8>
+    - <&7>Creates an approximate circle shape,
+    - <&7>covers 1 block face.
+
+
+# Spacers #
+ps_inventory_spacer:
+    type: item
+    material: black_stained_glass_pane
+    display name: <&8>
+
+# Particle page arrows #
 ps_inventory_left_item:
     type: item
     debug: false
@@ -188,7 +266,7 @@ ps_inventory_right_item:
     mechanisms:
         skull_skin: 3cd9b7a3-c8bc-4a05-8cb9-0b6d4673bca9|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFjMGVkZWRkNzExNWZjMWIyM2Q1MWNlOTY2MzU4YjI3MTk1ZGFmMjZlYmI2ZTQ1YTY2YzM0YzY5YzM0MDkxIn19fQ
 
-
+# Particle Rotation Direction Arrows #
 ps_inventory_north_arrow:
     type: item
     material: player_head
@@ -243,12 +321,68 @@ ps_inventory_bottom_arrow:
     flags:
         rotation: bottom
 
-ps_inventory_spacer:
+ps_inventory_center_arrow:
     type: item
-    material: black_stained_glass_pane
-    display name: <&8>
+    material: player_head
+    display name: <&3>Center
+    mechanisms:
+        skull_skin: 65690ca9-4a07-4f7c-b622-836fa9b46120|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhkNzNiYTI1NzVjMmFmM2U3M2UwNTdjYTBlMTUxZGU2NjMwZWY0Y2U0OTQ5ODg1ZWFjNTU1NWYzZWMyMmZhYyJ9fX0=
+    flags:
+        rotation: center
 
+# Frequency Menu Items #
+ps_inventory_frequencyinfo_item:
+    type: item
+    material: writable_book
+    display name: <&e>Particle Frequency
+    lore:
+    - <&8>
+    - <&a>Current Frequency: <&e><player.item_in_hand.flag[particle_frequency]>
 
+ps_inventory_frequencyup_item:
+    type: item
+    material: player_head
+    display name: <&3>Frequency +1
+    mechanisms:
+        skull_skin: 2bb8d02d-c17f-44b0-b6fe-2b9307aa72ea|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNjYmY5ODgzZGQzNTlmZGYyMzg1YzkwYTQ1OWQ3Mzc3NjUzODJlYzQxMTdiMDQ4OTVhYzRkYzRiNjBmYyJ9fX0=
+    flags:
+        frequency: 1
+
+ps_inventory_frequencyup5_item:
+    type: item
+    material: player_head
+    display name: <&3>Frequency +5
+    mechanisms:
+        skull_skin: daf047f5-cf80-4fdf-bbc8-d7b676c97fcf|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNkYjhmNDM2NTZjMDZjNGU4NjgzZTJlNjM0MWI0NDc5ZjE1N2Y0ODA4MmZlYTRhZmYwOWIzN2NhM2M2OTk1YiJ9fX0=
+    flags:
+        frequency: 5
+
+ps_inventory_frequencydown_item:
+    type: item
+    material: player_head
+    display name: <&3>Frequency -1
+    mechanisms:
+        skull_skin: 2b529a28-1db9-4450-a3eb-6c9897417bbb|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjFlMWU3MzBjNzcyNzljOGUyZTE1ZDhiMjcxYTExN2U1ZTJjYTkzZDI1YzhiZTNhMDBjYzkyYTAwY2MwYmI4NSJ9fX0=
+    flags:
+        frequency: -1
+
+ps_inventory_frequencydown5_item:
+    type: item
+    material: player_head
+    display name: <&3>Frequency -5
+    mechanisms:
+        skull_skin: 90dae868-ec0a-4989-8705-97e32490ca5d|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzI0MzE5MTFmNDE3OGI0ZDJiNDEzYWE3ZjVjNzhhZTQ0NDdmZTkyNDY5NDNjMzFkZjMxMTYzYzBlMDQzZTBkNiJ9fX0=
+    flags:
+        frequency: -5
+
+ps_inventory_frequencyreset_item:
+    type: item
+    material: player_head
+    display name: <&3>Reset Frequency
+    flags:
+        frequency: 0
+
+# Particle Stick GUI Menu Items
 ps_inventory_particle_item:
     type: item
     material: redstone_dust
@@ -256,7 +390,7 @@ ps_inventory_particle_item:
     lore:
     - <&8>
     - <&a>Click to change the particle type.
-    - <&b>Current particle: <&e><player.item_in_hand.flag[particle].if_null[invalid item, don't switch from the stick while using this menu bozo]>
+    - <&b>Current particle: <&e><player.item_in_hand.flag[particle].if_null[<player.item_in_hand.flag[particle].if_null[shit]>]>
 
 ps_inventory_shape_item:
     type: item
@@ -307,6 +441,22 @@ ps_shape_debug:
     script:
     - playeffect at:<[location].center> effect:<[particle]> count:1 offset:0.5,0.5,0.5 speed:0.5
 # Particle Shape: Circle #
+
+ps_shape_circle_center:
+    type: task
+    definitions: location|particle|frequency
+    script:
+    - define location <[location].center>
+    - repeat <[frequency]>:
+        - wait <element[20].div[<[frequency]>].round_down>t
+        - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_y[radius=0.35;points=7]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_y[radius=0.25;points=5]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_y[radius=0.15;points=3]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
 
 ps_shape_circle_bottom:
     type: task
