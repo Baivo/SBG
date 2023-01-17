@@ -56,9 +56,8 @@ ps_ticker:
     type: task
     definitions: location
     script:
-        - if <[location].chunk.is_loaded>:
-            - foreach <[location].flag[particle]> as:id:
-                - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
+    - foreach <[location].flag[particle]> as:id:
+        - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
 ps_particle_inventory_1:
