@@ -525,13 +525,13 @@ ps_shape_circle_north:
     - define location <[location].center.with_z[<[location].center.z.sub[0.4]>]>
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
-        - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
+        - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_x[radius=0.45;points=7]> as:loc:
+        - foreach <[location].points_around_z[radius=0.45;points=7]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_x[radius=0.45;points=5]> as:loc:
+        - foreach <[location].points_around_z[radius=0.45;points=5]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_x[radius=0.45;points=3]> as:loc:
+        - foreach <[location].points_around_z[radius=0.45;points=3]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
 
 ps_shape_circle_east:
@@ -541,22 +541,6 @@ ps_shape_circle_east:
     - define location <[location].center.with_x[<[location].center.z.add[0.4]>]>
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
-        - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
-            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_z[radius=0.45;points=7]> as:loc:
-            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_z[radius=0.45;points=5]> as:loc:
-            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-        - foreach <[location].points_around_z[radius=0.45;points=3]> as:loc:
-            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
-
-ps_shape_circle_south:
-    type: task
-    definitions: location|particle|frequency
-    script:
-    - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
-    - repeat <[frequency]>:
-        - wait <element[20].div[<[frequency]>].round_down>t
         - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
         - foreach <[location].points_around_x[radius=0.45;points=7]> as:loc:
@@ -566,11 +550,11 @@ ps_shape_circle_south:
         - foreach <[location].points_around_x[radius=0.45;points=3]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
 
-ps_shape_circle_west:
+ps_shape_circle_south:
     type: task
     definitions: location|particle|frequency
     script:
-    - define location <[location].center.with_x[<[location].center.z.sub[0.4]>]>
+    - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
     - repeat <[frequency]>:
         - wait <element[20].div[<[frequency]>].round_down>t
         - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
@@ -580,4 +564,20 @@ ps_shape_circle_west:
         - foreach <[location].points_around_z[radius=0.45;points=5]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
         - foreach <[location].points_around_z[radius=0.45;points=3]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+
+ps_shape_circle_west:
+    type: task
+    definitions: location|particle|frequency
+    script:
+    - define location <[location].center.with_x[<[location].center.z.sub[0.4]>]>
+    - repeat <[frequency]>:
+        - wait <element[20].div[<[frequency]>].round_down>t
+        - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_x[radius=0.45;points=7]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_x[radius=0.45;points=5]> as:loc:
+            - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
+        - foreach <[location].points_around_x[radius=0.45;points=3]> as:loc:
             - playeffect at:<[loc]> effect:<[particle]> count:1 offset:0.05 speed:0.5
