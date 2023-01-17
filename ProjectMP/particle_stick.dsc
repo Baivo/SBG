@@ -405,11 +405,14 @@ ps_menu_description_handler:
         - define flore <[fitem].lore>
         - define flore:->:<element[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
         - adjust <[fitem]> lore:<[flore]>
-        - inventory set slot:1 o:<[pitem]>
-        - inventory set slot:2 o:<[sitem]>
-        - inventory set slot:3 o:<[ritem]>
-        - inventory set slot:4 o:<[fitem]>
+        - inventory set slot:2 o:<[pitem]> d:<context.inventory>
+        - inventory set slot:3 o:<[sitem]> d:<context.inventory>
+        - inventory set slot:4 o:<[ritem]> d:<context.inventory>
+        - inventory set slot:5 o:<[fitem]> d:<context.inventory>
         - inventory update
+        on player clicks item in ps_menu_inventory:
+        - narrate "<&7>Clicked slot: <&f><context.slot>"
+        - narrate "<&7>In inventory <context.inventory>"
 
 ps_menu_inventory:
     type: inventory
