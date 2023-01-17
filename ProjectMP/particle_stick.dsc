@@ -388,23 +388,19 @@ ps_menu_description_handler:
         #particle item
         - define pitem <item[ps_inventory_particle_item]>
         - define plore <[pitem].lore.include[<&b>Current particle: <&e><player.item_in_hand.flag[particle].to_sentence_case.if_null[no particle]>]>
-        - adjust <[pitem]> lore:<[plore]>
         #shape item
         - define sitem <item[ps_inventory_shape_item]>
         - define slore <[sitem].lore.include[<&b>Current shape: <&e><player.item_in_hand.flag[particle_shape].to_sentence_case.if_null[no shape]>]>
-        - adjust <[sitem]> lore:<[slore]>
         #rotation item
         - define ritem <item[ps_inventory_rotation_item]>
         - define rlore <[ritem].lore.include[<&b>Current rotation: <&e><player.item_in_hand.flag[particle_rotation].to_sentence_case.if_null[no rotation]>]>
-        - adjust <[ritem]> lore:<[rlore]>
         #frequency item
         - define fitem <item[ps_inventory_frequency_item]>
         - define flore <[fitem].lore.include[<&b>Current frequency: <&e><player.item_in_hand.flag[particle_frequency].if_null[no frequency]>]>
-        - adjust <[fitem]> lore:<[flore]>
-        - inventory set slot:2 o:<[pitem]> d:<context.inventory>
-        - inventory set slot:3 o:<[sitem]> d:<context.inventory>
-        - inventory set slot:4 o:<[ritem]> d:<context.inventory>
-        - inventory set slot:5 o:<[fitem]> d:<context.inventory>
+        - inventory adjust d:<context.inventory> slot:2 lore:<[plore]>
+        - inventory adjust d:<context.inventory> slot:3 lore:<[slore]>
+        - inventory adjust d:<context.inventory> slot:4 lore:<[rlore]>
+        - inventory adjust d:<context.inventory> slot:5 lore:<[flore]>
         - inventory update
 
 ps_menu_inventory:
