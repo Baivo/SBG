@@ -50,22 +50,15 @@ ps_item_events:
         - inventory open d:<inventory[ps_menu_inventory]>
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-            - if <[location].chunk.is_loaded>:
-                - ~run ps_ticker def.location:<[location]>
+            - ~run ps_ticker def.location:<[location]>
 # Particle Stick Event Scripts #
-anim_ticker_run:
-    type: task
-    definitions: location
-    script:
-        - repeat 2:
-            - run anim_ticker
-            - wait 10t
 ps_ticker:
     type: task
     definitions: location
     script:
-        - foreach <[location].flag[particle]> as:id:
-            - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
+        - if <[location].chunk.is_loaded>:
+            - foreach <[location].flag[particle]> as:id:
+                - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
 ps_particle_inventory_1:
@@ -198,7 +191,7 @@ ps_particle_inventory_events:
                 - if <[frequency]> <= 15:
                     - ~run ps_inventory_frequency_task def.frequency:<[frequency].add[5]>
                 - else if <[frequency]> > 15:
-                    - ~run ps_iinventory_frequency_task def.frequency:20
+                    - ~run ps_inventory_frequency_task def.frequency:20
                     - inventory close
                 - else if <[frequency]> == 20:
                     - narrate "<&c>Frequency cannot be higher than 20."
@@ -279,7 +272,7 @@ ps_shapes_item_alchemy:
     material: light_gray_dye
     display name: <&e>Alchemy
     flags:
-        shape: ring
+        shape: alchemy
     lore:
     - <&8>
     - <&a>Click to change shape to <&e>Alchemy
@@ -658,16 +651,7 @@ ps_shape_ring:
 #     - define face <list[]>
 #     - foreach <[face]> as:vec:
 #         - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> count:1 offset:0 speed:0
-anim_ticker:
-    type: task
-    script:
-    - define animtic <server.flag[animtic].if_null[0]>
-    - if <[animtic]> <= 358:
-        - define animtic <[animtic].add[1]>
-        - flag server animtic:<[animtic]>
-    - else if <[animtic]> == 359:
-        - define animtic 0
-        - flag server animtic:0
+
 
 ps_shape_alchemy:
     type: task
