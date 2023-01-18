@@ -726,16 +726,16 @@ ps_shape_square:
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - repeat <[frequency]>:
         - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]>
+            - playeffect at:<[location]> effect:<[particle]> offset:0.0
             - define location <[location].relative[0.1,0,0]>
         - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]>
+            - playeffect at:<[location]> effect:<[particle]> offset:0.0
             - define location <[location].relative[0,0.1,0]>
         - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]>
+            - playeffect at:<[location]> effect:<[particle]> offset:0.0
             - define location <[location].relative[-0.1,0,0]>
         - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]>
+            - playeffect at:<[location]> effect:<[particle]> offset:0.0
             - define location <[location].relative[0,-0.1,0]>
         - define location <[reset]>
         - wait <[delay]>
