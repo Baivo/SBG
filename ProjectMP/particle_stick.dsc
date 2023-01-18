@@ -51,7 +51,7 @@ ps_item_events:
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - if !<[location].chunk.is_loaded>:
-                - announce to_flagged:listen "<[location]> was not loaded. Skipping."
+                # - announce to_flagged:listen "<[location]> was not loaded. Skipping."
                 - foreach next
             - run ps_ticker def.location:<[location]>
         #alchemy shape animation ticker
@@ -69,7 +69,9 @@ ps_animation_alchemy:
             - flag server alchtick:<[alchtick].add[1]>
         - else if <[alchtick]> == 359:
             - flag server alchtick:0
+        - announce to_flagged:listen "<[alchtick]>"
         - wait <[delay]>
+
 ps_ticker:
     type: task
     definitions: location
