@@ -61,13 +61,15 @@ ps_item_events:
 ps_animation_alchemy:
     type: task
     script:
-    - repeat 10:
+    - define repeat <server.flag[alchtick_repeat].if_null[1]>
+    - define delay <element[1].div[<[repeat]>].as[duration].in_ticks>t
+    - repeat <[repeat]>:
         - define alchtick <server.flag[alchtick].if_null[0]>
         - if <[alchtick]> <= 358:
             - flag server alchtick:<[alchtick].add[1]>
         - else if <[alchtick]> == 359:
             - flag server alchtick:0
-        - wait 2t
+        - wait <[delay]>
 ps_ticker:
     type: task
     definitions: location
