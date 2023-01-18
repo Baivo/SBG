@@ -710,7 +710,7 @@ ps_shape_square:
     type: task
     definitions: location|particle|frequency|rotation
     script:
-    - define location <[location].below[0.5]>
+    - define location <[location].simple>
     - switch <[rotation]>:
         - case top:
             - define location <[location].above[0.4].with_yaw[90]>
