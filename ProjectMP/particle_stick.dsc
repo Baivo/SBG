@@ -255,6 +255,19 @@ ps_inventory_frequency_task:
 ps_shapes_item_circle:
     type: item
     material: gray_dye
+    display name: <&e>Square
+    flags:
+        shape: square
+    lore:
+    - <&8>
+    - <&a>Click to change shape to <&e>Square
+    - <&8>
+    - <&7>Creates a square shape,
+    - <&7>covers 1 block face.
+
+ps_shapes_item_square:
+    type: item
+    material: gray_dye
     display name: <&e>Circle
     flags:
         shape: circle
@@ -280,7 +293,7 @@ ps_shapes_item_single:
 
 ps_shapes_item_ring:
     type: item
-    material: light_gray_dye
+    material: gray_dye
     display name: <&e>Ring
     flags:
         shape: ring
