@@ -1,4 +1,4 @@
-ps_shape_import:
+ps_shape_tinkalchemy1:
     type: task
     definitions: location|particle|frequency|rotation
     script:
