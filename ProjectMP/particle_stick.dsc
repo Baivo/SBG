@@ -713,9 +713,9 @@ ps_shape_square:
     - define location <[location].below[0.5]>
     - switch <[rotation]>:
         - case top:
-            - define location <[location].above[0.4].with_pitch[90]>
+            - define location <[location].above[0.4].with_yaw[90]>
         - case bottom:
-            - define location <[location].below[0.4].with_pitch[90]>
+            - define location <[location].below[0.4].with_yaw[90]>
         - case north:
             - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
         - case east:
