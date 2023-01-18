@@ -74,7 +74,6 @@ ps_animation_alchemy:
             - flag server alchtick:<[alchtick].add[1]>
         - else if <[alchtick]> == 359:
             - flag server alchtick:0
-        - announce to_flagged:listen "<[alchtick]>"
         - wait <[delay]>
 
 ps_ticker:
@@ -704,3 +703,25 @@ ps_shape_alchemy:
             - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> offset:0.0
         - wait <[delay]>
         - define location <[location].with_yaw[1]>
+
+
+ps_shape_square:
+    type: task
+    definitions: location|particle|frequency|rotation
+    script:
+    - define location <[location].simple>
+    - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
+    - repeat <[frequency]>:
+        - repeat 10:
+            - playeffect at:<[location]> effect:<[particle]>
+            - define location <[location].relative[0.1,0,0]>
+        - repeat 10:
+            - playeffect at:<[location]> effect:<[particle]>
+            - define location <[location].relative[0,0.1,0]>
+        - repeat 10:
+            - playeffect at:<[location]> effect:<[particle]>
+            - define location <[location].relative[-0.1,0,0]>
+        - repeat 10:
+            - playeffect at:<[location]> effect:<[particle]>
+            - define location <[location].relative[0,-0.1,0]>
+        - wait <[delay]>
