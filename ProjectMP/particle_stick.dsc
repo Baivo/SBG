@@ -33,17 +33,22 @@ ps_item_events:
         - flag <[location]> particle.<[id]>.rotation:<player.item_in_hand.flag[particle_rotation]>
         - actionbar "<&7>Particles created at: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
         on player left clicks !air with:particle_stick:
-        - if <context.material.name> == air:
-            - determine cancelled
-        - else:
+        - if <player.is_sneaking>:
             - determine cancelled passively
-        - define location <context.relative>
-        - if <[location].has_flag[particle]>:
-            - flag server particle_stick_location:<-:<[location]>
-            - flag <[location]> particle:!
-            - actionbar "<&7>Removed particles from: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
+            - foreach <player.location.find_blocks_flagged[particle].within[16]> as:pl:
+                - debugblock <[pl]> d:5t
         - else:
-            - actionbar "<&7>No particles to remove at: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
+            - if <context.material.name> == air:
+                - determine cancelled
+            - else:
+                - determine cancelled passively
+            - define location <context.relative>
+            - if <[location].has_flag[particle]>:
+                - flag server particle_stick_location:<-:<[location]>
+                - flag <[location]> particle:!
+                - actionbar "<&7>Removed particles from: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
+            - else:
+                - actionbar "<&7>No particles to remove at: <&color[#bfbfbf]>x <&color[#d65c5c]><[location].round_down.x>  <&color[#bfbfbf]>y <&color[#5cd699]><[location].round_down.y>  <&color[#bfbfbf]>z <&color[#5cb8d6]><[location].round_down.z>"
         on player drops particle_stick:
         - determine cancelled passively
         - wait 2t
@@ -534,7 +539,7 @@ ps_shape_single:
         - case west:
             - define location <[location].center.with_z[<[location].center.x.sub[0.4]>]>
     - repeat <[frequency]>:
-        - playeffect at:<[location]> effect:<[particle]>  offset:0.05 speed:0.5
+        - playeffect at:<[location]> effect:<[particle]>  offset:0.05 
         - wait <[delay]>
 
 # Location is the centre of the block the particle is being played at
@@ -596,35 +601,35 @@ ps_shape_circle:
             - case x:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
                     - foreach <[location].points_around_x[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
                     - foreach <[location].points_around_x[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
                     - foreach <[location].points_around_x[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
                     - wait <[delay]>
             - case y:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_y[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_y[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_y[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - wait <[delay]>
             - case z:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_z[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_z[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - foreach <[location].points_around_z[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 speed:0.5
+                        - playeffect at:<[loc]> effect:<[particle]>
                     - wait <[delay]>
 
 # Particle Shape: Ring #
@@ -660,16 +665,16 @@ ps_shape_ring:
         - case x:
             - repeat <[frequency]>:
                 - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]> offset:0.05 speed:0.5
+                    - playeffect at:<[loc]> effect:<[particle]>
                 - wait <[delay]>
         - case y:
             - repeat <[frequency]>:
                 - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]> offset:0.05 speed:0.5
+                    - playeffect at:<[loc]> effect:<[particle]>
                 - wait <[delay]>
         - case z:
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]> offset:0.05 speed:0.5
+                    - playeffect at:<[loc]> effect:<[particle]>
                 - wait <[delay]>
 
 
@@ -678,9 +683,11 @@ ps_shape_ring:
 #     type: task
 #     definitions: location|particle|frequency|rotation
 #     script:
-#     - define face <list[]>
-#     - foreach <[face]> as:vec:
-#         - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]>  offset:0 speed:0
+#     - define shape <list[]>
+#     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
+#     - repeat <[frequency]>:
+#         - foreach <[shape]> as:vec:
+#             - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]>
 
 
 ps_shape_alchemy:
@@ -693,6 +700,6 @@ ps_shape_alchemy:
         - define alchtick <server.flag[alchtick].if_null[0]>
         - define location <[location].with_yaw[<[alchtick]>]>
         - foreach <[face]> as:vec:
-            - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> offset:0 speed:0
+            - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]>
         - wait <[delay]>
         - define location <[location].with_yaw[1]>
