@@ -55,13 +55,19 @@ ps_item_events:
                 - foreach next
             - run ps_ticker def.location:<[location]>
         #alchemy shape animation ticker
+        - ~run ps_animation_alchemy
+
+# Particle Stick Event Scripts #
+ps_animation_alchemy:
+    type: task
+    script:
+    - repeat 2:
         - define alchtick <server.flag[alchtick].if_null[0]>
         - if <[alchtick]> <= 358:
             - flag server alchtick:<[alchtick].add[1]>
         - else if <[alchtick]> == 359:
             - flag server alchtick:0
-
-# Particle Stick Event Scripts #
+        - wait 10t
 ps_ticker:
     type: task
     definitions: location
