@@ -3,7 +3,7 @@
 ### Denizen gore by Baivo#1337
 ### https://github.com/Baivo/Particle-Converter-Denizen
 
-ps_shape_import:
+ps_shape_tinktransporter:
     type: task
     definitions: location|particle|frequency|rotation
     script:
