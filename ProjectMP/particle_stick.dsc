@@ -51,6 +51,7 @@ ps_item_events:
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - if !<[location].chunk.is_loaded>:
+                - announce to_flagged:listen "<[location]> was not loaded. Skipping."
                 - foreach next
             - run ps_ticker def.location:<[location]>
 
@@ -59,7 +60,8 @@ ps_ticker:
     type: task
     definitions: location
     script:
-    - foreach <[location].flag[particle.id]> as:id:
+    - foreach <[location].flag[particle.id]> as:particle:
+        - define id <[location].flag[particle.<[particle]>]>
         - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
