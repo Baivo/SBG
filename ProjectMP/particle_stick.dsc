@@ -722,7 +722,7 @@ ps_shape_square:
     type: task
     definitions: location|particle|frequency|rotation
     script:
-    - define location <[location].simple>
+    - define reset <[location]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - repeat <[frequency]>:
         - repeat 10:
@@ -737,4 +737,5 @@ ps_shape_square:
         - repeat 10:
             - playeffect at:<[location]> effect:<[particle]>
             - define location <[location].relative[0,-0.1,0]>
+        - define location <[reset]>
         - wait <[delay]>
