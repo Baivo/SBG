@@ -537,19 +537,7 @@ ps_shape_single:
     definitions: location|particle|frequency|rotation
     script:
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-    - switch <[rotation]>:
-        - case top:
-            - define location <[location].above[0.4]>
-        - case bottom:
-            - define location <[location].below[0.4]>
-        - case north:
-            - define location <[location].center.with_z[<[location].center.z.sub[0.4]>]>
-        - case east:
-            - define location <[location].center.with_x[<[location].center.x.add[0.4]>]>
-        - case south:
-            - define location <[location].center.with_z[<[location].center.z.add[0.4]>]>
-        - case west:
-            - define location <[location].center.with_z[<[location].center.x.sub[0.4]>]>
+    
     - repeat <[frequency]>:
         - playeffect at:<[location]> effect:<[particle]>  offset:0.05 
         - wait <[delay]>
@@ -722,6 +710,20 @@ ps_shape_square:
     type: task
     definitions: location|particle|frequency|rotation
     script:
+    - define location <[location].below[0.5]>
+    - switch <[rotation]>:
+        - case top:
+            - define location <[location].above[0.4].with_pitch[90]>
+        - case bottom:
+            - define location <[location].below[0.4].with_pitch[90]>
+        - case north:
+            - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
+        - case east:
+            - define location <[location].with_x[<[location].center.x.add[0.4]>]>
+        - case south:
+            - define location <[location].with_z[<[location].center.z.add[0.4]>]>
+        - case west:
+            - define location <[location].with_z[<[location].center.x.sub[0.4]>]>
     - define reset <[location]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - repeat <[frequency]>:
