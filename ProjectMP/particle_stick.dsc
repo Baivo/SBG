@@ -25,7 +25,7 @@ ps_item_events:
         - define location <context.relative>
         - define id <util.random_uuid>
         - flag server particle_stick_location:->:<[location]>
-        - flag <[location]> particle:->:<[id]>
+        - flag <[location]> particle.id:->:<[id]>
         - flag <[location]> particle.<[id]>.owner:<player.name>
         - flag <[location]> particle.<[id]>.particle:<player.item_in_hand.flag[particle]>
         - flag <[location]> particle.<[id]>.frequency:<player.item_in_hand.flag[particle_frequency]>
@@ -50,13 +50,16 @@ ps_item_events:
         - inventory open d:<inventory[ps_menu_inventory]>
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-            - ~run ps_ticker def.location:<[location]>
+            - if !<[location].chunk.is_loaded>:
+                - foreach next
+            - run ps_ticker def.location:<[location]>
+
 # Particle Stick Event Scripts #
 ps_ticker:
     type: task
     definitions: location
     script:
-    - foreach <[location].flag[particle]> as:id:
+    - foreach <[location].flag[particle.id]> as:id:
         - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
