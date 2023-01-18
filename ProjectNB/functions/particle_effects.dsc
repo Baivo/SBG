@@ -1,12 +1,9 @@
 # Author: Baivo
 # Version 0.0
 # 
-
-
-nbf_particle_radius:
+nbf_trise_ghostbridge:
     type: task
-    debug: true
-    definitions: player
+    definitions: player|trigger
     script:
-    - define centre <[player].location.above[1]>
-    #
+    - ratelimit <[player]> 1t
+    - ~run ps_shape_circle def.location:<[trigger].center> def.particle:sneeze def.frequency:1 def.rotation:center
