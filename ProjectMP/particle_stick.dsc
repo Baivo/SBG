@@ -601,35 +601,35 @@ ps_shape_circle:
             - case x:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_x[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_x[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_x[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>  offset:0.05 
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - wait <[delay]>
             - case y:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_y[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_y[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_y[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - wait <[delay]>
             - case z:
                 - repeat <[frequency]>:
                     - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_z[radius=0.35;points=7]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_z[radius=0.25;points=5]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - foreach <[location].points_around_z[radius=0.15;points=3]> as:loc:
-                        - playeffect at:<[loc]> effect:<[particle]>
+                        - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                     - wait <[delay]>
 
 # Particle Shape: Ring #
@@ -665,29 +665,30 @@ ps_shape_ring:
         - case x:
             - repeat <[frequency]>:
                 - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]>
+                    - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                 - wait <[delay]>
         - case y:
             - repeat <[frequency]>:
                 - foreach <[location].points_around_y[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]>
+                    - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                 - wait <[delay]>
         - case z:
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
-                    - playeffect at:<[loc]> effect:<[particle]>
+                    - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                 - wait <[delay]>
 
 
 
-# ps_shape_import:
-#     type: task
-#     definitions: location|particle|frequency|rotation
-#     script:
-#     - define shape <list[]>
-#     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-#     - repeat <[frequency]>:
-#         - foreach <[shape]> as:vec:
-#             - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]>
+ps_shape_import:
+    type: task
+    definitions: location|particle|frequency|rotation
+    script:
+    - define shape <list[]>
+    - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
+    - repeat <[frequency]>:
+        - foreach <[shape]> as:vec:
+            - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> offset:0.0
+        - wait <[delay]>
 
 
 ps_shape_alchemy:
@@ -700,6 +701,6 @@ ps_shape_alchemy:
         - define alchtick <server.flag[alchtick].if_null[0]>
         - define location <[location].with_yaw[<[alchtick]>]>
         - foreach <[face]> as:vec:
-            - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]>
+            - playeffect at:<[location].relative[<[vec]>]> effect:<[particle]> offset:0.0
         - wait <[delay]>
         - define location <[location].with_yaw[1]>
