@@ -28,6 +28,7 @@ chat_map:
 color_map:
     type: data
     default: 0,0,0
+    air: 0,0,0
     jack_o_lantern: 214,152,52
     composter_side: 112,70,31
     frosted_ice_0: 140,181,252
