@@ -4,24 +4,24 @@ chat_map:
         on player steps on block:
         - ratelimit <player> 1t
         - define location <player.location.relative[8,0,8]>
-        - define grid <map>
-        - define map <map>
+        - define materialGrid <map>
+        - define colorMap <map>
         - repeat 16:
             - repeat 16:
-                - define materialGrid <[grid].with[<[location]>].as[<[location].material.name>]>
+                - define materialGrid <[materialGrid].with[<[location]>].as[<[location].material.name>]>
                 - define location <[location].relative[-1,0,0]>
             - define location <[location].relative[16,0,-1]>
         - foreach <[materialGrid]> key:<[pixel]> as:<[material]>:
-            - define color <script[color_map].data_key[<[material]>]>
-            - if !<[color]>:
-                - define color <script[color_map].data_key[default]>
-            - define map <[map].with[<[pixel]>].as[<color[<[colour]>].hex>]>
-        - foreach <[map]> as:colour:
+            - define avgColor <script[color_map].data_key[<[material]>].if_null[default]>
+            - define colorMap <[colorMap].with[<[pixel]>].as[<color[<[colour]>].hex>]>
+        - define i 0
+        - repeat 16:
+            - define row <list>
             - repeat 16:
-                - define row <list>
-                - repeat 16:
-                    - define row <[row].include[<&[<[colour]>]>■]>
-                - announce to_flagged:Baivo <[row].unseparated>
+                - define row <[row].include[<[colorMap].get[<[i]>]>]>
+                - define i:++
+
+            
 
                 
 
