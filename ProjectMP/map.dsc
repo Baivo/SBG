@@ -11,9 +11,11 @@ chat_map:
                 - define materialGrid <[materialGrid].with[<[location]>].as[<[location].material.name>]>
                 - define location <[location].relative[-1,0,0]>
             - define location <[location].relative[16,0,-1]>
+        - define i 0
         - foreach <[materialGrid]> key:<[pixel]> as:<[material]>:
             - define avgColor <script[color_map].data_key[<[material]>].if_null[default]>
-            - define colorMap <[colorMap].with[<[pixel]>].as[<color[<[colour]>].hex>]>
+            - define colorMap <[colorMap].with[<[i]>].as[<color[<[colour]>].hex>]>
+            - define i:++
         - define i 0
         - repeat 16:
             - define row <list>
