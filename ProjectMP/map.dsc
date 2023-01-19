@@ -15,7 +15,7 @@ chat_map:
             - define location <[location].relative[16,0,-1]>
         - define i 0
         - foreach <[materialGrid]> key:<[pixel]> as:<[material]>:
-            - define avgColor <script[color_map].data_key[<[material]>].if_null[default]>
+            - define avgColor <script[color_map].data_key[<[material]>].if_null[0,0,0]>
             - define colorMap <[colorMap].with[<[i]>].as[<[avgColor]>]>
             - define i:++
         - define i 0
