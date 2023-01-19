@@ -20,9 +20,9 @@ chat_map:
         - repeat 16:
             - define row <list>
             - repeat 16:
-                - define row <[row].include[<[colorMap].get[<[i]>]>]>
+                - define row <[row].include[<&[<[colorMap].get[<[i]>]>]>■]>
                 - define i:++
-            - announce to_flagged:Baivo <[row]>
+            - announce to_flagged:Baivo <[row].unseparated>
 color_map:
     type: data
     default: 0,0,0,0
