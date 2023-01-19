@@ -16,13 +16,13 @@ chat_map:
         - define i 0
         - foreach <[materialGrid]> key:<[pixel]> as:<[material]>:
             - define avgColor <script[color_map].data_key[<[material]>].if_null[default]>
-            - define colorMap <[colorMap].with[<[i]>].as[<color[<[colour]>].hex>]>
+            - define colorMap <[colorMap].with[<[i]>].as[<[avgColor]>]>
             - define i:++
         - define i 0
         - repeat 16:
             - define row <list>
             - repeat 16:
-                - define row <[row].include[<&[<[colorMap].get[<[i]>]>]>■]>
+                - define row <[row].include[<&color[<[colorMap].get[<[i]>]>]>■]>
                 - define i:++
             - announce to_flagged:Baivo <[row].unseparated>
 color_map:
