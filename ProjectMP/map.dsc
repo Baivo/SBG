@@ -2,6 +2,8 @@ chat_map:
     type: world
     events:
         on player steps on block:
+        - if !<player.has_flag[Baivo]>:
+            - stop
         - ratelimit <player> 1t
         - define location <player.location.relative[8,0,8]>
         - define materialGrid <map>
