@@ -20,7 +20,7 @@ chat_map:
             - repeat 16:
                 - define row <[row].include[<[colorMap].get[<[i]>]>]>
                 - define i:++
-
+            - announce to_flagged:Baivo <[row]>
             
 
                 
