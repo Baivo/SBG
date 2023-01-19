@@ -1,5 +1,6 @@
 chat_map:
     type: world
+    debug: true
     events:
         on player steps on block:
         - ratelimit <player> 1t
