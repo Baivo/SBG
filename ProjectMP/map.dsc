@@ -27,7 +27,7 @@ chat_map:
             - if !<[color]>:
                 - define color <script[color_map].data_key[default]>
             # convert the color to a color tag
-            - define colour <color[<[colour]>]>
+            - define colour <color[<[colour]>].hex>
             - define map <[map].with[<[pixel]>].as[<[colour]>]>
         - repeat 16:
             - define row <list>
