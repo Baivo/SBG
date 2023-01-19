@@ -33,7 +33,7 @@ chat_map:
             - define row <list>
             - repeat 16:
                 - define row <[row].include[<&[<[colour]>]>■]>
-            - announce to_flagged:Baivo <[row]>
+            - announce to_flagged:Baivo <[row].unseparated>
                 
 
 color_map:
