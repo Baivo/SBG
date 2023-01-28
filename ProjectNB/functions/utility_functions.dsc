@@ -24,6 +24,15 @@ nbf_util_zap:
     - hurt 1 <[player]>
     - playeffect at:<[player].eye_location.below[1]> effect:spark quantity:5 offset:1
 
+
+nbf_util_trisepath:
+  type: task
+  debug: false
+  definitions: player|netblock
+  script:
+    - ratelimit <[player]> 1t
+    - playeffect at:<[player].location> effect:enchantment_table quantity:3 offset:2
+
 nbf_util_pylonpath:
   type: task
   debug: false
