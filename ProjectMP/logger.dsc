@@ -86,9 +86,9 @@ Logger_Menu_Script:
             - flag <[logger]> range:<[range].add[1]>
             - define range <[logger].flag[range]>
             - if <[logger].flag[logger]> == on:
-                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
+                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
             - else:
-                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
+                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
             - wait 1t
             - inventory open d:<inventory[<player.flag[logger_menu]>]>
         - else:
@@ -101,9 +101,9 @@ Logger_Menu_Script:
             - flag <[logger]> range:<[range].sub[1]>
             - define range <[logger].flag[range]>
             - if <[logger].flag[logger]> == on:
-                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
+                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
             - else:
-                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
+                - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
             - wait 1t
             - inventory open d:<inventory[<player.flag[logger_menu]>]>
         - else:
