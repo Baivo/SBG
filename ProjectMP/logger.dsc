@@ -70,7 +70,7 @@ Logger_Menu_Script:
             - flag <[logger]> range:<[range].add[1]>
             - adjust <inventory[logger_menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[range]>"
             - wait 1t
-            - inventory open d:logger_menu_<context.location>
+            - inventory open d:<inventory[logger_menu_<context.location>]>
         - else:
             - narrate "<&a>Already at max range"
             - inventory close
@@ -81,7 +81,7 @@ Logger_Menu_Script:
             - flag <[logger]> range:<[range].sub[1]>
             - adjust <inventory[logger_menu_<context.location>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
             - wait 1t
-            - inventory open d:logger_menu_<context.location>
+            - inventory open d:<inventory[logger_menu_<context.location>]>
         - else:
             - narrate "<&c>Already at min range"
             - inventory close
