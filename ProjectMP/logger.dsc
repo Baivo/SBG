@@ -8,8 +8,8 @@ Logger_Script:
     debug: false
     definitions: logger|owner
     script:
-    - define power <[logger].flag[Logger]>
-    - define range <[logger].flag[Range]>
+    - define power <[logger].flag[logger]>
+    - define range <[logger].flag[range]>
     - if <[power]> == Off:
         - stop
     - else:
