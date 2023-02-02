@@ -6,7 +6,7 @@
 Logger_Script:
     type: task
     debug: false
-    definitions: logger|owner
+    definitions: logger|owner-
     script:
     - define power <[logger].flag[logger]>
     - define range <[logger].flag[range]>
@@ -23,7 +23,7 @@ Logger_Script:
                 - if ( <[target].material.name> == air ) || ( <[target].material.name> == dirt ) || ( <[target].material.name.contains_any[grass_block]> ) || ( <[target].material.name> == podzol ) || ( <[target].material.name> == coarse_dirt ):
                     - foreach next
                 - modifyblock <[target]> air naturally:diamond_axe delayed
-            - modifyblock <[tree]> <[sapling]> naturally:hand delayed
+            - modifyblock <[tree]> <[sapling]> naturally:diamond_axe delayed
             - flag <[tree]> loggersapling:!
             - flag <[tree]> loggertarget:!
 
