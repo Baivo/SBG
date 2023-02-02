@@ -64,6 +64,7 @@ Logger_Events:
         - define menu <inventory[logger_menu]>
         - flag <player> logger_menu:<[menu]>
         - flag <player> logger_menu_logger:<[logger]>
+        - define range <[logger].flag[range]>
         - if <[logger].flag[logger]> == on:
             - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
         - else:
