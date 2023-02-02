@@ -32,7 +32,7 @@ Logger_Events:
     debug: false
     events:
         on delta time secondly every:5:
-        - foreach <server.flag[logger]> as:logger:
+        - foreach <server.flag[logger].if_null[<list>]> as:logger:
             - run Logger_script def.logger:<[logger]> def.owner:<[logger].flag[owner]>
         on player places Logger_Item:
         - flag server logger:->:<context.location>
