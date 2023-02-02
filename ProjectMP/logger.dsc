@@ -32,33 +32,29 @@ Logger_Events:
     debug: false
     events:
         on delta time secondly every:5:
-        - foreach <server.flag[Logger]> key:logger as:owner:
-            - run Logger_script def.logger:<[logger]> def.owner:<[owner]>
+        - foreach <server.flag[logger]> as:logger:
+            - run Logger_script def.logger:<[logger]> def.owner:<[logger].flag[owner]>
         on player places Logger_Item:
-        - flag server Logger.<context.location>:<player>
-        - flag <context.location> Logger:On
-        - flag <context.location> Range:5
+        - flag server logger:->:<context.location>
+        - flag <context.location> logger:On
+        - flag <context.location> range:5
+        - flag <context.location> owner:<player>
         on player breaks stonecutter location_flagged:Logger:
-        - flag server Logger.<context.location>:!
-        - flag <context.location> Logger:!
-        - flag <context.location> Range:!
+        - flag server logger:<-:<context.location>
+        - flag <context.location> logger:!
+        - flag <context.location> range:!
+        - flag <context.location> owner:!
         - determine <item[Logger_Item]>
         on player right clicks stonecutter location_flagged:Logger:
         - determine cancelled passively
         - define logger <context.location>
-        - define owner <server.flag[Logger.<context.location>]>
-        # - if <player> != <[owner]>:
-        #     - narrate "not yours"
-        #     - determine cancelled
-        # - else:
-        #     - narrate yours
-        - flag <player> Logger_menu:<[logger]>
-        - note remove as:Logger_Menu_<context.location>
-        - note <inventory[Logger_Menu]> as:Logger_Menu_<context.location>
+        - define owner <[logger].flag[owner]>
+        - flag <player> logger_menu:<[logger]>
+        - note remove as:logger_Menu_<context.location>
+        - note <inventory[logger_menu]> as:logger_menu_<context.location>
+        - adjust <inventory[logger_menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[logger].flag[range]>"
         - wait 1t
-        - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[logger].flag[Range]>"
-        - wait 1t
-        - inventory open d:Logger_Menu_<context.location>
+        - inventory open d:logger_Menu_<context.location>
         on structure grows:
         - flag <context.location> loggersapling:<context.location.material.name>
         - flag <context.location> loggertarget:<context.blocks>
@@ -68,31 +64,31 @@ Logger_Menu_Script:
     debug: false
     events:
         on player clicks Logger_RangeUp in Logger_Menu_*:
-        - define logger <player.flag[Logger_Menu]>
-        - define range <[logger].flag[Range]>
+        - define logger <player.flag[logger_Menu]>
+        - define range <[logger].flag[range]>
         - if <[range]> < 16:
-            - flag <[logger]> Range:<[range].add[1]>
-            - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[range]>"
+            - flag <[logger]> range:<[range].add[1]>
+            - adjust <inventory[logger_menu_<context.location>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[range]>"
             - wait 1t
-            - inventory open d:Logger_Menu_<context.location>
+            - inventory open d:logger_menu_<context.location>
         - else:
             - narrate "<&a>Already at max range"
             - inventory close
         on player clicks Logger_RangeDown in Logger_Menu_*:
-        - define logger <player.flag[Logger_Menu]>
-        - define range <[logger].flag[Range]>
+        - define logger <player.flag[logger_menu]>
+        - define range <[logger].flag[range]>
         - if <[range]> > 1:
-            - flag <[logger]> Range:<[range].sub[1]>
-            - adjust <inventory[Logger_Menu_<context.location>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
+            - flag <[logger]> range:<[range].sub[1]>
+            - adjust <inventory[logger_menu_<context.location>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
             - wait 1t
-            - inventory open d:Logger_Menu_<context.location>
+            - inventory open d:logger_menu_<context.location>
         - else:
             - narrate "<&c>Already at min range"
             - inventory close
         on player clicks Logger_Power in Logger_Menu_*:
-        - define logger <player.flag[Logger_Menu]>
-        - if <[logger].flag[Logger]> == On:
-            - flag <[logger]> Logger:Off
+        - define logger <player.flag[logger_menu]>
+        - if <[logger].flag[logger]> == On:
+            - flag <[logger]> logger:Off
             - narrate "<&c>Logger off"
             - inventory close
         - else:
