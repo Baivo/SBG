@@ -46,7 +46,7 @@ Logger_Events:
         - flag <[location]> particle.<[id]>.owner:<player.name>
         - flag <[location]> particle.<[id]>.particle:SMOKE_NORMAL
         - flag <[location]> particle.<[id]>.frequency:5
-        - flag <[location]> particle.<[id]>.shape:cirle
+        - flag <[location]> particle.<[id]>.shape:circle
         - flag <[location]> particle.<[id]>.rotation:bottom
         on player breaks stonecutter location_flagged:Logger:
         - define location <context.location>
@@ -66,9 +66,9 @@ Logger_Events:
         - flag <player> logger_menu_logger:<[logger]>
         - define range <[logger].flag[range]>
         - if <[logger].flag[logger]> == on:
-            - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&a>On"
+            - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l><&sp>|<&sp><&7>Power: <&a>On"
         - else:
-            - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Auto-Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
+            - adjust <inventory[<player.flag[logger_menu]>]> "title:<&3>Logger<&7><&l>|<&sp><&7>Range: <&e><[range]><&7><&l>|<&sp><&7>Power: <&c>Off"
         - wait 1t
         - inventory open d:<inventory[<player.flag[logger_menu]>]>
         on structure grows:
@@ -127,7 +127,7 @@ Logger_Menu_Script:
             - flag <[location]> particle.<[id]>.owner:<player.name>
             - flag <[location]> particle.<[id]>.particle:SMOKE_NORMAL
             - flag <[location]> particle.<[id]>.frequency:5
-            - flag <[location]> particle.<[id]>.shape:cirle
+            - flag <[location]> particle.<[id]>.shape:circle
             - flag <[location]> particle.<[id]>.rotation:bottom
 
 Logger_RangeUp:
