@@ -63,12 +63,14 @@ Logger_Menu_Script:
     type: world
     debug: false
     events:
-        on player clicks Logger_RangeUp in Logger_Menu_*:
+        on player clicks Logger_RangeUp in logger_menu:
         - define logger <player.flag[logger_menu_logger]>
         - define range <[logger].flag[range]>
         - if <[range]> < 16:
             - flag <[logger]> range:<[range].add[1]>
+            - define range <[logger].flag[range]>
             - adjust <inventory[<player.flag[logger_menu]>]> "title:<&a>Logger Menu<&7><&sp>Range: <&e><[range]>"
+            - wait 1t
             - inventory open d:<inventory[<player.flag[logger_menu]>]>
         - else:
             - narrate "<&a>Already at max range"
@@ -78,6 +80,7 @@ Logger_Menu_Script:
         - define range <[logger].flag[range]>
         - if <[range]> > 1:
             - flag <[logger]> range:<[range].sub[1]>
+            - define range <[logger].flag[range]>
             - adjust <inventory[<player.flag[logger_menu]>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
             - wait 1t
             - inventory open d:<inventory[<player.flag[logger_menu]>]>
