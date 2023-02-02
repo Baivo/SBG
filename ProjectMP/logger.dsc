@@ -68,7 +68,7 @@ Logger_Events:
         - if <[logger].flag[logger]> == on:
             - adjust <inventory[<player.flag[logger_menu]>]> title:<&3>Logger<&7><&l><&sp>|<&sp><&7>Range:<&sp><&e><[range]><&7><&l><&sp>|<&sp><&7>Power:<&sp><&a>On
         - else:
-            - adjust <inventory[<player.flag[logger_menu]>]> title:<&3>Logger<&7><&l><&sp>|<&sp><&7>Range:<&sp><&e><[range]><&7><&l>|<&sp><&7>Power:<&sp><&c>Off
+            - adjust <inventory[<player.flag[logger_menu]>]> title:<&3>Logger<&7><&l><&sp>|<&sp><&7>Range:<&sp><&e><[range]><&7><&l><&sp>|<&sp><&7>Power:<&sp><&c>Off
         - wait 1t
         - inventory open d:<inventory[<player.flag[logger_menu]>]>
         on structure grows:
