@@ -167,4 +167,4 @@ Logger_Menu:
     size: 5
     gui: true
     slots:
-    - [] [Logger_RangeUp] [Logger_Power] [Logger_RangeDown] []
+    - [Logger_RangeDown] [] [Logger_Power] [] [Logger_RangeUp]
