@@ -35,15 +35,27 @@ Logger_Events:
         - foreach <server.flag[logger].if_null[<list>]> as:logger:
             - run Logger_script def.logger:<[logger]> def.owner:<[logger].flag[owner]>
         on player places Logger_Item:
-        - flag server logger:->:<context.location>
+        - define location <context.location>
+        - flag server logger:->:<[location]>
         - flag <context.location> logger:On
         - flag <context.location> range:5
         - flag <context.location> owner:<player>
+        - define id <util.random_uuid>
+        - flag server particle_stick_location:->:<[location]>
+        - flag <[location]> particle.id:->:<[id]>
+        - flag <[location]> particle.<[id]>.owner:<player.name>
+        - flag <[location]> particle.<[id]>.particle:SMOKE_NORMAL
+        - flag <[location]> particle.<[id]>.frequency:5
+        - flag <[location]> particle.<[id]>.shape:cirle
+        - flag <[location]> particle.<[id]>.rotation:bottom
         on player breaks stonecutter location_flagged:Logger:
-        - flag server logger:<-:<context.location>
-        - flag <context.location> logger:!
-        - flag <context.location> range:!
-        - flag <context.location> owner:!
+        - define location <context.location>
+        - flag server logger:<-:<[location]>
+        - flag <[location]> logger:!
+        - flag <[location]> range:!
+        - flag <[location]> owner:!
+        - flag server particle_stick_location:<-:<[location]>
+        - flag <[location]> particle:!
         - determine <item[Logger_Item]>
         on player right clicks stonecutter location_flagged:Logger:
         - determine cancelled passively
@@ -97,15 +109,25 @@ Logger_Menu_Script:
             - narrate "<&c>Already at min range"
             - inventory close
         on player clicks Logger_Power in logger_menu:
-        - define logger <player.flag[logger_menu_logger]>
-        - if <[logger].flag[logger]> == On:
-            - flag <[logger]> logger:Off
+        - define location <player.flag[logger_menu_logger]>
+        - if <[location].flag[logger]> == On:
+            - flag <[location]> logger:Off
             - narrate "<&c>Logger off"
             - inventory close
+            - flag server particle_stick_location:<-:<[location]>
+            - flag <[location]> particle:!
         - else:
-            - flag <[logger]> Logger:On
+            - flag <[location]> Logger:On
             - narrate "<&a>Logger on"
             - inventory close
+            - define id <util.random_uuid>
+            - flag server particle_stick_location:->:<[location]>
+            - flag <[location]> particle.id:->:<[id]>
+            - flag <[location]> particle.<[id]>.owner:<player.name>
+            - flag <[location]> particle.<[id]>.particle:SMOKE_NORMAL
+            - flag <[location]> particle.<[id]>.frequency:5
+            - flag <[location]> particle.<[id]>.shape:cirle
+            - flag <[location]> particle.<[id]>.rotation:bottom
 
 Logger_RangeUp:
     type: item
