@@ -294,11 +294,10 @@ abilityremovebar:
         on delta time secondly:
         # blastmine
         - foreach <server.online_players> as:player:
-            - if <[player].name> != Baivo:
-                - foreach next
             - if <[player].flag[blastmine].if_null[0]> <= 0:
                 - flag <[player]> blastmineprogressbar:!
-                - bossbar remove id:blastmine_<[player].name>
+                - if <server.current_bossbars.contains[blastmine_<[player].name>]>:
+                    - bossbar remove id:blastmine_<[player].name>
 
 ### Blast mining
 # Blast mining event
