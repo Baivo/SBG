@@ -23,6 +23,8 @@ ps_item_events:
         - ratelimit <player> 2t
         - determine cancelled passively
         - define location <context.relative>
+        - if !<location[<[location]>].is_truthy>:
+            - determine cancelled
         - define id <util.random_uuid>
         - flag server particle_stick_location:->:<[location]>
         - flag <[location]> particle.id:->:<[id]>
