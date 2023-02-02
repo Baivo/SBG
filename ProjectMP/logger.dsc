@@ -75,10 +75,10 @@ Logger_Menu_Script:
         - else:
             - narrate "<&a>Already at max range"
             - inventory close
-        on player clicks Logger_RangeDown in Logger_Menu_*:
+        on player clicks Logger_RangeDown in logger_menu:
         - define logger <player.flag[logger_menu_logger]>
         - define range <[logger].flag[range]>
-        - if <[range]> > 1:
+        - if <[range]> >= 1:
             - flag <[logger]> range:<[range].sub[1]>
             - define range <[logger].flag[range]>
             - adjust <inventory[<player.flag[logger_menu]>]> "title:<&a>Logger Menu<&sp><&7>Range: <&e><[range]>"
@@ -87,7 +87,7 @@ Logger_Menu_Script:
         - else:
             - narrate "<&c>Already at min range"
             - inventory close
-        on player clicks Logger_Power in Logger_Menu_*:
+        on player clicks Logger_Power in logger_menu:
         - define logger <player.flag[logger_menu_logger]>
         - if <[logger].flag[logger]> == On:
             - flag <[logger]> logger:Off
@@ -116,9 +116,11 @@ Logger_Power:
 Logger_Item:
     type: item
     material: stonecutter
-    display name: <&9>Logger
+    display name: <&9>Auto-Logger
     lore:
-    - logs logs
+    - Harvests trees grown by saplings
+    - <&7>Right click to open menu
+    - <&7>Break to remove
     mechanisms:
         custom_model_data: 17
     recipes:
