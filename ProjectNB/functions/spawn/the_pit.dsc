@@ -1,5 +1,5 @@
 # RTP pit victims
-nbf_serverspawn_rulesquiz:
+nbf_serverspawn_thepit:
     type: task
     definitions: player
     debug: false
