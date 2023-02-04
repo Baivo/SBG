@@ -63,9 +63,11 @@ menu_creator_events:
       - inventory set d:<[inv]> o:<server.flag[custom_menus.<[menu_name]>.slots]>
       - wait 1t
       - if <context.inventory.script.name> == spoints_shop:
-        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Point Shop <&7><&l>| <&a>SP Balance: <&3><player.flag[SP_balance]>"
+        #- adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Point Shop <&7><&l>| <&a>SP Balance: <&3><player.flag[SP_balance]>"
+        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Boost Shop <&7><&l>| <&a>Balance: <&3><player.money>"
       - if <context.inventory.script.name> == spoints_perks_menu:
-        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Menu <&7><&l>| <&a>SP Balance: <&3><player.flag[SP_balance]>"
+        #- adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Menu <&7><&l>| <&a>SP Balance: <&3><player.flag[SP_balance]>"
+        - adjust <[inv]> "title:<&gradient[from=#C7C5FC;to=#C5DFFC]>Perk Shop <&7><&l>| <&a>Balance: <&3><player.money>"
         - foreach <[inv].map_slots> key:slot as:item:
           - define lore <[item].lore>
           - define lore:->:<&7>Cost<&co><&sp><&a><[item].flag[cost].if_null[999]>

@@ -57,4 +57,4 @@ rulesFinished:
         - execute as_server "lp user <[player].name> parent add ruleslawyer"
         - wait 2t
         - execute as_player spawn
-        
+        - execute as_player "kit starter"

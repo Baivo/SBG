@@ -27,6 +27,8 @@ SP_clock:
     type: world
     events:
         on delta time minutely:
+        - if <server.has_flag[disableSP]>:
+            - stop
         - foreach <server.online_players> as:player:
             - define SP_balance <[player].flag[SP_balance]>
             - if !<[player].has_flag[SP]>:
@@ -91,7 +93,7 @@ SPoints_shop_command:
     - note <inventory[SPoints_Shop]> as:Spoints_Shop_<player>
     - inventory open d:<inventory[SPoints_Shop_<player>]>
 
-SPoints_shop_transact:
+SPoints_shop_transact_SP:
     type: task
     debug: false
     definitions: player|cost|script
@@ -102,6 +104,17 @@ SPoints_shop_transact:
     - else:
         - narrate "<&c>Not enough points!" targets:<[player]>
         - inventory close
+
+SPoints_shop_transact:
+    type: task
+    debug: false
+    definitions: player|cost|script
+    script:
+    - if <[player].money> >= <[cost]>:
+        - execute as_server "eco take <[player].name> <[cost]>"
+        - run <[script]> def.player:<[player]>
+    - else:
+        - narrate "<&c>Not enough money!" targets:<[player]>
 
 SPoints_Shop:
     type: inventory

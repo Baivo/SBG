@@ -9,6 +9,7 @@ SPoints_Perks_InfoBook_Script:
     script:
         - define perk <[player].flag[perkmenu.perk]>
         - define perklevel:<[player].flag[<[perk]>].if_null[1]>
+        - flag <[player]> perkmenu.perkinfo:!
         - choose <[perk]>:
             - case perks.smelt.speed:
                 - flag <[player]> perkmenu.perkinfo:<script[perks_smelt].data_key[speed.info]>
