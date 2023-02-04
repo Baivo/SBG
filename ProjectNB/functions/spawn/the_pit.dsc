@@ -1,8 +1,8 @@
-# Prompt the rules quiz for the player
+# RTP pit victims
 nbf_serverspawn_rulesquiz:
     type: task
     definitions: player
     debug: false
     script:
         - ratelimit <player> 30s
-        - execute as_op "sudo <[player].name> rules"
+        - execute as_op "sudo <[player].name> rtp"
