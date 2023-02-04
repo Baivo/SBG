@@ -27,16 +27,14 @@ SP_clock:
     type: world
     events:
         on delta time minutely:
-        - if <server.has_flag[disableSP]>:
-            - stop
         - foreach <server.online_players> as:player:
             - define SP_balance <[player].flag[SP_balance]>
             - if !<[player].has_flag[SP]>:
-                - flag <[player]> SP:1
-            - else if <[player].flag[SP]> >= 9:
-                - flag <[player]> SP:1
-                - flag <[player]> SP_balance:+:10
-                - actionbar "<&7>You earned <&e>10 SP <&7>for 10 minutes online time" targets:<[player]>
+                - flag <[player]> SP:0
+            - else if <[player].flag[SP]> > 9:
+                - flag <[player]> SP:0
+                - execute as_server "eco give <[player].name> 10"
+                - actionbar "<&7>You earned <&a>₽10 <&7>for 10 minutes online time" targets:<[player]>
             - else if <[player].flag[SP]> <= 9:
                 - flag <[player]> SP:++
 
