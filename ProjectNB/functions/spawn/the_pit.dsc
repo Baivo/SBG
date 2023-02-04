@@ -4,6 +4,6 @@ nbf_serverspawn_thepit:
     definitions: player
     debug: false
     script:
-        - ratelimit <player> 30s
+        - ratelimit <player> 5s
         - execute as_player rtp
-        - cast slow_falling duration:10s
+        - cast slow_falling duration:5s
