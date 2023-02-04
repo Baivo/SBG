@@ -47,10 +47,9 @@ netblock_events_configurator:
     type: world
     debug: false
     events:
-        on player left clicks block with:netblock_item_configurator:
-        #location_flagged:netblock
-        - if !<context.location.has_flag[netblock]>:
-            - determine cancelled
+        on player left clicks block type:!air with:netblock_item_configurator priority:2:
+        - determine cancelled
+        on player left clicks block location_flagged:netblock with:netblock_item_configurator priority:1:
         - define netblock <context.location>
         # Sets the currently active netblock for use with the configurator
         - inventory flag d:<player.inventory> slot:hand currentnetblock:<[netblock]> expire:1h
