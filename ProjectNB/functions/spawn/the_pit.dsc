@@ -5,5 +5,5 @@ nbf_serverspawn_thepit:
     debug: false
     script:
         - ratelimit <player> 30s
-        - execute as_server "sudo <[player].name> rtp"
+        - execute as_player rtp
         - cast slow_falling duration:10s
