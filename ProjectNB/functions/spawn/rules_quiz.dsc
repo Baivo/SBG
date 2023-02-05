@@ -5,4 +5,4 @@ nbf_serverspawn_rulesquiz:
     debug: false
     script:
         - ratelimit <player> 30s
-        - execute as_op "sudo <[player].name> rules"
+        - execute as_player "rules"
