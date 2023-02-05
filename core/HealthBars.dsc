@@ -4,4 +4,4 @@ health_bar:
     events:
         after !player damaged by player:
             - define health <context.entity.health>
-            - adjust <context.entity> custom_name:<&4>♥<&sp><&c><[health].round_to[0]>
+            - adjust <context.entity> custom_name:<&4>♥<&sp><&c><[health].round_up>
