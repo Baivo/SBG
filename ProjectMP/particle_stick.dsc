@@ -58,7 +58,6 @@ ps_item_events:
         on delta time secondly priority:99:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - if !<[location].chunk.is_loaded>:
-                # - announce to_flagged:listen "<[location]> was not loaded. Skipping."
                 - foreach next
             - run ps_ticker def.location:<[location]>
         #alchemy shape animation ticker
@@ -576,7 +575,7 @@ ps_shape_circle:
     definitions: location|particle|frequency|rotation
     script:
         - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-        # Set particle origion from rotation option
+        # Set particle origin from rotation option
         - choose <[rotation]>:
             - case center:
                 - define axis y
@@ -640,7 +639,7 @@ ps_shape_ring:
     definitions: location|particle|frequency|rotation
     script:
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-    # Set particle origion from rotation option
+    # Set particle origin from rotation option
     - choose <[rotation]>:
         - case center:
             - define axis y
@@ -678,8 +677,6 @@ ps_shape_ring:
                 - foreach <[location].points_around_z[radius=0.45;points=9]> as:loc:
                     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                 - wait <[delay]>
-
-
 
 ps_shape_import:
     type: task
@@ -743,3 +740,21 @@ ps_shape_alchemy:
 #             - define location <[location].relative[0,-0.1,0]>
 #         - define location <[reset]>
 #         - wait <[delay]>
+
+ps_shape_square:
+    type: task
+    definitions: location|particle|frequency|rotation
+    script:
+    - switch <[rotation]>:
+        - case bottom:
+            - define location <[location].simple>
+            - define points <list[]>
+
+ps_shape_square_bottom_tester:
+    type: task
+    definitions: location
+    script:
+     - define location <[location].simple>
+     - repeat 10:
+        - playeffect at:<[location]> effect:electric_spark offset:0.0
+        - define location <[location].relative[-0.1,0,0]>
