@@ -59,7 +59,8 @@ ps_item_events:
         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
             - if !<[location].chunk.is_loaded>:
                 - foreach next
-            - run ps_ticker def.location:<[location]>
+            - if <[location].is_truthy>:
+                - run ps_ticker def.location:<[location]>
         #alchemy shape animation ticker
         - ~run ps_animation_alchemy
 
