@@ -757,8 +757,8 @@ ps_shape_square_bottom_tester:
     type: task
     definitions: location
     script:
-     - define location <[location].round_down>
-     - repeat 10:
+    - define location <[location].round_down>
+    - repeat 10:
         - playeffect at:<[location]> effect:electric_spark offset:0.0
         - define location <[location].relative[-0.1,0,0]>
     - repeat 10:
