@@ -755,8 +755,9 @@ ps_shape_square:
 
 ps_shape_square_bottom_tester:
     type: task
-    definitions: location|particle|frequency|rotation
+    definitions: location|particle|frequency|pitch|yaw
     script:
+    - define location <[location].rotate_yaw[<[yaw]>].rotate_pitch[<[pitch]>]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - repeat <[frequency]>:
         - repeat 10:
