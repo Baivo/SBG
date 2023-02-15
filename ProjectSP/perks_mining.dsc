@@ -89,7 +89,7 @@ perks_mine:
             - Stacks with unbreaking!
             - Max level removes durability loss completely!
     blastmining:
-        1: 1
+        1: 2
         2: 2
         3: 2.2
         4: 2.4
