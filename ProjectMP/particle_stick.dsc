@@ -2,8 +2,8 @@
 particle_stick:
     type: item
     material: stick
-    mechanisms:
-        custom_model_data: 17
+    #mechanisms:
+        #custom_model_data: 17
     display name: <&e>Particle Stick
     lore:
     - <&8><&gt> <&7>Right click to place particles
