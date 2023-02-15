@@ -316,7 +316,7 @@ blastmine_run:
     definitions: player
     script:
     - playsound sound:ENTITY_GENERIC_EXPLODE volume:1.0 pitch:1.0 at:<player.location>
-    - define power <[player].flag[perks.mine.blastmining].if_null[1]>
+    - define power <[player].flag[perks.mine.blastmining].if_null[2]>
     - define target <[player].eye_location.ray_trace[return=precise;raysize=2;entities:*;range=50;ignore=<[player]>]>
     - define targetlist <[target].find_blocks[!air].within[<[power]>]||null>
     - if <[targetlist].is_empty>:
