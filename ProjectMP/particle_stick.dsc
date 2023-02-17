@@ -708,50 +708,50 @@ ps_shape_alchemy:
         - define location <[location].with_yaw[1]>
 
 
-# ps_shape_square:
-#     type: task
-#     definitions: location|particle|frequency|rotation
-#     script:
-#     - define location <[location].simple>
-#     - switch <[rotation]>:
-#         - case top:
-#             - define location <[location].above[0.4].with_yaw[90]>
-#         - case bottom:
-#             - define location <[location].below[0.4].with_yaw[90]>
-#         - case north:
-#             - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
-#         - case east:
-#             - define location <[location].with_x[<[location].center.x.add[0.4]>]>
-#         - case south:
-#             - define location <[location].with_z[<[location].center.z.add[0.4]>]>
-#         - case west:
-#             - define location <[location].with_z[<[location].center.x.sub[0.4]>]>
-#     - define reset <[location]>
-#     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-#     - repeat <[frequency]>:
-#         - repeat 10:
-#             - playeffect at:<[location]> effect:<[particle]> offset:0.0
-#             - define location <[location].relative[0.1,0,0]>
-#         - repeat 10:
-#             - playeffect at:<[location]> effect:<[particle]> offset:0.0
-#             - define location <[location].relative[0,0.1,0]>
-#         - repeat 10:
-#             - playeffect at:<[location]> effect:<[particle]> offset:0.0
-#             - define location <[location].relative[-0.1,0,0]>
-#         - repeat 10:
-#             - playeffect at:<[location]> effect:<[particle]> offset:0.0
-#             - define location <[location].relative[0,-0.1,0]>
-#         - define location <[reset]>
-#         - wait <[delay]>
+ ps_shape_square:
+     type: task
+     definitions: location|particle|frequency|rotation
+     script:
+     - define location <[location].simple>
+     - switch <[rotation]>:
+         - case top:
+             - define location <[location].above[0.4].with_yaw[90]>
+         - case bottom:
+             - define location <[location].below[0.4].with_yaw[90]>
+         - case north:
+             - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
+         - case east:
+             - define location <[location].with_x[<[location].center.x.add[0.4]>]>
+         - case south:
+             - define location <[location].with_z[<[location].center.z.add[0.4]>]>
+         - case west:
+             - define location <[location].with_z[<[location].center.x.sub[0.4]>]>
+     - define reset <[location]>
+     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
+     - repeat <[frequency]>:
+         - repeat 10:
+             - playeffect at:<[location]> effect:<[particle]> offset:0.0
+             - define location <[location].relative[0.1,0,0]>
+         - repeat 10:
+             - playeffect at:<[location]> effect:<[particle]> offset:0.0
+             - define location <[location].relative[0,0.1,0]>
+         - repeat 10:
+             - playeffect at:<[location]> effect:<[particle]> offset:0.0
+             - define location <[location].relative[-0.1,0,0]>
+         - repeat 10:
+             - playeffect at:<[location]> effect:<[particle]> offset:0.0
+             - define location <[location].relative[0,-0.1,0]>
+         - define location <[reset]>
+         - wait <[delay]>
 
-ps_shape_square:
-    type: task
-    definitions: location|particle|frequency|rotation
-    script:
-    - switch <[rotation]>:
-        - case bottom:
-            - define location <[location].simple>
-            - define points <list[]>
+#ps_shape_square:
+#    type: task
+#    definitions: location|particle|frequency|rotation
+#    script:
+#    - switch <[rotation]>:
+#        - case bottom:
+#            - define location <[location].simple>
+#            - define points <list[]>
 
 ps_shape_square_bottom_tester:
     type: task
