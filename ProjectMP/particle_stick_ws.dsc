@@ -8,9 +8,15 @@ ps_ahh:
     - define v <[radius].div[<[points]>]>
     - define x <[radius]>
     - define y 0
-    - repeat <[points]>:
+    - repeat <[points].mul[2]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
         - define x <[x].sub[<[v]>]>
         - define y <[y].add[<[v]>]>
+    - repeat <[points].mul[2]>:
+        - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
+        - define x <[x].add[<[v]>]>
+        - define y <[y].sub[<[v]>]>
+
+
     - foreach <[locations]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> offset:0.0
