@@ -11,7 +11,7 @@ ps_ahh:
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
         - define y <[y].sub[<[y]>]>
-        - define x <[y].add[<[x]>]>
+        - define x <[x].add[<[x]>]>
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
         - define y <[y].sub[<[y]>]>
