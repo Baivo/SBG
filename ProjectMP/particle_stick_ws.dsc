@@ -10,19 +10,19 @@ ps_ahh:
     - define x 0
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define y <[y].sub[<[y]>]>
-        - define x <[x].add[<[x]>]>
+        - define y <[y].sub[<[v]>]>
+        - define x <[x].add[<[v]>]>
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define y <[y].sub[<[y]>]>
-        - define x <[x].sub[<[x]>]>
+        - define y <[y].sub[<[v]>]>
+        - define x <[x].sub[<[v]>]>
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define y <[y].add[<[y]>]>
-        - define x <[x].sub[<[x]>]>
+        - define y <[y].add[<[v]>]>
+        - define x <[x].sub[<[v]>]>
     - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define y <[y].add[<[y]>]>
-        - define x <[x].add[<[x]>]>
+        - define y <[y].add[<[v]>]>
+        - define x <[x].add[<[v]>]>
     - foreach <[locations]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> offset:0.0
