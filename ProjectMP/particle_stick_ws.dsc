@@ -1,9 +1,9 @@
 ps_ahh:
     type: task
-    definitions: location|particle
+    definitions: location|particle|points|radius
     script:
-    - define points 10
-    - define radius 1
+    - define points <[points].if_null[10]>
+    - define radius <[radius].if_null[1]>
     - define locations <list>
     - define v <[radius].div[<[points]>]>
     - define x <[radius]>
