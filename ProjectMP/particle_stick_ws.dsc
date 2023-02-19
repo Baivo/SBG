@@ -6,17 +6,23 @@ ps_ahh:
     - define radius <[radius].if_null[1]>
     - define locations <list>
     - define v <[radius].div[<[points]>]>
-    - define x <[radius]>
-    - define y 0
-    - repeat <[points].mul[2]>:
+    - define y <[radius]>
+    - define x 0
+    - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define x <[x].sub[<[v]>]>
-        - define y <[y].add[<[v]>]>
-    - repeat <[points].mul[2]>:
+        - define y <[y].sub[<[y]>]>
+        - define x <[y].add[<[x]>]>
+    - repeat <[points]>:
         - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
-        - define x <[x].add[<[v]>]>
-        - define y <[y].sub[<[v]>]>
-
-
+        - define y <[y].sub[<[y]>]>
+        - define x <[x].sub[<[x]>]>
+    - repeat <[points]>:
+        - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
+        - define y <[y].add[<[y]>]>
+        - define x <[x].sub[<[x]>]>
+    - repeat <[points]>:
+        - define locations:->:<[location].relative[<[x]>,0,<[y]>]>
+        - define y <[y].add[<[y]>]>
+        - define x <[x].add[<[x]>]>
     - foreach <[locations]> as:loc:
         - playeffect at:<[loc]> effect:<[particle]> offset:0.0
