@@ -22,7 +22,7 @@ adv_healthbar:
             - define entityHealth <context.entity.health_percentage.mul[0.01]>
             - define greenBars <[entityHealth].mul[<[healthBarSize]>]>
             - define redBars <[healthBarSize].sub[<[greenBars]>]>
-            - define healthBar <&7><&l><&lb><&color[#00FF00]><element[|].repeat[<[greenBars]>]><&color[#FF0000]><element[|].repeat[<[redBars]>]><&7><&l><&rb>
+            - define healthBar <&7><&lc><&color[#00FF00]><element[|].repeat[<[greenBars]>]><&color[#FF0000]><element[|].repeat[<[redBars]>]><&7><&rc><[entityHealth].mul[100]><&pc>
             - adjust <context.entity> custom_name:<[healthBar]>
             - wait 5t
             - adjust <context.entity> custom_name
