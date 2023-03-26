@@ -8,4 +8,4 @@ health_bar:
                 - define healthbar <element[♥].repeat[<[health]>]>
                 - rename <&color[#E80000]><[healthbar]> t:<context.entity> for:<server.online_players>
             - else:
-                - rename cancel t:<context.entity> for:<server.online_players>
+                - rename cancel t:<context.entity>
