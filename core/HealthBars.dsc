@@ -34,9 +34,11 @@ adv_healthbar:
                 - define color #d9525e
 
             - define perDisplay <&7><[entityHealthPerc].mul[100].round_down><&pc>
-            - define armorDisplay <&b><&l><&o>🛡<&nbsp><&7><context.entity.armor_bonus>
 
-            - define healthBar <&c>♥<&nbsp><[perDisplay]><&nbsp><&7><&lb><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb><&nbsp><[armorDisplay]>
+            - define armorDisplay <&7><&lb><&b><&l><&o>🛡<&nbsp><&7><context.entity.armor_bonus><&7><&rb>
+            - define healthDisplay <&7><&lb><&c>♥<&nbsp><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb>
+
+            - define healthBar <[armorDisplay]><&nbsp><[healthDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
         - else:
             - adjust <context.entity> custom_name
