@@ -36,5 +36,5 @@ adv_healthbar:
 
             - define healthBar <&7><&l><&lc><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&l><&rc>
             - adjust <context.entity> custom_name:<[healthBar]>
-            - wait 20t
+            - wait 2s
             - adjust <context.entity> custom_name
