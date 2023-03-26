@@ -32,7 +32,7 @@ adv_healthbar:
                 - define color #FF0000
 
             - define numDisplay <context.entity.health.round_down><element[/]><context.entity.health_max><&nbsp>
-            - define perDisplay <&f><&nbsp><[entityHealth].mul[100]><&pc>
+            - define perDisplay <&f><&nbsp><[entityHealth].mul[100].round_down><&pc>
 
             - define healthBar <[numDisplay]><&7><&l><&lc><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&l><&rc><[perDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
