@@ -35,8 +35,8 @@ adv_healthbar:
 
             - define perDisplay <&7><[entityHealthPerc].mul[100].round_down><&pc>
 
-            - define armorDisplay <&7><&lb><&b><&o>🛡<&7><context.entity.armor_bonus><&7><&l><&rb>
-            - define healthDisplay <&7><&lb><&c><&o>❤<&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb>
+            - define armorDisplay <&b><&o>🛡<&7><&lb><&7><context.entity.armor_bonus><&7><&l><&rb>
+            - define healthDisplay <&c><&o>❤<&7><&lb><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb>
             - if <context.entity.armor_bonus> > 0:
                 - define healthBar <[armorDisplay]><&nbsp><[healthDisplay]>
             - else:
