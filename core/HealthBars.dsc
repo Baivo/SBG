@@ -31,10 +31,10 @@ adv_healthbar:
             - else:
                 - define color #FF0000
 
-            - define numDisplay <&7><context.entity.health.round_down><element[/]><context.entity.health_max><&nbsp>
-            - define perDisplay <&7><&nbsp><[entityHealth].mul[100].round_down><&pc>
+            - define numDisplay <&color[<[color]>]><context.entity.health.round_down><element[/]><context.entity.health_max><&nbsp>
+            - define perDisplay <&color[<[color]>]><&nbsp><[entityHealth].mul[100].round_down><&pc>
 
-            - define healthBar <[numDisplay]><&7><&lb><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb><[perDisplay]>
+            - define healthBar <&7><&lb><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb><[perDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
-            - wait 2s
+            - wait 10t
             - adjust <context.entity> custom_name
