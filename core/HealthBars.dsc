@@ -20,9 +20,21 @@ adv_healthbar:
         after !player damaged by player:
             - define healthBarSize 20
             - define entityHealth <context.entity.health_percentage.mul[0.01]>
-            - define greenBars <[entityHealth].mul[<[healthBarSize]>]>
-            - define redBars <[healthBarSize].sub[<[greenBars]>]>
-            - define healthBar <&7><&lc><&color[#00FF00]><element[|].repeat[<[greenBars]>]><&color[#FF0000]><element[|].repeat[<[redBars]>]><&7><&rc><[entityHealth].mul[100]><&pc>
+
+            - define remainingHealth <[entityHealth].mul[<[healthBarSize]>]>
+            - define damageDone <[healthBarSize].sub[<[remainingHealth]>]>
+
+            - if <context.entity.health_percentage> > 50:
+                - define color <&color[#00FF00]>
+            - else if <context.entity.health_percentage> > 25:
+                - define color <&color[#FFFF00]>
+            - else:
+                - define color <&color[#FF0000]>
+
+            - define numDisplay <context.entity.health.round_down><element[/]><context.entity.health_max><&nbsp>
+            - define perDisplay <&nbsp><[entityHealth].mul[100]><&pc>
+
+            - define healthBar <[numDisplay]><&7><&l><&lc><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&l><&rc><[perDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
             - wait 5t
             - adjust <context.entity> custom_name
