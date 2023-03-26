@@ -25,14 +25,14 @@ adv_healthbar:
             - define damageDone <[healthBarSize].sub[<[remainingHealth]>]>
 
             - if <context.entity.health_percentage> > 50:
-                - define color <&color[#00FF00]>
+                - define color #00FF00
             - else if <context.entity.health_percentage> > 25:
-                - define color <&color[#FFFF00]>
+                - define color #FFFF00
             - else:
-                - define color <&color[#FF0000]>
+                - define color #FF0000
 
             - define numDisplay <context.entity.health.round_down><element[/]><context.entity.health_max><&nbsp>
-            - define perDisplay <&nbsp><[entityHealth].mul[100]><&pc>
+            - define perDisplay <&f><&nbsp><[entityHealth].mul[100]><&pc>
 
             - define healthBar <[numDisplay]><&7><&l><&lc><&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&l><&rc><[perDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
