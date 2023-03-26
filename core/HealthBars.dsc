@@ -15,4 +15,4 @@ health_bar:
             - else:
                 - rename cancel t:<context.entity> per_player
             - wait 5t
-            - rename cancel t:<context.entity> per_player
+            - adjust <context.entity> custom_name:!
