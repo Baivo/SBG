@@ -27,7 +27,7 @@ adv_healthbar:
             - define damageDone <[healthBarSize].sub[<[remainingHealth]>]>
 
             - if <[entityHealthPerc]> > 0.66:
-                - define color #32a852
+                - define color #66ff66
             - else if <[entityHealthPerc]> > 0.33:
                 - define color #d9c252
             - else:
@@ -35,8 +35,8 @@ adv_healthbar:
 
             - define perDisplay <&7><[entityHealthPerc].mul[100].round_down><&pc>
 
-            - define armorDisplay <&b><&o>🛡<&8>-<&7><&l><context.entity.armor_bonus>
-            - define healthDisplay <&c><&o>❤<&8>-<&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]>
+            - define armorDisplay <&b><&o>🛡<&7><&l><context.entity.armor_bonus>
+            - define healthDisplay <&c><&o>❤<&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]>
             - if <context.entity.armor_bonus> > 0:
                 - define healthBar <[armorDisplay]><&nbsp><[healthDisplay]>
             - else:
