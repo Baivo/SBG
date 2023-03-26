@@ -17,7 +17,6 @@ adv_healthbar:
     type: world
     debug: false
     events:
-
         on !player damaged by player:
         - if <context.entity.health.sub[<context.final_damage>]> > 0:
             - define healthBarSize 20
@@ -44,3 +43,10 @@ adv_healthbar:
             - adjust <context.entity> custom_name:<[healthBar]>
         - else:
             - adjust <context.entity> custom_name
+
+adv_healthbar_mobkill_handler:
+    type: world
+    debug: false
+    events:
+        on player damaged by !player:
+        - adjust <context.damager> custom_name
