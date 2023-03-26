@@ -37,8 +37,10 @@ adv_healthbar:
 
             - define armorDisplay <&7><&lb><&b><&o>🛡<&7><context.entity.armor_bonus><&7><&rb>
             - define healthDisplay <&7><&lb><&c><&l><&o>♥<&color[<[color]>]><element[|].repeat[<[remainingHealth]>]><&8><element[|].repeat[<[damageDone]>]><&7><&rb>
-
-            - define healthBar <[armorDisplay]><&nbsp><[healthDisplay]>
+            - if <context.entity.armor_bonus> > 0:
+                - define healthBar <[armorDisplay]><&nbsp><[healthDisplay]>
+            - else:
+                - define healthBar <[healthDisplay]>
             - adjust <context.entity> custom_name:<[healthBar]>
         - else:
             - adjust <context.entity> custom_name
