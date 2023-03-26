@@ -26,9 +26,9 @@ adv_healthbar:
             - define remainingHealth <[entityHealthPerc].mul[<[healthBarSize]>]>
             - define damageDone <[healthBarSize].sub[<[remainingHealth]>]>
 
-            - if <context.entity.health_percentage> > 50:
+            - if <[entityHealthPerc]> > 0.66:
                 - define color #00CF00
-            - else if <context.entity.health_percentage> > 25:
+            - else if <[entityHealthPerc]> > 0.33:
                 - define color #FFFF00
             - else:
                 - define color #FF0000
