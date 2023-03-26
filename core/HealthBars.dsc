@@ -25,4 +25,4 @@ adv_healthbar:
             - define healthBar <&lb><&color[#00FF00]><element[▌].repeat[<[greenBars]>]><&color[#FF0000]><element[▌].repeat[<[redBars]>]><&rb>
             - adjust <context.entity> custom_name:<[healthBar]>
             - wait 5t
-            - adjust <context.entity> custom_name:!
+            - adjust <context.entity> custom_name
