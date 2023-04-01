@@ -12,4 +12,4 @@ flammen_thrower_events:
     events:
         on player right clicks block with:flammen_thrower:
         - ratelimit <player> 1t
-        - define fire <entity[falling_block].with_single[fallingblock_type=fire]>
+        - shoot <entity[falling_block].with_single[fallingblock_type=fire]>
