@@ -4,7 +4,7 @@ healthbar:
     events:
         on !player damaged by player:
         - if <context.entity.attribute_value[GENERIC_ATTACK_DAMAGE].if_null[0]> == 0:
-            - determine passively cancelled
+            - stop
         - if <context.entity.health.sub[<context.final_damage>]> > 0:
             - define healthBarSize 20
             - define entityHealthPerc <context.entity.health.sub[<context.final_damage>].div[<context.entity.health_max>]>
