@@ -1,4 +1,3 @@
-
 flammen_thrower:
     type: item
     material: flint_and_steel

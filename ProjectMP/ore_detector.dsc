@@ -93,29 +93,3 @@ ore_detector_gui:
   title: <dark_green>Ore Detector Search Menu
   size: 18
   gui: true
-
-# magnet_GUI_script:
-#   type: task
-#   script:
-#   - ratelimit <player> 10t
-#   - define inv <inventory[magnet_gui]>
-# ## DELETE BELOW THIS LINE TO REMOVE THE CONTROVERSIAL TOGGLE BUTTON ##
-#   - if <player.item_in_hand.has_flag[magneton]>:
-#     - inventory set d:<[inv]> o:magnet_on slot:1
-#   - else if <player.item_in_hand.has_flag[magnet]>:
-#     - inventory set d:<[inv]> o:magnet_ slot:1
-# ## STOP DELETING AT THIS LINE TO AVOID BREAKING ANYTHING ELSE, UNLESS YOU'RE INTO THAT. I AM A COMMENT LINE, I CANNOT PHYSICALLY RETALIATE BASED ON YOUR ACTIONS UNTIL MCMONKEY ADDS THAT FEATURE BACK ##
-#   - inventory set d:<[inv]> o:magnet_close slot:9
-#   - inventory set d:<[inv]> o:magnet_icon slot:5
-#   - inventory adjust d:<[inv]> slot:5 "display:<&6>Magnet Power: <&a><&l><player.item_in_hand.flag[radius]>"
-#   - inventory adjust d:<[inv]> slot:5 "lore:<&6>Max Power: <&c><&l><player.item_in_hand.flag[maxradius]>"
-#   - inventory set d:<[inv]> o:magnet_up slot:6
-#   - inventory set d:<[inv]> o:magnet_down slot:4
-#   - inventory open d:<[inv]>
-
-# magnet_:
-#   type: item
-#   material: red_terracotta
-#   display name: <red>Magnet is !
-#   lore:
-#     - <&[lore]><&7>Click to turn the magnet on!
