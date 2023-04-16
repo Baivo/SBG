@@ -55,38 +55,37 @@ ps_item_events:
         - determine cancelled passively
         - wait 2t
         - inventory open d:<inventory[ps_menu_inventory]>
-#         on delta time secondly priority:99:
-#         - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
-#             - if !<[location].chunk.is_loaded>:
-#                 - foreach next
-#             - if <[location].is_truthy>:
-#                 - run ps_ticker def.location:<[location]>
-#         #alchemy shape animation ticker
-#         - ~run ps_animation_alchemy
+        on delta time secondly priority:99:
+        - foreach <server.flag[particle_stick_location].if_null[<list>]> as:location:
+            - if !<[location].chunk.is_loaded>:
+                - foreach next
+            - if <[location].is_truthy>:
+                - run ps_ticker def.location:<[location]>
+        #alchemy shape animation ticker
+        - ~run ps_animation_alchemy
 
-# # Particle Stick Event Scripts #
-# ps_animation_alchemy:
-#     type: task
-#     script:
-#     - define repeat <server.flag[alchtick_repeat].if_null[1]>
-#     - define delay <element[1].div[<[repeat]>].as[duration].in_ticks>t
-#     - repeat <[repeat]>:
-#         - define alchtick <server.flag[alchtick].if_null[0]>
-#         - if <[alchtick]> <= 358:
-#             - flag server alchtick:<[alchtick].add[1]>
-#         - else if <[alchtick]> == 359:
-#             - flag server alchtick:0
-#         - wait <[delay]>
+# Particle Stick Event Scripts #
+ps_animation_alchemy:
+    type: task
+    script:
+    - define repeat <server.flag[alchtick_repeat].if_null[1]>
+    - define delay <element[1].div[<[repeat]>].as[duration].in_ticks>t
+    - repeat <[repeat]>:
+        - define alchtick <server.flag[alchtick].if_null[0]>
+        - if <[alchtick]> <= 358:
+            - flag server alchtick:<[alchtick].add[1]>
+        - else if <[alchtick]> == 359:
+            - flag server alchtick:0
+        - wait <[delay]>
 
-# ps_ticker:
-#     type: task
-#     definitions: location
-#     script:
-#     - if !<[location].has_flag[particle.id]>:
-#         - stop
-#     - foreach <[location].flag[particle.id]> as:particle:
-#         - define id <[location].flag[particle.<[particle]>]>
-#         - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
+ps_ticker:
+    type: task
+    definitions: location
+    script:
+    - stop if:!<[location].has_flag[particle.id]>:
+    - foreach <[location].flag[particle.id]> as:particle:
+        - define id <[location].flag[particle.<[particle]>]>
+        - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>
 
 # Inventory Scripts #
 ps_particle_inventory_1:
