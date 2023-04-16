@@ -15,11 +15,8 @@ adv_dispenser:
             - define quantity <[entity].item.quantity.sub[1].if_null[0]>
             - stop if:<[mat].is_block.not>
             - stop if:<[front].material.is_solid>
-            # - if <context.item.material> != <material[birch_sapling]>:
-            #     - determine passively
+            - if <[quantity]> == 0:
+                - remove <[entity]>
             - else:
-                - if <[quantity]> == 0:
-                    - remove <[entity]>
-                - else:
-                    - adjust <[entity]> item:<[entity].item.with[quantity=<[entity].item.quantity.sub[1]>]>
-                - modifyblock <[front]> <[mat]>
+                - adjust <[entity]> item:<[entity].item.with[quantity=<[entity].item.quantity.sub[1]>]>
+            - modifyblock <[front]> <[mat]>
