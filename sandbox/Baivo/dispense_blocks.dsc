@@ -10,8 +10,9 @@ adv_dispenser:
         after dispenser dispenses item:
             - define front    <context.location.with_facing_direction.forward>
             - define item     <context.item>
+            - define mat      <[item].material>
             - define entity   <[front].center.find_entities[dropped_item].within[1].filter[item.material.equals[<[mat]>]].first.if_null[]>
-            - define quantity <[entity].item.quantity.sub[1].if_null[]>
+            - define quantity <[entity].item.quantity.sub[1].if_null[0]>
             - stop if:<[mat].is_block.not>
             - stop if:<[front].material.is_solid>
             - if <context.item.material> != <material[birch_sapling]>:
@@ -21,4 +22,4 @@ adv_dispenser:
                     - remove <[entity]>
                 - else:
                     - adjust <[entity]> item:<[entity].item.with[quantity=<[entity].item.quantity.sub[1]>]>
-                - modifyblock <[front]> <[mat]>az
+                - modifyblock <[front]> <[mat]>
