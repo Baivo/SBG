@@ -7,3 +7,4 @@ nbf_serverspawn_thepit:
         - ratelimit <player> 5s
         - execute as_player rtp
         - cast slow_falling duration:5s
+        - cast blindness duration:5s
