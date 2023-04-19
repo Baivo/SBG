@@ -82,7 +82,7 @@ ps_ticker:
     type: task
     definitions: location
     script:
-    - stop if:!<[location].has_flag[particle.id]>:
+    - stop if:!<[location].has_flag[particle.id]>
     - foreach <[location].flag[particle.id]> as:particle:
         - define id <[location].flag[particle.<[particle]>]>
         - ~run ps_shape_<[id].get[shape]> def.location:<[location].center> def.particle:<[id].get[particle]> def.frequency:<[id].get[frequency]> def.rotation:<[id].get[rotation]>

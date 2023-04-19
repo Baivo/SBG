@@ -311,7 +311,7 @@ function_blockswap:
             - determine cancelled
         - else:
             - showfake <[caster].item_in_offhand.material> <[targetblock]> d:<[caster_em].flag[effect_duration]> players:<server.online_players>.
-            - run util_nolip def:caster:<[caster]>
+            - run util_noclip def:caster:<[caster]>
 #
 util_noclip:
     type: task
