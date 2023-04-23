@@ -7,7 +7,7 @@ adv_dispenser:
     type: world
     debug: false
     events:
-        after dispenser dispenses item:
+        on dispenser dispenses item:
             - define front    <context.location.with_facing_direction.forward>
             - define item     <context.item>
             - define mat      <[item].material>
