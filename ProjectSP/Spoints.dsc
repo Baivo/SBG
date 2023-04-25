@@ -34,6 +34,7 @@ SP_clock:
             - else if <[player].flag[SP]> > 9:
                 - flag <[player]> SP:0
                 - execute as_server "eco give <[player].name> 10"
+                - execute as_server "spoints add <[player].name> 10"
                 - actionbar "<&7>You earned <&a>₽10 <&7>for 10 minutes online time" targets:<[player]>
             - else if <[player].flag[SP]> <= 9:
                 - flag <[player]> SP:++
