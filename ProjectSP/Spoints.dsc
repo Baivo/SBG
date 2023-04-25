@@ -129,7 +129,7 @@ spoints_shop_events:
     events:
         on player clicks SPoints_Shop_Item_* in spoints_shop:
             - ratelimit <player> 1s
-            - run spoints_shop_transact def.player:<player> def.cost:<context.item.flag[cost]> def.script:<script[<context.item.flag[script]>]>
+            - run spoints_shop_transact_SP def.player:<player> def.cost:<context.item.flag[cost]> def.script:<script[<context.item.flag[script]>]>
             - inventory close
 
 ## SPoints - Items & Scripts ##
