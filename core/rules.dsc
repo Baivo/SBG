@@ -54,7 +54,7 @@ rulesFinished:
     definitions: player
     script:
         - execute as_server "lp user <[player].name> parent add ruleslawyer"
+        - wait 2t
         - execute as_player spawn
         - execute as_player "kit starter"
-        - wait 2t
         - narrate "<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&l>You are free to enjoy the server.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&nl><&3><&o>Be sure to visit our Bunnings.<&nl><&nl><&nl><&nl><&nl><&nl><&nl><&a><&nl><&nl><&7><&o>Join our discord for a Free Pot & Parma<&nl><&nl><&9><&n>discord.io/stoneburner"
