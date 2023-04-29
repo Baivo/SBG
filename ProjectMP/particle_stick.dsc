@@ -737,30 +737,51 @@ ps_shape_square:
     - define reset <[location]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - choose <[axis]>:
-            - case x:
-                - repeat <[frequency]>:
-                    - repeat 4:
-                        - repeat 10:
-                            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                            - define location <[location].relative[-0.1,0,0]>
-                        - define location <[location].relative[0,0,-0.1]>
-                    - wait <[delay]>
-            - case y:
-                - repeat <[frequency]>:
-                    - repeat 4:
-                        - repeat 10:
-                            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                            - define location <[location].relative[0,0,-0.1]>
-                        - define location <[location].relative[-0.1,0,0]>
-                    - wait <[delay]>
-            - case z:
-                - repeat <[frequency]>:
-                    - repeat 4:
-                        - repeat 10:
-                            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                            - define location <[location].relative[0,-0.1,0]>
-                        - define location <[location].relative[-0.1,0,0]>
-                    - wait <[delay]>
+    - case x:
+        - repeat <[frequency]>:
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0,-0.1]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,-0.1,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0,0.1]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0.1,0]>
+            - wait <[delay]>
+    - case y:
+        - repeat <[frequency]>:
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[-0.1,0,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0,-0.1]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0.1,0,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0,0.1]>
+            - wait <[delay]>
+    - case z:
+        - repeat <[frequency]>:
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[-0.1,0,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,-0.1,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0.1,0,0]>
+            - repeat 10:
+                - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                - define location <[location].add[0,0.1,0]>
+            - wait <[delay]>
 
                 
                 # - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
