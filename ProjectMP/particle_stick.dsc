@@ -136,7 +136,7 @@ ps_shape_inventory:
     gui: true
     size: 9
     slots:
-    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [ps_shapes_item_alchemy] [] [] [] [] []
+    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [ps_shapes_item_alchemy] [ps_shapes_item_circle] [] [] [] []
 
 ps_frequency_inventory:
     type: inventory
@@ -255,7 +255,7 @@ ps_inventory_frequency_task:
 ## Inventory Items ##
 
 # Shape Items #
-ps_shapes_item_circle:
+ps_shapes_item_square:
     type: item
     material: gray_dye
     display name: <&e>Square
@@ -268,7 +268,7 @@ ps_shapes_item_circle:
     - <&7>Creates a square shape,
     - <&7>covers 1 block face.
 
-ps_shapes_item_square:
+ps_shapes_item_circle:
     type: item
     material: gray_dye
     display name: <&e>Circle
