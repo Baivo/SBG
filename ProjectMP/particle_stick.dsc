@@ -709,6 +709,7 @@ ps_shape_alchemy:
 
 ps_shape_square:
     type: task
+    debug: true
     definitions: location|particle|frequency|rotation
     script:
     - define location <[location].simple>
