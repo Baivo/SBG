@@ -136,7 +136,7 @@ ps_shape_inventory:
     gui: true
     size: 9
     slots:
-    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [ps_shapes_item_alchemy] [ps_shapes_item_circle] [] [] [] []
+    - [ps_shapes_item_single] [ps_shapes_item_circle] [ps_shapes_item_ring] [ps_shapes_item_alchemy] [ps_shapes_item_square] [] [] [] []
 
 ps_frequency_inventory:
     type: inventory
@@ -712,36 +712,52 @@ ps_shape_square:
     definitions: location|particle|frequency|rotation
     script:
     - define location <[location].simple>
-    - switch <[rotation]>:
+    - choose <[rotation]>:
+        - case center:
+            - define axis y
         - case top:
             - define location <[location].above[0.4].with_yaw[90]>
+            - define axis y
         - case bottom:
             - define location <[location].below[0.4].with_yaw[90]>
+            - define axis y
         - case north:
             - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
+            - define axis z
         - case east:
             - define location <[location].with_x[<[location].center.x.add[0.4]>]>
+            - define axis x
         - case south:
             - define location <[location].with_z[<[location].center.z.add[0.4]>]>
+            - define axis z
         - case west:
             - define location <[location].with_z[<[location].center.x.sub[0.4]>]>
+            - define axis x
     - define reset <[location]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-    - repeat <[frequency]>:
-        - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-            - define location <[location].relative[0.1,0,0]>
-        - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-            - define location <[location].relative[0,0.1,0]>
-        - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-            - define location <[location].relative[-0.1,0,0]>
-        - repeat 10:
-            - playeffect at:<[location]> effect:<[particle]> offset:0.0
-            - define location <[location].relative[0,-0.1,0]>
-        - define location <[reset]>
-        - wait <[delay]>
+    - choose <[axis]>:
+        - case x:
+            - repeat <[frequency]>:
+                - define start <[reset].with_x[<[reset].center.x.sub[0.4]>]>
+                - define location <[start]>
+                - repeat 9:
+                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                    - define location <[location].relative[0.1,0,0]>
+                - define location <[start].with_x[<[start].center.x.add[0.4]>]>
+                - repeat 9:
+                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                    - define location <[location].relative[-0.1,0,0]>
+                - define location <[reset].with_x[<[reset].center.x.sub[0.4]>]>
+                
+                # - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
+                #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
+                # - foreach <[location].points_around_x[radius=0.35;points=7]> as:loc:
+                #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
+                # - foreach <[location].points_around_x[radius=0.25;points=5]> as:loc:
+                #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
+                # - foreach <[location].points_around_x[radius=0.15;points=3]> as:loc:
+                #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
+                # - wait <[delay]>
 
 #ps_shape_square:
 #    type: task
