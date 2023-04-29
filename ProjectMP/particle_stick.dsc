@@ -736,18 +736,34 @@ ps_shape_square:
     - define reset <[location]>
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
     - choose <[axis]>:
-        - case x:
-            - repeat <[frequency]>:
-                - define start <[reset].with_x[<[reset].center.x.sub[0.4]>]>
-                - define location <[start]>
-                - repeat 9:
-                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                    - define location <[location].relative[0.1,0,0]>
-                - define location <[start].with_x[<[start].center.x.add[0.4]>]>
-                - repeat 9:
-                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                    - define location <[location].relative[-0.1,0,0]>
-                - define location <[reset].with_x[<[reset].center.x.sub[0.4]>]>
+            - case x:
+                - repeat <[frequency]>:
+                    - repeat 9 as:step:
+                        - define current_step <element[<[step]>].mul[0.1]>
+                        - playeffect at:<[location].add[0,<[current_step]>,0]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0,<[current_step]>,0.8]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0,0,<[current_step]>]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0,0.8,<[current_step]>]> effect:<[particle]> offset:0.0
+                    - wait <[delay]>
+            - case y:
+                - repeat <[frequency]>:
+                    - repeat 9 as:step:
+                        - define current_step <element[<[step]>].mul[0.1]>
+                        - playeffect at:<[location].add[<[current_step]>,0,0]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[<[current_step]>,0,0.8]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0,0,<[current_step]>]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0.8,0,<[current_step]>]> effect:<[particle]> offset:0.0
+                    - wait <[delay]>
+            - case z:
+                - repeat <[frequency]>:
+                    - repeat 9 as:step:
+                        - define current_step <element[<[step]>].mul[0.1]>
+                        - playeffect at:<[location].add[<[current_step]>,0,0]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[<[current_step]>,0.8,0]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0,0,<[current_step]>]> effect:<[particle]> offset:0.0
+                        - playeffect at:<[location].add[0.8,0,<[current_step]>]> effect:<[particle]> offset:0.0
+                    - wait <[delay]>
+
                 
                 # - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
                 #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
