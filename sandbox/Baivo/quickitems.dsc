@@ -25,6 +25,7 @@ smoker:
 
 smoker_events:
     type: world
+    debug: true
     events:
         on player right clicks air with:smoker:
         # - ratelimit <player> 1t
