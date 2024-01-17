@@ -35,3 +35,4 @@ smoker_events:
             - playeffect <[nest]> effect:campfire_cosy_smoke count:20
             - playsound <[nest]> sound:block_smoker_smoke pitch:1.0 volume:1.0
             - adjust <[nest]> release_bees
+            - adjust <[nest]> hive_bee_count:0
