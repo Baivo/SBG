@@ -31,6 +31,6 @@ smoker_events:
         # - ratelimit <player> 1t
         - define nests <player.location.find_blocks[bee_nest].within[5]>
         - foreach <[nests]> as:nest:
-            - particle <nest.location> type:smoke count:10
-            - play sound <nest.location> sound:block.smoker.smoke.on
-            - adjust <nest.location> release_bees
+            - particle <[nest].location> type:smoke count:10
+            - playsound <[nest].location> sound:block.smoker.smoke.on
+            - adjust <[nest].location> release_bees
