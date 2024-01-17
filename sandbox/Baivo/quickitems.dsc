@@ -26,7 +26,7 @@ smoker:
 smoker_events:
     type: world
     events:
-        on player right clicks block with:smoker:
+        on player right clicks air with:smoker:
         # - ratelimit <player> 1t
         - define nests <player.location.find_blocks[bee_nest].within[5]>
         - foreach nests as nest:
