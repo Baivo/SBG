@@ -441,3 +441,4 @@ function_leash:
     definitions: targetentity|target|caster|caster_em
     script:
         - leash <[targetentity]> holder:<[caster]>
+        - playeffect effect:sonic_boom

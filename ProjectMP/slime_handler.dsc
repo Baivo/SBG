@@ -13,7 +13,7 @@ slime_split_handler:
         on slime splits:
         - define slime <context.entity>
         - define count <context.count>
-        - if <util.random_chance[90]>:
+        - if <util.random_chance[50]>:
             - define drops <context.count.mul[<util.random.int[1].to[4]>]>
             - drop slime_ball <context.entity.location> quantity:<[drops]>
             - determine cancelled
