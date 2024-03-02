@@ -755,16 +755,16 @@ ps_shape_square:
             - repeat <[frequency]>:
                 - repeat 10:
                     - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                    - define location <[location].add[-0.1,0,0]>
-                - repeat 10:
-                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
-                    - define location <[location].add[0,0,-0.1]>
-                - repeat 10:
-                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
                     - define location <[location].add[0.1,0,0]>
                 - repeat 10:
                     - playeffect at:<[location]> effect:<[particle]> offset:0.0
                     - define location <[location].add[0,0,0.1]>
+                - repeat 10:
+                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                    - define location <[location].add[-0.1,0,0]>
+                - repeat 10:
+                    - playeffect at:<[location]> effect:<[particle]> offset:0.0
+                    - define location <[location].add[0,0,-0.1]>
                 - wait <[delay]>
         - case z:
             - repeat <[frequency]>:
