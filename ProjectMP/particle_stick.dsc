@@ -540,7 +540,6 @@ ps_shape_single:
     definitions: location|particle|frequency|rotation
     script:
     - define delay <element[1].div[<[frequency]>].as[duration].in_ticks>t
-    
     - repeat <[frequency]>:
         - playeffect at:<[location]> effect:<[particle]>  offset:0.05
         - wait <[delay]>
@@ -709,9 +708,10 @@ ps_shape_alchemy:
 
 ps_shape_square:
     type: task
-    debug: true
+    debug: false
     definitions: location|particle|frequency|rotation
     script:
+    - define location <[location].center>
     - choose <[rotation]>:
         - case center:
             - define axis y
@@ -782,7 +782,6 @@ ps_shape_square:
                     - define location <[location].add[0,0.1,0]>
                 - wait <[delay]>
 
-                
                 # - foreach <[location].points_around_x[radius=0.45;points=9]> as:loc:
                 #     - playeffect at:<[loc]> effect:<[particle]> offset:0.0
                 # - foreach <[location].points_around_x[radius=0.35;points=7]> as:loc:
