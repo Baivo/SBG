@@ -711,6 +711,7 @@ ps_shape_square:
     debug: false
     definitions: location|particle|frequency|rotation
     script:
+    - define location <location[<[location].simple>]>
     - choose <[rotation]>:
         - case center:
             - define axis y
