@@ -716,10 +716,10 @@ ps_shape_square:
         - case center:
             - define axis y
         - case top:
-            - define location <[location].above[0.4].with_yaw[90]>
+            - define location <[location].above[0.9].with_yaw[90]>
             - define axis y
         - case bottom:
-            - define location <[location].below[0.4].with_yaw[90]>
+            - define location <[location].above[0.1].with_yaw[90]>
             - define axis y
         - case north:
             - define location <[location].with_z[<[location].center.z.sub[0.4]>]>
